@@ -25,5 +25,3 @@ Sistema web de gestão acadêmica desenvolvido como parte da disciplina de **Pro
 - Registro de notas e faltas  
 - Consulta ao boletim e frequência  
 - Área individual para cada tipo de usuário
-
-## 📦 Estrutura do projeto (em construção)
