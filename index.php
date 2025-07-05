@@ -1,37 +1,59 @@
 <!DOCTYPE html>
-<html lang="PT">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="IF_Digital/public/recursos/css/geral.css">
-    <title>IF_DIGTIAL</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Sistema Acadêmico iCampus" />
+    <link rel="stylesheet" href="public/recursos/css/geral.css" />
+    <title>iCampus</title>
 </head>
 <body>
-
-    <h1>BEM VINDO AO</h1>
-    <h2><span>I</SPan>Campus</h2>
-
-    <div class="container">
-
-        <div class="professor">
-            <a href=""><img src="IF_Digital/public/recursos/images/professor.png" alt="Professor"></a>
-                <h3>PROFESSOR</h3>
+    <header>
+        <div class="header-content">
+            <h1>Bem-vindo ao</h1>
+            <h2>
+                <span>i</span>Campus
+                <img src="public/recursos/images/logo.png" alt="logo" />
+            </h2>
         </div>
+    </header>
 
-        <div class="aluno">
-             <a href=""><img src="IF_Digital/public/recursos/images/aluno.jpg" alt="Aluno"></a>
-                <h3>ALUNO</h3>
+    <main>
+        <div class="container">
+            <div class="card professor">
+                <a href="public/recursos/php/login.php?tipo=professor" class="card-link" aria-label="Acesso para Professor">
+                    <div class="card-image">
+                        <img src="public/recursos/images/professor.png" alt="Ícone representando Professor" />
+                    </div>
+                    <h3>Professor</h3>
+                </a>
+            </div>
+
+            <div class="card aluno">
+                <a href="public/recursos/php/login.php?tipo=aluno" class="card-link" aria-label="Acesso para Aluno">
+                    <div class="card-image">
+                        <img src="public/recursos/images/aluno.png" alt="Ícone representando Aluno" />
+                    </div>
+                    <h3>Aluno</h3>
+                </a>
+            </div>
+
+            <div class="card adm">
+                <a href="public/recursos/php/login.php?tipo=admin" class="card-link" aria-label="Acesso para Administrador">
+                    <div class="card-image">
+                        <img src="public/recursos/images/adm.png" alt="Ícone representando Administrador" />
+                    </div>
+                    <h3>Administrador</h3>
+                </a>
+            </div>
         </div>
+    </main>
 
-        <div class="adm">
-             <a href=""><img src="IF_Digital/public/recursos/images/adm.jpg" alt="adm"></a>
-                <h3>ADM</h3>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Sistema Acadêmico</p>
+            <p>Desenvolvido por Alcir | Lincon | Marília | Mikaias</p>
         </div>
-
-    </div>
-
-    <footer> 
-         <p>&copy; 2025 Sistema Acadêmico | IF_DIGITAL | Desenvolvido por Mikaias | Alcir | Marília | Lincon</p>
     </footer>
 </body>
 </html>
