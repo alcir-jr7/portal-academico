@@ -15,6 +15,7 @@ $tipo_titulo = ucfirst($tipo);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Login do Sistema Acadêmico iCampus" />
+    <link rel="icon" href="/public/recursos/images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="/public/recursos/css/login.css">
     <title>Login - <?php echo $tipo_titulo; ?></title>
 </head>

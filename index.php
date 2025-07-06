@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Sistema Acadêmico iCampus" />
+    <link rel="icon" href="public/recursos/images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="public/recursos/css/geral.css" />
     <title>iCampus</title>
 </head>
 <body>
     <header>
        <div class="header-content">
-            <div class="header-logo">
-                <img src="public/recursos/images/ícone.png" alt="Ícone do Campus">               
-            </div>
             <h1>Seja Bem-Vindo ao</h1>
-            <h2>iCampus</h2>
+            <div class="logo-container">
+                <img src="public/recursos/images/logo.png" alt="Logo iCampus">
+            </div>
         </div>
     </header>
     <main>
@@ -40,7 +40,7 @@
             <div class="card adm">
                 <a href="public/recursos/php/login.php?tipo=admin" class="card-link" aria-label="Acesso para Administrador">
                     <div class="card-image">
-                        <img src="public/recursos/images/admin.png" alt="Ícone representando Administrador" />
+                        <img src="public/recursos/images/adm.png" alt="Ícone representando Administrador" />
                     </div>
                     <h3>Administrador</h3>
                 </a>
