@@ -9,7 +9,7 @@ Sistema web de gestão acadêmica desenvolvido como parte da disciplina de **Pro
 - Marília Gabriela  
 - Mikaias Marinho
 
-## 🛠️ Tecnologias utilizadas
+## 🛠️ Tecnologias utilizadas 
 
 - HTML  
 - CSS

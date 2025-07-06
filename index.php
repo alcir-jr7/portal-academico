@@ -9,15 +9,14 @@
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>Bem-vindo ao</h1>
-            <h2>
-                <span>i</span>Campus
-                <img src="public/recursos/images/logo.png" alt="logo" />
-            </h2>
+       <div class="header-content">
+            <div class="header-logo">
+                <img src="public/recursos/images/ícone.png" alt="Ícone do Campus">               
+            </div>
+            <h1>Seja Bem-Vindo ao</h1>
+            <h2>iCampus</h2>
         </div>
     </header>
-
     <main>
         <div class="container">
             <div class="card professor">
@@ -41,7 +40,7 @@
             <div class="card adm">
                 <a href="public/recursos/php/login.php?tipo=admin" class="card-link" aria-label="Acesso para Administrador">
                     <div class="card-image">
-                        <img src="public/recursos/images/adm.png" alt="Ícone representando Administrador" />
+                        <img src="public/recursos/images/admin.png" alt="Ícone representando Administrador" />
                     </div>
                     <h3>Administrador</h3>
                 </a>
