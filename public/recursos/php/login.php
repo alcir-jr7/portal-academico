@@ -3,7 +3,8 @@ $tipo = $_GET['tipo'] ?? '';
 $tipos_validos = ['aluno', 'professor', 'admin'];
 
 if (!in_array($tipo, $tipos_validos)) {
-    die('Tipo de usuário inválido.');
+    http_response_code(400);
+    exit('Tipo de usuário inválido.');
 }
 
 $tipo_titulo = ucfirst($tipo);

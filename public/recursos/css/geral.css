@@ -142,26 +142,78 @@ main {
     color: #ccc;
 }
 
+
 /* Footer */
 footer {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem 1rem;
-    text-align: center;
-    margin-top: auto;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-.footer-content p {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-    opacity: 0.8;
+/* Botão "Saiba mais" */
+.footer-details summary {
+  color: #fff;
+  background-color: #111;
+  padding: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  user-select: none;
+  border-top: 1px solid #444;
 }
 
-.footer-content p:first-child {
-    font-weight: bold;
-    color: #fff;
+/* Aplica cor e fundo para todo o conteúdo dentro do details */
+
+.footer-details * {
+  color: #fff;
+  background-color: #111;
 }
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.footer-section {
+  min-width: 200px;
+  margin-bottom: 20px;
+}
+
+.footer-section h4 {
+  border-bottom: 1px solid #555;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 8px;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  transition: text-decoration 0.3s;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 4px;
+  background-color: #111;
+  font-size: 0.85em;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

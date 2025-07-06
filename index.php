@@ -48,11 +48,39 @@
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Sistema Acadêmico</p>
-            <p>Desenvolvido por Alcir | Lincon | Marília | Mikaias</p>
-        </div>
-    </footer>
-</body>
-</html>
+<footer>
+  <details class="footer-details">
+    <summary>Saiba mais</summary>
+    <div class="footer-columns">
+      <div class="footer-section">
+        <h4>Fundadores</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/alcir_jr7/">Alcir José</a></li>
+          <li><a href="https://www.instagram.com/grafalt_/">Lincon Fraga</a></li>
+          <li><a href="https://www.instagram.com/marylia_gabriela_/">Marília Gabriela</a></li>
+          <li><a href="https://www.instagram.com/mika_santos12/">Mikaias Marinho</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Redes Sociais</h4>
+        <ul>
+          <li><a href="https://github.com/alcir-jr7/portal-academico.git">GitHub</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Ajuda</h4>
+        <ul>
+          <li>Tutoriais</li>
+          <li>Sobre o Projeto</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Sistema Acadêmico</p>
+  </div>
+</footer>
+
