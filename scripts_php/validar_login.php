@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$pdo = new PDO("mysql:host=localhost;dbname=seu_banco", "root", "");
+$pdo = new PDO("mysql:host=localhost;dbname=portal_academico", "root", "");
 
 // Pega dados do formulário
 $usuario = $_POST['usuario'] ?? '';
