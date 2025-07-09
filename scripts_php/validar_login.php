@@ -1,10 +1,12 @@
 <?php
 session_start();
 
+require_once(__DIR__ . '/../aplicacao/config/conexao.php');
+
 $pdo = new PDO("mysql:host=localhost;dbname=portal_academico", "root", "");
 
 // Pega dados do formulário
-$usuario = $_POST['usuario'] ?? '';
+$usuario = $_POST['usuario'] ?? '';     
 $senha = $_POST['senha'] ?? '';
 
 // Validação simples
