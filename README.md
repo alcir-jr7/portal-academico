@@ -1,4 +1,4 @@
-# IF-Digital
+# iCampus
 
 Sistema web de gestão acadêmica desenvolvido como parte da disciplina de **Projeto e Prática I**, com funcionalidades voltadas para alunos, professores e administração.
 
