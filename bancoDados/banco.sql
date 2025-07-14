@@ -13,10 +13,10 @@ CREATE TABLE usuarios (
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabela de professores (vem antes porque será usada como coordenador)
+-- Tabela de professores
 CREATE TABLE professores (
     id INT PRIMARY KEY,
-    siape VARCHAR(20) UNIQUE NOT NULL,
+    matricula VARCHAR(20) UNIQUE NOT NULL,
     departamento VARCHAR(100),
     FOREIGN KEY (id) REFERENCES usuarios(id) ON DELETE CASCADE
 );
@@ -145,3 +145,12 @@ FROM matriculas m
 JOIN turmas t ON m.turma_id = t.id
 JOIN disciplinas d ON t.disciplina_id = d.id
 WHERE m.status = 'ativa';
+
+-- Índices para otimização de performance em JOINs
+CREATE INDEX idx_matriculas_aluno_id ON matriculas(aluno_id);
+CREATE INDEX idx_matriculas_turma_id ON matriculas(turma_id);
+CREATE INDEX idx_notas_matricula_id ON notas(matricula_id);
+CREATE INDEX idx_frequencias_matricula_id ON frequencias(matricula_id);
+CREATE INDEX idx_disciplinas_curso_id ON disciplinas(curso_id);
+CREATE INDEX idx_turmas_professor_id ON turmas(professor_id);
+CREATE INDEX idx_turmas_disciplina_id ON turmas(disciplina_id);

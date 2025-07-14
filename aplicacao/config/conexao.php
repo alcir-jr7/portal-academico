@@ -2,11 +2,11 @@
 
 $host = 'localhost'; //o banco está rodando na sua própria máquina.
 $db = 'portal_academico'; //nome do seu banco de dados.
-$usuarios = 'root'; //usuário do MySQL.
+$usuario = 'root'; //usuário do MySQL.
 $senha = ''; //senha do usuário.
 
     try {
-        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $usuarios,$senha);/*Tenta fazer conexão usado a classe PDO, '$pdo = new PDO' criação da classe
+        $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $usuario,$senha);/*Tenta fazer conexão usado a classe PDO, '$pdo = new PDO' criação da classe
                                                                                     String de conexão, dizendo que é MySQL, qual host e banco, e que vai usar UTF-8. */ 
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);/* Define o modo de erro do PDO, após consulta com o SQL,
