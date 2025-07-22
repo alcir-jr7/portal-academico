@@ -154,3 +154,29 @@ CREATE INDEX idx_frequencias_matricula_id ON frequencias(matricula_id);
 CREATE INDEX idx_disciplinas_curso_id ON disciplinas(curso_id);
 CREATE INDEX idx_turmas_professor_id ON turmas(professor_id);
 CREATE INDEX idx_turmas_disciplina_id ON turmas(disciplina_id);
+-- Inserir usuário administrador
+INSERT INTO usuarios (
+    nome,
+    matricula,
+    senha,
+    tipo,
+    ativo
+) VALUES (
+    'Administrador Geral',
+    'admin01',
+    '$2y$10$zZKZUtHkF/S3E0rxrZKLne9HqV8eUiZj2Tb1ay1xEZ5I4zqEHRJKC',
+    'admin',
+    1
+);
+
+-- Capturar o ID gerado
+SET @admin_id = LAST_INSERT_ID();
+
+-- Inserir na tabela administradores
+INSERT INTO administradores (
+    id,
+    setor
+) VALUES (
+    @admin_id,
+    'TI'
+);
