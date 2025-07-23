@@ -20,7 +20,7 @@
     <main>
         <div class="container">
             <div class="card professor">
-                <a href="public/recursos/php/login.php?tipo=professor" class="card-link" aria-label="Acesso para Professor">
+                <a href="public/php/login.php?tipo=professor" class="card-link" aria-label="Acesso para Professor">
                     <div class="card-image">
                         <img src="public/recursos/images/professor.png" alt="Ícone representando Professor" />
                     </div>
@@ -29,7 +29,7 @@
             </div>
 
             <div class="card aluno">
-                <a href="public/recursos/php/login.php?tipo=aluno" class="card-link" aria-label="Acesso para Aluno">
+                <a href="public/php/login.php?tipo=aluno" class="card-link" aria-label="Acesso para Aluno">
                     <div class="card-image">
                         <img src="public/recursos/images/aluno.png" alt="Ícone representando Aluno" />
                     </div>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="card adm">
-                <a href="public/recursos/php/login.php?tipo=admin" class="card-link" aria-label="Acesso para Administrador">
+                <a href="public/php/login.php?tipo=admin" class="card-link" aria-label="Acesso para Administrador">
                     <div class="card-image">
                         <img src="public/recursos/images/adm.png" alt="Ícone representando Administrador" />
                     </div>

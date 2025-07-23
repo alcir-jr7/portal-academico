@@ -13,7 +13,9 @@ $tipo = $_POST['tipo'] ?? '';
 
 // Validação básica dos campos
 if (empty($matricula) || empty($senha) || empty($tipo)) {
-    die('Preencha todos os campos.');
+    $_SESSION['login_error'] = 'Preencha todos os campos.';
+    header('Location: ../public/php/login.php?tipo=' . htmlspecialchars($tipo));
+    exit;
 }
 
 // Consulta o usuário pelo tipo e matrícula
@@ -28,7 +30,9 @@ $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($usuario) {
     // Verifica a senha usando password_verify (a senha deve estar hashada no banco)
     if (password_verify($senha, $usuario['senha'])) {
-        // Login bem sucedido
+        // Login bem sucedido - limpa possíveis mensagens de erro
+        unset($_SESSION['login_error']);
+        
         $_SESSION['usuario_id'] = $usuario['id'];
         $_SESSION['usuario_nome'] = $usuario['nome'];
         $_SESSION['usuario_tipo'] = $usuario['tipo'];
@@ -36,25 +40,31 @@ if ($usuario) {
         // Redireciona para o painel respectivo
         switch ($usuario['tipo']) {
             case 'aluno':
-                header('Location: ../public/recursos/php/painel_aluno.php');
+                header('Location: ../public/php/painel_aluno.php');
                 break;
             case 'professor':
-                header('Location: ../public/recursos/php/painel_professor.php');
+                header('Location: ../public/php/painel_professor.php');
                 break;
             case 'admin':
-                header('Location: ../public/recursos/php/painel_admin.php');
+                header('Location: ../public/php/painel_admin.php');
                 break;
             default:
                 session_destroy();
-                die('Tipo de usuário inválido.');
+                $_SESSION['login_error'] = 'Tipo de usuário inválido.';
+                header('Location: ../public/php/login.php?tipo=' . htmlspecialchars($tipo));
+                exit;
         }
         exit;
     } else {
         // Senha incorreta
-        die('Senha incorreta. <a href="../public/recursos/php/login.php?tipo=' . htmlspecialchars($tipo) . '">Tente novamente</a>');
+        $_SESSION['login_error'] = 'Senha incorreta. Verifique suas credenciais e tente novamente.';
+        header('Location: ../public/php/login.php?tipo=' . htmlspecialchars($tipo));
+        exit;
     }
 } else {
     // Usuário não encontrado
-    die('Usuário não encontrado ou inativo. <a href="../public/recursos/php/login.php?tipo=' . htmlspecialchars($tipo) . '">Tente novamente</a>');
+    $_SESSION['login_error'] = 'Usuário não encontrado ou inativo. Verifique seus dados e tente novamente.';
+    header('Location: ../public/php/login.php?tipo=' . htmlspecialchars($tipo));
+    exit;
 }
 ?>

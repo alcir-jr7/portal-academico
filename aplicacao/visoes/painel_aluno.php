@@ -5,7 +5,7 @@ session_start();
 
 // Verifica se o usuário está logado e é do tipo aluno
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
-    header('Location: /public/recursos/php/login.php?tipo=aluno');
+    header('Location: /public/php/login.php?tipo=aluno');
     exit;
 }
 
