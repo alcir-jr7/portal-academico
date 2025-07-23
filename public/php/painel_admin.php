@@ -29,25 +29,42 @@ try {
     // Busca estatísticas rápidas para o dashboard
     $stats = [];
     
-    // Total de usuários
-    $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuarios");
-    $stats['usuarios'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
-    
-    // Total de cursos (assumindo que existe uma tabela cursos)
     try {
+        // Total de usuários ativos
+        $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuarios WHERE ativo = 1");
+        $stats['usuarios'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        // Total de cursos
         $stmt = $pdo->query("SELECT COUNT(*) as total FROM cursos");
-        $stats['cursos'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'] ?? 0;
+        $stats['cursos'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        // Total de alunos ativos
+        $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuarios WHERE tipo = 'aluno' AND ativo = 1");
+        $stats['alunos'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        // Total de professores ativos
+        $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuarios WHERE tipo = 'professor' AND ativo = 1");
+        $stats['professores'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        // Total de disciplinas
+        $stmt = $pdo->query("SELECT COUNT(*) as total FROM disciplinas");
+        $stats['disciplinas'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
+        // Total de turmas
+        $stmt = $pdo->query("SELECT COUNT(*) as total FROM turmas");
+        $stats['turmas'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+        
     } catch (Exception $e) {
-        $stats['cursos'] = 0; // Se a tabela não existir
+        // Em caso de erro, define valores padrão
+        $stats = [
+            'usuarios' => 0,
+            'cursos' => 0,
+            'alunos' => 0,
+            'professores' => 0,
+            'disciplinas' => 0,
+            'turmas' => 0
+        ];
     }
-    
-    // Total de alunos
-    $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuarios WHERE tipo = 'aluno'");
-    $stats['alunos'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
-    
-    // Total de professores
-    $stmt = $pdo->query("SELECT COUNT(*) as total FROM usuarios WHERE tipo = 'professor'");
-    $stats['professores'] = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
 
 } catch (Exception $e) {
     die("Erro ao acessar dados do usuário: " . $e->getMessage());
@@ -78,19 +95,19 @@ try {
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-number"><?php echo $stats['usuarios']; ?></span>
-                <span class="stat-label">Total de Usuários</span>
+                <span class="stat-label">Usuários</span>
             </div>
             <div class="stat-card">
                 <span class="stat-number"><?php echo $stats['alunos']; ?></span>
-                <span class="stat-label">Alunos Ativos</span>
+                <span class="stat-label">Alunos</span>
             </div>
             <div class="stat-card">
                 <span class="stat-number"><?php echo $stats['professores']; ?></span>
-                <span class="stat-label">Professores Ativos</span>
+                <span class="stat-label">Professores</span>
             </div>
             <div class="stat-card">
                 <span class="stat-number"><?php echo $stats['cursos']; ?></span>
-                <span class="stat-label">Cursos Disponíveis</span>
+                <span class="stat-label">Cursos</span>
             </div>
         </div>
 
@@ -124,18 +141,18 @@ try {
                 <div class="description">Cadastro e gestão de cursos</div>
             </a>
 
+            <!-- Gerenciamento de Disciplinas -->
+            <a href="/public/php/admin/disciplinas/listar.php" class="card-opcao">
+                <img src="/public/recursos/images/disciplinas.png" alt="Disciplinas">
+                <span>Disciplinas</span>
+                <div class="description">Cadastro de disciplinas e matérias</div>
+            </a>
+
             <!-- Gerenciamento de Turmas -->
             <a href="/public/php/admin/turmas/listar.php" class="card-opcao">
                 <img src="/public/recursos/images/turma.png" alt="Turmas">
                 <span>Turmas</span>
                 <div class="description">Criação e gestão de turmas</div>
-            </a>
-
-            <!-- Gerenciamento de Disciplinas -->
-            <a href="/public/php/admin/disciplinas/listar.php" class="card-opcao">
-                <img src="/public/recursos/images/disciplinas.png" alt="Disciplinas">
-                <span>Disciplinas</span>
-                <div class="description">Cadastro de disciplinas</div>
             </a>
         </div>
     </main>
