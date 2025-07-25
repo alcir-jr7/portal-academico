@@ -23,7 +23,7 @@ UPDATE cursos SET coordenador_id = 2 WHERE id = 1;
 
 -- Inserir usuário administrador
 INSERT INTO usuarios (nome, matricula, senha, tipo)
-VALUES ('Carlos Souza', 'ADMIN001', '$2y$10$67umZXmuA8Lm9gliNgfsTuU2vA/5GIx5Da27Op6RTO8p4PsJK3SRi', 'admin');
+VALUES ('Carlos Souza', 'ADMIN001', '$2a$12$E0HX6gYYmXMdK0kWYcEyzuukOpvIoCwhQMWmanRrdpoZkCM6UH6PG', 'admin');
 
 -- Inserir administrador (assumindo que o ID do usuário inserido acima foi 3)
 INSERT INTO administradores (id, setor)

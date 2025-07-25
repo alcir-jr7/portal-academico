@@ -121,7 +121,7 @@ try {
             </a>
 
             <!-- Gerenciamento de Alunos -->
-            <a href="/public/php/admin/alunos/listar.php" class="card-opcao">
+            <a href="/scripts_php/adm/alunos/php/index.php" class="card-opcao">
                 <img src="/public/recursos/images/aluno.png" alt="Alunos">
                 <span>Alunos</span>
                 <div class="description">Cadastro e gestão de alunos</div>
