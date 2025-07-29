@@ -1,6 +1,6 @@
 <?php
 
-$host = 'localhost'; // host sem porta aqui
+$host = '127.0.0.1'; // host sem porta aqui
 $port = 3306;        // porta separada
 $db = 'portal_academico';
 $usuario = 'root';

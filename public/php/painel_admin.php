@@ -114,42 +114,42 @@ try {
         <h2>Gerenciamento do Sistema</h2>
         <div class="painel-opcoes">
             <!-- Gerenciamento de Usuários -->
-            <a href="/public/php/admin/usuarios/listar.php" class="card-opcao">
+            <a href="/scripts_php/adm/usuarios/index.php" class="card-opcao">
                 <img src="/public/recursos/images/user.png" alt="Usuários">
                 <span>Usuários</span>
                 <div class="description">Gerenciar contas de usuários do sistema</div>
             </a>
 
             <!-- Gerenciamento de Alunos -->
-            <a href="/scripts_php/adm/alunos/php/index.php" class="card-opcao">
+            <a href="/scripts_php/adm/alunos/index.php" class="card-opcao">
                 <img src="/public/recursos/images/aluno.png" alt="Alunos">
                 <span>Alunos</span>
                 <div class="description">Cadastro e gestão de alunos</div>
             </a>
 
             <!-- Gerenciamento de Professores -->
-            <a href="/public/php/admin/professores/listar.php" class="card-opcao">
+            <a href="/scripts_php/adm/professor/index.php" class="card-opcao">
                 <img src="/public/recursos/images/professor.png" alt="Professores">
                 <span>Professores</span>
                 <div class="description">Cadastro e gestão de professores</div>
             </a>
 
             <!-- Gerenciamento de Cursos -->
-            <a href="/public/php/admin/cursos/listar.php" class="card-opcao">
+            <a href="/scripts_php/adm/cursos/index.php" class="card-opcao">
                 <img src="/public/recursos/images/cursos.png" alt="Cursos">
                 <span>Cursos</span>
                 <div class="description">Cadastro e gestão de cursos</div>
             </a>
 
             <!-- Gerenciamento de Disciplinas -->
-            <a href="/public/php/admin/disciplinas/listar.php" class="card-opcao">
+            <a href="/scripts_php/adm/disciplinas/index.php" class="card-opcao">
                 <img src="/public/recursos/images/disciplinas.png" alt="Disciplinas">
                 <span>Disciplinas</span>
                 <div class="description">Cadastro de disciplinas e matérias</div>
             </a>
 
             <!-- Gerenciamento de Turmas -->
-            <a href="/public/php/admin/turmas/listar.php" class="card-opcao">
+            <a href="/scripts_php/adm/turmas/index.php" class="card-opcao">
                 <img src="/public/recursos/images/turma.png" alt="Turmas">
                 <span>Turmas</span>
                 <div class="description">Criação e gestão de turmas</div>

@@ -17,7 +17,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'professor'
 
 // --- Inclusão do Arquivo de Conexão com o Banco de Dados ---
 // Assume que 'conexao.php' está no caminho correto e retorna uma instância de PDO
-require_once(__DIR__ . '/../../../aplicacao/config/conexao.php');
+require_once(__DIR__ . '/../../aplicacao/config/conexao.php');
 
 try {
     // --- Busca o nome e departamento do professor no banco de dados ---
