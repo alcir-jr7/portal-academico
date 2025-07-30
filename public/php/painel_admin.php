@@ -154,6 +154,14 @@ try {
                 <span>Turmas</span>
                 <div class="description">Criação e gestão de turmas</div>
             </a>
+
+            <!-- Gerenciamento de Matrículas -->
+            <a href="/scripts_php/adm/matriculas/index.php" class="card-opcao">
+                <img src="/public/recursos/images/matricula.png" alt="Matrículas">
+                <span>Matrículas</span>
+                <div class="description">Controle de matrículas em turmas</div>
+            </a>
+
         </div>
     </main>
 

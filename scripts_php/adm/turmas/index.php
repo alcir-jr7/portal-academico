@@ -46,6 +46,7 @@ $turmas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <a href="visualizar.php?id=<?= $turma['id'] ?>">Visualizar</a> |
                         <a href="editar.php?id=<?= $turma['id'] ?>">Editar</a> |
                         <a href="deletar.php?id=<?= $turma['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir esta turma?')">Excluir</a>
+                        <a href="detalhes.php?id=<?= $turma['id'] ?>">Detalhes</a> |
                     </td>
                 </tr>
             <?php endforeach; ?>
