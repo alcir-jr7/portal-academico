@@ -80,14 +80,26 @@ try {
     <link rel="stylesheet" href="/public/recursos/css/painel_admin.css" />
 </head>
 <body>
+    <!-- Sidebar expansiva -->
+    <aside id="sidebar" class="sidebar">
+        <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        <a href="/scripts_php/adm/usuarios/index.php">Usuários</a>
+        <a href="/scripts_php/adm/alunos/index.php">Alunos</a>
+        <a href="/scripts_php/adm/professor/index.php">Professores</a>
+        <a href="/scripts_php/adm/cursos/index.php">Cursos</a>
+        <a href="/scripts_php/adm/disciplinas/index.php">Disciplinas</a>
+        <a href="/scripts_php/adm/turmas/index.php">Turmas</a>
+        <a href="/scripts_php/adm/matriculas/index.php">Matrículas</a>
+    </aside>
     <header>
-        <h1>Painel Administrativo - <?php echo htmlspecialchars($usuario['nome']); ?></h1>
+         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
         <nav>
             <ul>
                 <li><a href="/public/php/painel_admin.php">Home</a></li>
                 <li><a href="/scripts_php/logout.php">Sair</a></li>
             </ul>
         </nav>
+            <h1>Administrador - <?php echo htmlspecialchars($usuario['nome']); ?></h1>
     </header>
 
     <main>
@@ -164,6 +176,20 @@ try {
 
         </div>
     </main>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            const main = document.querySelector("main");
+
+            if (sidebar.style.width === "250px") {
+                sidebar.style.width = "0";
+                main.style.marginLeft = "0";
+            } else {
+                sidebar.style.width = "250px";
+                main.style.marginLeft = "250px";
+            }
+        }
+    </script>
 
 </body>
 </html>

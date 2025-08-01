@@ -7,35 +7,54 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #111 0%, #222 100%);
+    background: linear-gradient(135deg, #fcfafa 0%, #707070 100%);
     color: #fff;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Cabeçalho */
 header {
-    padding: 2rem 1rem;
-    text-align: center;
-    background-color: #1a1a1a;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111;
+    color: #fff;
+    padding: 1rem;
+    position: relative;
+}
+
+.menu-btn {
+    position: absolute;
+    left: 1rem;
+    top: 30%;           
+    font-size: 20px;
+    background: none;
+    color: white ;
+    border: none;
+    cursor: pointer;
+
+}
+
+header ul {
+    order: 2; /* centro */
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0 auto; /* centraliza no espaço disponível */
+    padding: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 header h1 {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    color: #e0e0e0;
+    order: 3; /* direita */
+    margin: 0;
+    font-size: 18px;
+    white-space: nowrap;
 }
 
-/* Navegação no cabeçalho */
-header ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem 0;
-    flex-wrap: wrap;
-}
 
 header ul li a {
     color: #fff;
@@ -77,7 +96,7 @@ main {
     border-radius: 16px;
     padding: 2rem 1.5rem;
     text-align: center;
-    color: #fff;
+    color: #000000;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -107,7 +126,7 @@ main {
 main h2 {
     font-size: 1.8rem;
     margin-bottom: 2rem;
-    color: #ccc;
+    color: #000000;
 }
 
 /* Cards do painel */
@@ -126,7 +145,7 @@ main h2 {
     padding: 2rem 1.5rem;
     text-align: center;
     text-decoration: none;
-    color: #fff;
+    color: #000000;
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
@@ -156,7 +175,7 @@ main h2 {
 
 .card-opcao .description {
     font-size: 0.9rem;
-    color: #ccc;
+    color: #000000;
     text-align: center;
 }
 
@@ -181,4 +200,48 @@ main h2 {
     .stat-card {
         padding: 1.5rem;
     }
+}
+
+/* configuraçao da barra lateral*/
+
+/* Sidebar expansiva à esquerda */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #1e1e1e;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #333;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Empurrar o conteúdo quando sidebar abrir */
+main {
+    transition: margin-left 0.3s;
 }
