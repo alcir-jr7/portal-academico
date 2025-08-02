@@ -83,6 +83,15 @@ CREATE TABLE matriculas (
     FOREIGN KEY (turma_id) REFERENCES turmas(id)
 );
 
+ -- Tabela de matrículas_academicas (aluno,professor,admin) 
+CREATE TABLE matriculas_academicas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    matricula VARCHAR(20) UNIQUE NOT NULL,
+    tipo ENUM('aluno', 'professor', 'admin') NOT NULL,
+    usada BOOLEAN DEFAULT FALSE
+);
+
+
 -- Tabela de notas
 CREATE TABLE notas (
     id INT AUTO_INCREMENT PRIMARY KEY,
