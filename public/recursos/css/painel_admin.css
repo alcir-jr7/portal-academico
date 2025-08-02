@@ -16,7 +16,6 @@ body {
 .Admin {
     position: relative;
     width: 100%;
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -262,6 +261,7 @@ main {
     width: 20px;
     height: 20px;
 }
+
 /* Linha com calendário e gráfico lado a lado */
 .dashboard-linha {
   display: flex;
@@ -326,8 +326,6 @@ td.evento.hoje {
   font-weight: bold;
   border-radius: 50%;
 }
-
-
 
 /* Gráfico */
 .grafico-container {

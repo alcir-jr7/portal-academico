@@ -78,36 +78,35 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel do Administrador - iCampus</title>
     <link rel="stylesheet" href="/public/recursos/css/painel_admin.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Sidebar expansiva -->
     <aside id="sidebar" class="sidebar">
-    <h1 class="Admin">Administração</h1>
-    <button class="close-btn" onclick="toggleSidebar()">✖</button>
+        <h1 class="Admin">Administração</h1>
+        <button class="close-btn" onclick="toggleSidebar()">✖</button>
 
-    <a href="/scripts_php/adm/usuarios/index.php">
-        <img src="/public/recursos/images/user.png"  class="icon"> Usuários
-    </a>
-    <a href="/scripts_php/adm/alunos/index.php">
-        <img src="/public/recursos/images/aluno.png" class="icon"> Alunos
-    </a>
-    <a href="/scripts_php/adm/professor/index.php">
-        <img src="/public/recursos/images/professor.png" class="icon"> Professores
-    </a>
-    <a href="/scripts_php/adm/cursos/index.php">
-        <img src="/public/recursos/images/cursos.png"class="icon"> Cursos
-    </a>
-    <a href="/scripts_php/adm/disciplinas/index.php">
-        <img src="/public/recursos/images/disciplinas.png" class="icon"> Disciplinas
-    </a>
-    <a href="/scripts_php/adm/turmas/index.php">
-        <img src="/public/recursos/images/turma.png" class="icon"> Turmas
-    </a>
-    <a href="/scripts_php/adm/matriculas/index.php">
-        <img src="/public/recursos/images/matriculas.png"class="icon"> Matrículas
-    </a>
-</aside>
+        <a href="/scripts_php/adm/usuarios/index.php">
+            <img src="/public/recursos/images/user.png"  class="icon"> Usuários
+        </a>
+        <a href="/scripts_php/adm/alunos/index.php">
+            <img src="/public/recursos/images/aluno.png" class="icon"> Alunos
+        </a>
+        <a href="/scripts_php/adm/professor/index.php">
+            <img src="/public/recursos/images/professor.png" class="icon"> Professores
+        </a>
+        <a href="/scripts_php/adm/cursos/index.php">
+            <img src="/public/recursos/images/cursos.png"class="icon"> Cursos
+        </a>
+        <a href="/scripts_php/adm/disciplinas/index.php">
+            <img src="/public/recursos/images/disciplinas.png" class="icon"> Disciplinas
+        </a>
+        <a href="/scripts_php/adm/turmas/index.php">
+            <img src="/public/recursos/images/turma.png" class="icon"> Turmas
+        </a>
+        <a href="/scripts_php/adm/matriculas/index.php">
+            <img src="/public/recursos/images/matriculas.png"class="icon"> Matrículas
+        </a>
+    </aside>
 
     <header>
          <button class="menu-btn" onclick="toggleSidebar()">☰</button>
@@ -176,22 +175,19 @@ try {
         </div>
      
     </main>
-<script src="../recursos/js/painel_admin.js"></script>
-<!-- Biblioteca Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../recursos/js/painel_admin.js"></script>
+    <!-- Biblioteca Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Passa os dados PHP para o JavaScript -->
-<script>
-    const statsData = {
-        usuarios: <?php echo $stats['usuarios']; ?>,
-        alunos: <?php echo $stats['alunos']; ?>,
-        professores: <?php echo $stats['professores']; ?>,
-        cursos: <?php echo $stats['cursos']; ?>
-    };
-</script>
-
-<!-- Script separado -->
-<script src="/public/js/statsChart.js"></script>
+    <!-- Passa os dados PHP para o JavaScript -->
+    <script>
+        const statsData = {
+            usuarios: <?php echo $stats['usuarios']; ?>,
+            alunos: <?php echo $stats['alunos']; ?>,
+            professores: <?php echo $stats['professores']; ?>,
+            cursos: <?php echo $stats['cursos']; ?>
+        };
+    </script>
 
 
 </body>
