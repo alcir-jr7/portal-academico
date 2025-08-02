@@ -78,19 +78,37 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel do Administrador - iCampus</title>
     <link rel="stylesheet" href="/public/recursos/css/painel_admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Sidebar expansiva -->
     <aside id="sidebar" class="sidebar">
-        <button class="close-btn" onclick="toggleSidebar()">✖</button>
-        <a href="/scripts_php/adm/usuarios/index.php">Usuários</a>
-        <a href="/scripts_php/adm/alunos/index.php">Alunos</a>
-        <a href="/scripts_php/adm/professor/index.php">Professores</a>
-        <a href="/scripts_php/adm/cursos/index.php">Cursos</a>
-        <a href="/scripts_php/adm/disciplinas/index.php">Disciplinas</a>
-        <a href="/scripts_php/adm/turmas/index.php">Turmas</a>
-        <a href="/scripts_php/adm/matriculas/index.php">Matrículas</a>
-    </aside>
+    <h1 class="Admin">Administração</h1>
+    <button class="close-btn" onclick="toggleSidebar()">✖</button>
+
+    <a href="/scripts_php/adm/usuarios/index.php">
+        <img src="/public/recursos/images/user.png"  class="icon"> Usuários
+    </a>
+    <a href="/scripts_php/adm/alunos/index.php">
+        <img src="/public/recursos/images/aluno.png" class="icon"> Alunos
+    </a>
+    <a href="/scripts_php/adm/professor/index.php">
+        <img src="/public/recursos/images/professor.png" class="icon"> Professores
+    </a>
+    <a href="/scripts_php/adm/cursos/index.php">
+        <img src="/public/recursos/images/cursos.png"class="icon"> Cursos
+    </a>
+    <a href="/scripts_php/adm/disciplinas/index.php">
+        <img src="/public/recursos/images/disciplinas.png" class="icon"> Disciplinas
+    </a>
+    <a href="/scripts_php/adm/turmas/index.php">
+        <img src="/public/recursos/images/turma.png" class="icon"> Turmas
+    </a>
+    <a href="/scripts_php/adm/matriculas/index.php">
+        <img src="/public/recursos/images/matriculas.png"class="icon"> Matrículas
+    </a>
+</aside>
+
     <header>
          <button class="menu-btn" onclick="toggleSidebar()">☰</button>
         <nav>
@@ -103,80 +121,77 @@ try {
     </header>
 
     <main>
-        <!-- Estatísticas rápidas -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number"><?php echo $stats['usuarios']; ?></span>
-                <span class="stat-label">Usuários</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number"><?php echo $stats['alunos']; ?></span>
-                <span class="stat-label">Alunos</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number"><?php echo $stats['professores']; ?></span>
-                <span class="stat-label">Professores</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number"><?php echo $stats['cursos']; ?></span>
-                <span class="stat-label">Cursos</span>
-            </div>
-        </div>
+        
 
         <h2>Gerenciamento do Sistema</h2>
         <div class="painel-opcoes">
             <!-- Gerenciamento de Usuários -->
             <a href="/scripts_php/adm/usuarios/index.php" class="card-opcao">
-                <img src="/public/recursos/images/user.png" alt="Usuários">
+                <img src="/public/recursos/images/user-p.png" alt="Usuários">
                 <span>Usuários</span>
                 <div class="description">Gerenciar contas de usuários do sistema</div>
             </a>
-
-            <!-- Gerenciamento de Alunos -->
-            <a href="/scripts_php/adm/alunos/index.php" class="card-opcao">
-                <img src="/public/recursos/images/aluno.png" alt="Alunos">
-                <span>Alunos</span>
-                <div class="description">Cadastro e gestão de alunos</div>
-            </a>
-
-            <!-- Gerenciamento de Professores -->
-            <a href="/scripts_php/adm/professor/index.php" class="card-opcao">
-                <img src="/public/recursos/images/professor.png" alt="Professores">
-                <span>Professores</span>
-                <div class="description">Cadastro e gestão de professores</div>
+           
+            <!-- Gerenciamento de Disciplinas -->
+            <a href="/scripts_php/adm/disciplinas/index.php" class="card-opcao">
+                <img src="/public/recursos/images/disciplina-p.png" alt="Disciplinas">  
+                <span>Disciplinas</span>
+                <div class="description">Cadastro e gestão de disciplinas</div>
             </a>
 
             <!-- Gerenciamento de Cursos -->
             <a href="/scripts_php/adm/cursos/index.php" class="card-opcao">
-                <img src="/public/recursos/images/cursos.png" alt="Cursos">
+                <img src="/public/recursos/images/curso-p.png" alt="Cursos">
                 <span>Cursos</span>
                 <div class="description">Cadastro e gestão de cursos</div>
             </a>
-
-            <!-- Gerenciamento de Disciplinas -->
-            <a href="/scripts_php/adm/disciplinas/index.php" class="card-opcao">
-                <img src="/public/recursos/images/disciplinas.png" alt="Disciplinas">
-                <span>Disciplinas</span>
-                <div class="description">Cadastro de disciplinas e matérias</div>
-            </a>
-
-            <!-- Gerenciamento de Turmas -->
-            <a href="/scripts_php/adm/turmas/index.php" class="card-opcao">
-                <img src="/public/recursos/images/turma.png" alt="Turmas">
-                <span>Turmas</span>
-                <div class="description">Criação e gestão de turmas</div>
-            </a>
-
+            
             <!-- Gerenciamento de Matrículas -->
             <a href="/scripts_php/adm/matriculas/index.php" class="card-opcao">
-                <img src="/public/recursos/images/matricula.png" alt="Matrículas">
+                <img src="/public/recursos/images/matricular-p.png" alt="Matrículas">
                 <span>Matrículas</span>
                 <div class="description">Controle de matrículas em turmas</div>
             </a>
 
         </div>
+        <div class="dashboard-linha">
+            <div class="calendario-widget">
+                 <table id="calendario">
+                    <thead>
+                         <tr>
+                            <th colspan="7" id="mesAno"></th>   
+                        </tr>
+                        <tr>
+                            <th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th>
+                        </tr>
+                    </thead>
+                    <tbody id="diasCalendario"></tbody>
+                </table>
+            </div>
+
+            <div class="grafico-container">
+                <h2>Estatísticas Rápidas</h2>
+                <canvas id="statsChart" width="400" height="250"></canvas>
+            </div>
+        </div>
+     
     </main>
 <script src="../recursos/js/painel_admin.js"></script>
+<!-- Biblioteca Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Passa os dados PHP para o JavaScript -->
+<script>
+    const statsData = {
+        usuarios: <?php echo $stats['usuarios']; ?>,
+        alunos: <?php echo $stats['alunos']; ?>,
+        professores: <?php echo $stats['professores']; ?>,
+        cursos: <?php echo $stats['cursos']; ?>
+    };
+</script>
+
+<!-- Script separado -->
+<script src="/public/js/statsChart.js"></script>
 
 
 </body>

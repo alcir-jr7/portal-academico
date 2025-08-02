@@ -13,6 +13,15 @@ body {
     display: flex;
     flex-direction: column;
 }
+.Admin {
+    position: relative;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
 
 header {
     display: flex;
@@ -73,8 +82,9 @@ header ul li a:hover {
 
 /* Conteúdo principal */
 main {
+    position: relative;
     flex: 1;
-    padding: 3rem 2rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,11 +141,12 @@ main h2 {
 
 /* Cards do painel */
 .painel-opcoes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 2rem;
-    width: 100%;
-    max-width: 1000px;
+    width: 150%;
+    max-width: 1200px;
+    margin-bottom: 3rem;
 }
 
 .card-opcao {
@@ -244,4 +255,93 @@ main h2 {
 /* Empurrar o conteúdo quando sidebar abrir */
 main {
     transition: margin-left 0.3s;
+}
+
+
+.sidebar a img.icon {
+    width: 20px;
+    height: 20px;
+}
+/* Linha com calendário e gráfico lado a lado */
+.dashboard-linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 80%;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap; /* Permite quebrar em telas menores */
+}
+
+/* Calendário */
+/* Container para alinhar lado a lado */
+.dashboard {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Calendário */
+.calendario-widget {
+  flex: 1.2;
+  min-width: 300px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1rem;
+  color: #000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#calendario {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#calendario th, #calendario td {
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  width: 14.2%;
+}
+
+#calendario td.evento {
+  background: rgba(109, 12, 117, 0.479);
+  font-weight: bold;
+  color: #000000d3;
+}
+
+td.hoje {
+  background-color: #333333; /* verde */
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+/* Se quiser destaque especial quando o dia atual também for evento */
+td.evento.hoje {
+  background-color: #a93bca; /* verde mais escuro */
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+
+
+/* Gráfico */
+.grafico-container {
+  flex: 1;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  color: #000;
+}
+
+.grafico-container h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
