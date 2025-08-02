@@ -27,9 +27,9 @@ if (!$turma) {
     exit;
 }
 
-// Buscar alunos da turma
+// Buscar alunos da turma com nome e matrícula
 $stmt = $pdo->prepare("
-    SELECT u.nome AS nome_aluno, a.email
+    SELECT u.nome AS nome_aluno, u.matricula
     FROM matriculas m
     JOIN alunos a ON m.aluno_id = a.id
     JOIN usuarios u ON a.id = u.id
@@ -58,7 +58,7 @@ $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php if (count($alunos) > 0): ?>
         <ul>
             <?php foreach ($alunos as $aluno): ?>
-                <li><?= htmlspecialchars($aluno['nome_aluno']) ?> (<?= htmlspecialchars($aluno['email']) ?>)</li>
+                <li><?= htmlspecialchars($aluno['nome_aluno']) ?> (<?= htmlspecialchars($aluno['matricula']) ?>)</li>
             <?php endforeach; ?>
         </ul>
     <?php else: ?>

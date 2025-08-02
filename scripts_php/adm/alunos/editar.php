@@ -30,14 +30,14 @@ $cursos = $pdo->query("SELECT id, nome FROM cursos")->fetchAll(PDO::FETCH_ASSOC)
 // Atualiza se enviado via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
-    $matricula = $_POST['matricula'] ?? '';
+    // matrícula não será alterada
     $email = $_POST['email'] ?? '';
     $periodo = $_POST['periodo_entrada'] ?? '';
     $curso_id = $_POST['curso_id'] ?? null;
 
-    // Atualiza na tabela usuarios
-    $stmt1 = $pdo->prepare("UPDATE usuarios SET nome = ?, matricula = ? WHERE id = ?");
-    $stmt1->execute([$nome, $matricula, $id]);
+    // Atualiza na tabela usuarios (sem alterar matrícula)
+    $stmt1 = $pdo->prepare("UPDATE usuarios SET nome = ? WHERE id = ?");
+    $stmt1->execute([$nome, $id]);
 
     // Atualiza na tabela alunos
     $stmt2 = $pdo->prepare("UPDATE alunos SET email = ?, periodo_entrada = ?, curso_id = ? WHERE id = ?");
@@ -66,8 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label>
             Matrícula:<br>
-            <input type="text" name="matricula" value="<?= htmlspecialchars($aluno['matricula']) ?>" required>
+            <input type="text" name="matricula" value="<?= htmlspecialchars($aluno['matricula']) ?>" readonly style="background-color: #eee; border: 1px solid #ccc; cursor: not-allowed;">
         </label>
+        <br>
+        <small style="color: #555;">A matrícula não pode ser alterada.</small>
         <br><br>
 
         <label>

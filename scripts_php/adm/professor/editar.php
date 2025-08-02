@@ -20,11 +20,17 @@ if (!$professor) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome = $_POST['nome'] ?? '';
     $departamento = $_POST['departamento'] ?? '';
     $email = $_POST['email'] ?? '';
 
-    $stmt = $pdo->prepare("UPDATE professores SET departamento = ?, email = ? WHERE id = ?");
-    $stmt->execute([$departamento, $email, $id]);
+    // Atualiza o nome no usuarios
+    $stmt1 = $pdo->prepare("UPDATE usuarios SET nome = ? WHERE id = ?");
+    $stmt1->execute([$nome, $id]);
+
+    // Atualiza departamento e email no professores
+    $stmt2 = $pdo->prepare("UPDATE professores SET departamento = ?, email = ? WHERE id = ?");
+    $stmt2->execute([$departamento, $email, $id]);
 
     header("Location: index.php");
     exit;
@@ -43,13 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form method="post">
         <label>
             Nome:<br>
-            <input type="text" value="<?= htmlspecialchars($professor['nome']) ?>">
+            <input type="text" name="nome" value="<?= htmlspecialchars($professor['nome']) ?>" required>
         </label><br><br>
 
         <label>
             Matrícula:<br>
-            <input type="text" value="<?= htmlspecialchars($professor['matricula']) ?>" disabled>
-        </label><br><br>
+            <input type="text" value="<?= htmlspecialchars($professor['matricula']) ?>" readonly style="background-color: #eee; border: 1px solid #ccc; cursor: not-allowed;">
+        </label>
+        <br>
+        <small style="color: #555;">A matrícula não pode ser alterada.</small>
+        <br><br>
 
         <label>
             Departamento:<br>
