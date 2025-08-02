@@ -1,0 +1,101 @@
+<?php
+session_start();
+
+// Verifica se o usuário está autenticado e é professor
+if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'professor') {
+    header('Location: ../../publico/login.php?tipo=professor');
+    exit;
+}
+
+require_once(__DIR__ . '/../../../aplicacao/config/conexao.php');
+
+try {
+    // Busca as turmas vinculadas ao professor, trazendo nome da disciplina e semestre da turma
+    $stmt = $pdo->prepare("
+        SELECT 
+            t.id AS turma_id, 
+            d.id AS disciplina_id,
+            d.nome AS disciplina_nome,
+            t.semestre,
+            t.horario
+        FROM turmas t
+        JOIN disciplinas d ON t.disciplina_id = d.id
+        WHERE t.professor_id = ?
+        ORDER BY d.nome, t.semestre
+    ");
+    $stmt->execute([$_SESSION['usuario_id']]);
+    $turmas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (Exception $e) {
+    die("Erro ao buscar turmas do professor: " . $e->getMessage());
+}
+?>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerenciar Notas - Painel do Professor</title>
+    <link rel="stylesheet" href="../../../public/css/admin-style.css" />
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Gerenciamento de Notas</h1>
+            <div class="admin-info">
+                <span>Painel do Professor</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/public/php/painel_professor.php">Voltar ao Painel</a></li>
+                <li><a href="/scripts_php/logout.php">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-header">
+            <h2>Minhas Turmas</h2>
+        </div>
+
+        <?php if (empty($turmas)): ?>
+            <div class="empty-state">
+                <h3>Você ainda não tem turmas vinculadas.</h3>
+                <p>Entre em contato com a coordenação para mais informações.</p>
+            </div>
+        <?php else: ?>
+            <div class="table-container">
+                <table class="admin-table" border="1">
+                    <thead>
+                        <tr>
+                            <th>Disciplina</th>
+                            <th>Semestre</th>
+                            <th>Horário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($turmas as $turma): ?>
+                            <tr>
+                                <td><strong><?= htmlspecialchars($turma['disciplina_nome']) ?></strong></td>
+                                <td><?= htmlspecialchars($turma['semestre']) ?></td>
+                                <td><?= htmlspecialchars($turma['horario']) ?></td>
+                                <td class="actions">
+                                    <a href="lancar_notas.php?turma_id=<?= $turma['turma_id'] ?>&disciplina_id=<?= $turma['disciplina_id'] ?>" class="btn btn-primary" title="Lançar/Editar Notas">Lançar Notas</a>
+                                    <a href="visualizar_notas.php?turma_id=<?= $turma['turma_id'] ?>&disciplina_id=<?= $turma['disciplina_id'] ?>" class="btn btn-info" title="Visualizar Notas">Visualizar Notas</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            
+
+            <div class="table-info">
+                <p>Total de turmas: <strong><?= count($turmas) ?></strong></p>
+            </div>
+        <?php endif; ?>
+    </main>
+</body>
+</html>

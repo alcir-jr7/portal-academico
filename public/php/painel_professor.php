@@ -69,12 +69,12 @@ try {
     <main>
         <h2>Menu do Professor</h2>
         <div class="painel-opcoes">
-            <a href="gerenciar_notas.php" class="card-opcao">
+            <a href="/scripts_php/prof/notas/index.php" class="card-opcao">
                 <!-- Ícone para Gerenciar Notas -->
                 <img src="https://placehold.co/64x64/cccccc/333333?text=Notas" alt="Gerenciar Notas">
                 <span>Gerenciar Notas</span>
             </a>
-            <a href="gerenciar_frequencia.php" class="card-opcao">
+            <a href="/scripts_php/prof/frequencia/index.php" class="card-opcao">
                 <!-- Ícone para Gerenciar Frequência -->
                 <img src="https://placehold.co/64x64/cccccc/333333?text=Freq" alt="Gerenciar Frequência">
                 <span>Gerenciar Frequência</span>

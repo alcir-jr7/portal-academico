@@ -1,4 +1,4 @@
-z<?php
+<?php
 session_start();
 require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
 
@@ -27,6 +27,7 @@ $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Gerenciamento de Matrículas Acadêmicas</title>
+    
 </head>
 <body>
     <h1>Matrículas Acadêmicas</h1>

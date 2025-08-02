@@ -38,7 +38,6 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <main>
         <div class="content-header">
             <h2>Cursos Cadastrados</h2>
-            <a href="criar.php" class="btn btn-primary">➕ Adicionar Novo Curso</a>
         </div>
         
         <?php if (empty($cursos)): ?>
@@ -49,7 +48,7 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php else: ?>
             <div class="table-container">
-                <table class="admin-table">
+                <table border="1" class="admin-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -71,12 +70,12 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= $curso['duracao_semestres'] ?> semestres</td>
                                 <td><?= htmlspecialchars($curso['coordenador_email'] ?? 'Não definido') ?></td>
                                 <td class="actions">
-                                    <a href="visualizar.php?id=<?= $curso['id'] ?>" class="btn btn-info" title="Visualizar">👁️</a>
-                                    <a href="atualizar.php?id=<?= $curso['id'] ?>" class="btn btn-warning" title="Editar">✏️</a>
+                                    <a href="visualizar.php?id=<?= $curso['id'] ?>" class="btn btn-info" title="Visualizar">Visualizar</a>
+                                    <a href="atualizar.php?id=<?= $curso['id'] ?>" class="btn btn-warning" title="Editar">Editar</a>
                                     <a href="deletar.php?id=<?= $curso['id'] ?>" 
                                        class="btn btn-danger" 
                                        title="Excluir"
-                                       onclick="return confirm('⚠️ Tem certeza que deseja excluir o curso \'<?= htmlspecialchars($curso['nome']) ?>\'?\n\nEsta ação não pode ser desfeita!');">🗑️</a>
+                                       onclick="return confirm('⚠️ Tem certeza que deseja excluir o curso \'<?= htmlspecialchars($curso['nome']) ?>\'?\n\nEsta ação não pode ser desfeita!');">Excluir</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
