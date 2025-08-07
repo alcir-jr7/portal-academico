@@ -91,7 +91,7 @@ try {
                 <a href="/scripts_php/prof/notas/index.php" class="card-opcao">
                     <!-- Ícone para Gerenciar Notas -->
                     <img src="/public/recursos/images/boletim-p.png" alt=" Notas">
-                    <span> Notas</span>
+                    <span>Notas</span>
                     <div class="description">Gerenciamento das notas dos Alunos</div>
                 </a>
                 <a href="/scripts_php/prof/frequencia/index.php" class="card-opcao">

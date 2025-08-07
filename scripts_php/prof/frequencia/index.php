@@ -3,7 +3,7 @@ session_start();
 
 // Verifica se o usuário é professor e está autenticado
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'professor') {
-    header('Location: ../../publico/login.php?tipo=professor');
+    header('Location: ../../public/php/login.php?tipo=professor');
     exit;
 }
 

@@ -9,7 +9,7 @@ session_start();
 
 // Verifica se o usuário está logado e é do tipo aluno
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
-    header('Location: ../publico/login.php?tipo=aluno');
+    header('Location: ../public/php/login.php?tipo=aluno');
     exit;
 }
 
@@ -24,7 +24,7 @@ try {
     if (!$usuario) {
         // Usuário não encontrado - desloga
         session_destroy();
-        header('Location: ../publico/login.php?tipo=aluno');
+        header('Location: ../public/php/login.php?tipo=aluno');
         exit;
     }
 } catch (Exception $e) {
@@ -46,13 +46,13 @@ try {
     <h1 class="menu">Menu</h1>
     <button class="close-btn" onclick="toggleSidebar()">✖</button>
 
-    <a href="/scripts_php/adm/usuarios/index.php">
+    <a href="/scripts_php/aluno/boletim.php">
         <img src="/public/recursos/images/boletim.png"  class="icon"> Boletim
     </a>
-    <a href="/scripts_php/adm/alunos/index.php">
+    <a href="/scripts_php/aluno/frequencia.php">
         <img src="/public/recursos/images/frequencia.png" class="icon"> Frequência
     </a>
-    <a href="/scripts_php/adm/professor/index.php">
+    <a href="/scripts_php/aluno/">
         <img src="/public/recursos/images/horario.png" class="icon"> Horários
     </a>
 </aside>
@@ -70,11 +70,11 @@ try {
     <main>
     <h2>Menu do Aluno</h2>
     <div class="painel-opcoes">
-        <a href="boletim.php" class="card-opcao">
+        <a href="/scripts_php/aluno/boletim.php" class="card-opcao">
             <img src="/public/recursos/images/boletim-p.png" alt="Boletim">
             <span>Boletim</span>
         </a>
-        <a href="frequencia.php" class="card-opcao">
+        <a href="/scripts_php/aluno/frequencia.php" class="card-opcao">
             <img src="/public/recursos/images/frequencia-p.png" alt="Frequência">
             <span>Frequência</span>
         </a>

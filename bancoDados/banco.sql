@@ -1,6 +1,8 @@
+
 -- Criar banco
 CREATE DATABASE IF NOT EXISTS portal_academico;
 USE portal_academico;
+
 
 -- Tabela de usuários
 CREATE TABLE usuarios (
