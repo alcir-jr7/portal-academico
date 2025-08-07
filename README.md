@@ -5,7 +5,6 @@ Sistema web de gestão acadêmica desenvolvido como parte da disciplina de **Pro
 ## 👨‍💻 Equipe
 
 - Alcir Silva  
-- Lincon Fraga  
 - Marília Gabriela  
 - Mikaias Marinho
 
