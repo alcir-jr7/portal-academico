@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $erros = [];
 
@@ -30,14 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Curso</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
+<main>
     <h1>Criar Novo Curso</h1>
 
     <?php if ($erros): ?>
@@ -50,33 +42,47 @@ $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::F
 
     <form method="POST">
         <label>Nome:</label><br>
-        <input type="text" name="nome" required><br><br>
+        <input type="text" name="nome" required value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>"><br><br>
 
         <label>Código:</label><br>
-        <input type="text" name="codigo" required><br><br>
+        <input type="text" name="codigo" required value="<?= htmlspecialchars($_POST['codigo'] ?? '') ?>"><br><br>
 
         <label>Turno:</label><br>
         <select name="turno" required>
             <option value="">Selecione</option>
-            <option value="matutino">Matutino</option>
-            <option value="vespertino">Vespertino</option>
-            <option value="noturno">Noturno</option>
-            <option value="integral">Integral</option>
+            <?php
+            $turnos = ['matutino', 'vespertino', 'noturno', 'integral'];
+            $selected_turno = $_POST['turno'] ?? '';
+            foreach ($turnos as $t) {
+                $sel = ($selected_turno === $t) ? 'selected' : '';
+                echo "<option value=\"$t\" $sel>" . ucfirst($t) . "</option>";
+            }
+            ?>
         </select><br><br>
 
         <label>Duração (em semestres):</label><br>
-        <input type="number" name="duracao_semestres" required><br><br>
+        <input type="number" name="duracao_semestres" required value="<?= htmlspecialchars($_POST['duracao_semestres'] ?? '') ?>"><br><br>
 
         <label>Coordenador (opcional):</label><br>
         <select name="coordenador_id">
             <option value="">Nenhum</option>
-            <?php foreach ($professores as $prof): ?>
-                <option value="<?= $prof['id'] ?>"><?= htmlspecialchars($prof['email']) ?></option>
+            <?php 
+            $selected_coord = $_POST['coordenador_id'] ?? '';
+            foreach ($professores as $prof): 
+                $sel = ($prof['id'] == $selected_coord) ? 'selected' : '';
+            ?>
+                <option value="<?= $prof['id'] ?>" <?= $sel ?>>
+                    <?= htmlspecialchars($prof['email']) ?>
+                </option>
             <?php endforeach; ?>
         </select><br><br>
 
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

@@ -1,11 +1,10 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    echo "ID do aluno não informado.";
+    echo "<main><p>ID do aluno não informado.</p></main></body></html>";
     exit;
 }
 
@@ -20,7 +19,7 @@ $stmt->execute([$id]);
 $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$aluno) {
-    echo "Aluno não encontrado.";
+    echo "<main><p>Aluno não encontrado.</p></main></body></html>";
     exit;
 }
 
@@ -48,13 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Aluno</title>
-</head>
-<body>
+<main>
     <h1>Editar Aluno</h1>
 
     <form method="post">
@@ -101,5 +94,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+</main>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

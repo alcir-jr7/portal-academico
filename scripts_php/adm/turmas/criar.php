@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 // Pega disciplinas e professores para os selects
 $disciplinas = $pdo->query("SELECT id, nome FROM disciplinas ORDER BY nome")->fetchAll(PDO::FETCH_ASSOC);
@@ -30,13 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Criar Turma</title>
-</head>
-<body>
+<main>
     <h1>Criar Nova Turma</h1>
 
     <?php if ($erro): ?>
@@ -77,5 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

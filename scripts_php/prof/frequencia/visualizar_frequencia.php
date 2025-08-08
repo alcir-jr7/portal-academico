@@ -1,13 +1,5 @@
 <?php
-session_start();
-
-// Verifica se está logado e é professor
-if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'professor') {
-    header('Location: ../../public/php/login.php?tipo=professor');
-    exit;
-}
-
-require_once(__DIR__ . '/../../../aplicacao/config/conexao.php');
+require_once __DIR__ . '/../../../public/includes/header_professor.php';
 
 // Pega turma da URL
 $turma_id = filter_input(INPUT_GET, 'turma_id', FILTER_VALIDATE_INT);
@@ -60,58 +52,47 @@ $stmt->execute([$turma_id]);
 $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Visualizar Frequência - <?= htmlspecialchars($turma_info['disciplina_nome']) ?></title>
-    <link rel="stylesheet" href="../../../public/css/admin-style.css" />
-</head>
-<body>
-    <header>
-        <h1>Frequência da Turma - <?= htmlspecialchars($turma_info['disciplina_nome']) ?></h1>
-        <nav>
-            <a href="index.php">Voltar às turmas</a> |
-            <a href="/scripts_php/logout.php">Sair</a>
-        </nav>
-    </header>
+<main>
+    <h1>Frequência da Turma - <?= htmlspecialchars($turma_info['disciplina_nome']) ?></h1>
 
-    <main>
-        <?php if (empty($alunos)): ?>
-            <p>Nenhum aluno matriculado nesta turma.</p>
-        <?php else: ?>
-            <table border="1" class="admin-table">
-                <thead>
+    <?php if (empty($alunos)): ?>
+        <p>Nenhum aluno matriculado nesta turma.</p>
+    <?php else: ?>
+        <table border="1" class="admin-table">
+            <thead>
+                <tr>
+                    <th>Matrícula</th>
+                    <th>Aluno</th>
+                    <th>Total de Aulas</th>
+                    <th>Presenças</th>
+                    <th>Faltas</th>
+                    <th>% Presença</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($alunos as $aluno): ?>
+                    <?php 
+                    $total_aulas = (int)$aluno['total_aulas'];
+                    $presencas = (int)$aluno['presencas'];
+                    $faltas = (int)$aluno['faltas'];
+                    $percentual = $total_aulas > 0 ? round(($presencas / $total_aulas) * 100, 1) : 0;
+                    ?>
                     <tr>
-                        <th>Matrícula</th>
-                        <th>Aluno</th>
-                        <th>Total de Aulas</th>
-                        <th>Presenças</th>
-                        <th>Faltas</th>
-                        <th>% Presença</th>
+                        <td><?= htmlspecialchars($aluno['matricula']) ?></td>
+                        <td><?= htmlspecialchars($aluno['aluno_nome']) ?></td>
+                        <td><?= $total_aulas ?></td>
+                        <td><?= $presencas ?></td>
+                        <td><?= $faltas ?></td>
+                        <td><?= $percentual ?>%</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($alunos as $aluno): ?>
-                        <?php 
-                        $total_aulas = (int)$aluno['total_aulas'];
-                        $presencas = (int)$aluno['presencas'];
-                        $faltas = (int)$aluno['faltas'];
-                        $percentual = $total_aulas > 0 ? round(($presencas / $total_aulas) * 100, 1) : 0;
-                        ?>
-                        <tr>
-                            <td><?= htmlspecialchars($aluno['matricula']) ?></td>
-                            <td><?= htmlspecialchars($aluno['aluno_nome']) ?></td>
-                            <td><?= $total_aulas ?></td>
-                            <td><?= $presencas ?></td>
-                            <td><?= $faltas ?></td>
-                            <td><?= $percentual ?>%</td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </main>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+    <a href="index.php">Voltar às turmas</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_professor.js"></script>
+
 </body>
 </html>

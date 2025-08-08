@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -8,7 +7,6 @@ if (!$id) {
     exit;
 }
 
-// Buscar dados da disciplina para preencher o formulário
 $stmt = $pdo->prepare("SELECT * FROM disciplinas WHERE id = ?");
 $stmt->execute([$id]);
 $disciplina = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -18,8 +16,9 @@ if (!$disciplina) {
     exit;
 }
 
-// Pegar cursos para o select
 $cursos = $pdo->query("SELECT id, nome FROM cursos")->fetchAll(PDO::FETCH_ASSOC);
+
+$erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
@@ -39,16 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Editar Disciplina</title>
-</head>
-<body>
+<main>
     <h1>Editar Disciplina</h1>
 
-    <?php if (!empty($erro)): ?>
+    <?php if ($erro): ?>
         <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
 
@@ -83,5 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $erro = '';
 $sucesso = '';
@@ -40,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare("UPDATE matriculas_academicas SET matricula = ?, tipo = ?, usada = ? WHERE id = ?");
             if ($stmt->execute([$nova_matricula, $novo_tipo, $nova_usada, $id])) {
                 $sucesso = "Matrícula atualizada com sucesso!";
-                // Atualiza a variável para refletir a mudança no formulário
+                // Atualiza variável para refletir no formulário
                 $matricula['matricula'] = $nova_matricula;
                 $matricula['tipo'] = $novo_tipo;
                 $matricula['usada'] = $nova_usada;
@@ -52,13 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Editar Matrícula Acadêmica</title>
-</head>
-<body>
+<main>
     <h1>Editar Matrícula Acadêmica</h1>
 
     <?php if ($erro): ?>
@@ -87,7 +80,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label><br><br>
 
         <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

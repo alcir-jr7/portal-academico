@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 if (!isset($_GET['id'])) {
     echo "Turma não especificada.";
@@ -39,13 +38,7 @@ $stmt->execute([$turma_id]);
 $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalhes da Turma</title>
-</head>
-<body>
+<main>
     <h1>Detalhes da Turma</h1>
     
     <h2>Informações</h2>
@@ -66,5 +59,9 @@ $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <a href="index.php">Voltar à lista de turmas</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

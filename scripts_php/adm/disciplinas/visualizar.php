@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -24,13 +23,7 @@ if (!$disciplina) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Visualizar Disciplina</title>
-</head>
-<body>
+<main>
     <h1>Detalhes da Disciplina</h1>
 
     <p><strong>Nome:</strong> <?= htmlspecialchars($disciplina['nome']) ?></p>
@@ -38,6 +31,10 @@ if (!$disciplina) {
     <p><strong>Carga Horária:</strong> <?= htmlspecialchars($disciplina['carga_horaria']) ?> horas</p>
     <p><strong>Curso:</strong> <?= htmlspecialchars($disciplina['nome_curso']) ?></p>
 
-    <p><a href="index.php">Voltar</a></p>
+    <p><a href="index.php" class="btn btn-secondary">Voltar</a></p>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

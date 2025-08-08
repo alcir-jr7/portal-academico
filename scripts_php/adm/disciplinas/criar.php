@@ -1,9 +1,9 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
-// Pega cursos para o select
 $cursos = $pdo->query("SELECT id, nome FROM cursos ORDER BY nome")->fetchAll(PDO::FETCH_ASSOC);
+
+$erro = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'] ?? '';
@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $curso_id = $_POST['curso_id'] ?? '';
 
     if ($nome && $codigo && $carga_horaria && $curso_id) {
-        // Inserir disciplina
         $stmt = $pdo->prepare("INSERT INTO disciplinas (nome, codigo, carga_horaria, curso_id) VALUES (?, ?, ?, ?)");
         $stmt->execute([$nome, $codigo, $carga_horaria, $curso_id]);
 
@@ -24,16 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Criar Disciplina</title>
-</head>
-<body>
+<main>
     <h1>Criar Nova Disciplina</h1>
 
-    <?php if (!empty($erro)): ?>
+    <?php if ($erro): ?>
         <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
 
@@ -66,5 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

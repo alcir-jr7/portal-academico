@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 
@@ -18,13 +17,8 @@ if (!$curso) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalhes do Curso</title>
-</head>
-<body>
+
+<main>
     <h1>Detalhes do Curso</h1>
     <ul>
         <li><strong>Nome:</strong> <?= htmlspecialchars($curso['nome']) ?></li>
@@ -34,5 +28,9 @@ if (!$curso) {
         <li><strong>Coordenador:</strong> <?= htmlspecialchars($curso['coordenador_email'] ?? '—') ?></li>
     </ul>
     <a href="index.php">Voltar à lista</a>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

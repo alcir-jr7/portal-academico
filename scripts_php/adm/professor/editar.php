@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 
@@ -37,13 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Editar Professor</title>
-</head>
-<body>
+<main>
     <h1>Editar Professor</h1>
 
     <form method="post">
@@ -73,5 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

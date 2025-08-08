@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $erro = '';
 $sucesso = '';
@@ -60,13 +59,7 @@ $stmt = $pdo->query("SELECT id, matricula FROM matriculas_academicas WHERE usada
 $matriculas_disponiveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Professor</title>
-</head>
-<body>
+<main>
     <h1>Criar Novo Professor</h1>
 
     <?php if ($erro): ?>
@@ -112,5 +105,9 @@ $matriculas_disponiveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

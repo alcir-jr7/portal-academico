@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $erro = '';
 $sucesso = '';
@@ -16,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$nome || !$matricula_id || !$senha || !$email || !$curso_id) {
         $erro = "Preencha todos os campos obrigatórios.";
     } else {
-        // Verifica se matrícula existe e está disponível
         $stmt = $pdo->prepare("SELECT * FROM matriculas_academicas WHERE id = ? AND usada = FALSE AND tipo = 'aluno'");
         $stmt->execute([$matricula_id]);
         $matricula = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -27,24 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $pdo->beginTransaction();
 
-                // Inserir usuário
                 $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
                 $stmt1 = $pdo->prepare("INSERT INTO usuarios (nome, matricula, senha, tipo) VALUES (?, ?, ?, 'aluno')");
                 $stmt1->execute([$nome, $matricula['matricula'], $senhaHash]);
                 $usuario_id = $pdo->lastInsertId();
 
-                // Inserir aluno
                 $stmt2 = $pdo->prepare("INSERT INTO alunos (id, curso_id, periodo_entrada, email) VALUES (?, ?, ?, ?)");
                 $stmt2->execute([$usuario_id, $curso_id, $periodo, $email]);
 
-                // Atualizar matrícula para usada
                 $stmt3 = $pdo->prepare("UPDATE matriculas_academicas SET usada = TRUE WHERE id = ?");
                 $stmt3->execute([$matricula_id]);
 
                 $pdo->commit();
 
                 $sucesso = "Aluno cadastrado com sucesso!";
-                // Limpar campos
                 $nome = $email = $periodo = '';
                 $curso_id = $matricula_id = '';
                 $senha = '';
@@ -56,21 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Pega os cursos para o select
 $cursos = $pdo->query("SELECT id, nome FROM cursos ORDER BY nome")->fetchAll(PDO::FETCH_ASSOC);
-
-// Pega as matrículas acadêmicas disponíveis para alunos
 $stmt = $pdo->query("SELECT id, matricula FROM matriculas_academicas WHERE usada = FALSE AND tipo = 'aluno' ORDER BY matricula");
 $matriculas_disponiveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Criar Aluno</title>
-</head>
-<body>
+<main>
     <h1>Criar Novo Aluno</h1>
 
     <?php if ($erro): ?>
@@ -128,8 +113,9 @@ $matriculas_disponiveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button type="submit">Salvar</button>
         <a href="index.php">Cancelar</a>
     </form>
+</main>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>
-
-
-

@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -28,19 +27,17 @@ if (!$turma) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Visualizar Turma</title>
-</head>
-<body>
+<main>
     <h1>Detalhes da Turma</h1>
     <p><strong>Disciplina:</strong> <?= htmlspecialchars($turma['disciplina_nome']) ?> (<?= htmlspecialchars($turma['disciplina_codigo']) ?>)</p>
-    <p><strong>Professor:</strong> <?= htmlspecialchars($turma['professor_nome']) ?> (Matricula: <?= htmlspecialchars($turma['professor_matricula']) ?>)</p>
+    <p><strong>Professor:</strong> <?= htmlspecialchars($turma['professor_nome']) ?> (Matrícula: <?= htmlspecialchars($turma['professor_matricula']) ?>)</p>
     <p><strong>Semestre:</strong> <?= htmlspecialchars($turma['semestre']) ?></p>
     <p><strong>Horário:</strong> <?= htmlspecialchars($turma['horario']) ?></p>
 
     <a href="index.php">Voltar</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

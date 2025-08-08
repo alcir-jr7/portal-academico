@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 
@@ -24,13 +23,8 @@ if (!$professor) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalhes do Professor</title>
-</head>
-<body>
+
+<main>
     <h1>Detalhes do Professor</h1>
     <ul>
         <li><strong>Nome:</strong> <?= htmlspecialchars($professor['nome']) ?></li>
@@ -38,6 +32,10 @@ if (!$professor) {
         <li><strong>Departamento:</strong> <?= htmlspecialchars($professor['departamento']) ?></li>
         <li><strong>Email:</strong> <?= htmlspecialchars($professor['email']) ?></li>
     </ul>
-    <a href="index.php">Voltar à lista</a>
+    <a href="index.php" class="btn btn-secondary">Voltar à lista</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

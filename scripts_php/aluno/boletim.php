@@ -1,18 +1,5 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-session_start();
-
-// Verifica se está logado e é aluno
-if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
-    header('Location: ../../public/php/login.php?tipo=aluno');
-    exit;
-}
-
-require_once __DIR__ . '/../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../public/includes/header_aluno.php';
 
 $aluno_id = $_SESSION['usuario_id'];
 
@@ -56,29 +43,16 @@ $stmt->execute([$aluno_id]);
 $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Meu Boletim</title>
-    <link rel="stylesheet" href="../../../public/recursos/css/style.css" />
-</head>
-<body>
-    <header>
-        <h1>Boletim</h1>
-        <div class="info-aluno">
-            <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
-            <p><strong>Matrícula:</strong> <?= htmlspecialchars($aluno_info['matricula']) ?></p>
-            <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
-        </div>
-        <nav>
-            <a href="/public/php/painel_aluno.php">Painel do Aluno</a> |
-            <a href="/scripts_php/logout.php">Sair</a>
-        </nav>
-    </header>
+<main>
+    <h1>Boletim</h1>
 
-    <main>
+    <div class="info-aluno">
+        <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
+        <p><strong>Matrícula:</strong> <?= htmlspecialchars($aluno_info['matricula']) ?></p>
+        <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
+    </div>
+
+    <section>
         <?php if (empty($disciplinas)): ?>
             <div class="alert info">
                 <p>Você ainda não está matriculado em nenhuma disciplina.</p>
@@ -101,10 +75,8 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($disciplinas as $disciplina): ?>
                         <?php 
-                        // Determina a situação baseada na média
                         $situacao = '';
                         $situacao_classe = '';
-                        
                         if (!is_null($disciplina['media'])) {
                             if ($disciplina['media'] >= 7.0) {
                                 $situacao = 'Aprovado';
@@ -121,7 +93,6 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             $situacao_classe = 'pendente';
                         }
 
-                        // Status da matrícula
                         $status_texto = '';
                         $status_classe = '';
                         switch ($disciplina['status_matricula']) {
@@ -151,16 +122,8 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= is_null($disciplina['nota1']) ? '-' : number_format($disciplina['nota1'], 1) ?></td>
                             <td><?= is_null($disciplina['nota2']) ? '-' : number_format($disciplina['nota2'], 1) ?></td>
                             <td class="media"><?= is_null($disciplina['media']) ? '-' : number_format($disciplina['media'], 1) ?></td>
-                            <td>
-                                <span class="situacao <?= $situacao_classe ?>">
-                                    <?= $situacao ?>
-                                </span>
-                            </td>
-                            <td>
-                                <span class="status <?= $status_classe ?>">
-                                    <?= $status_texto ?>
-                                </span>
-                            </td>
+                            <td><span class="situacao <?= $situacao_classe ?>"><?= $situacao ?></span></td>
+                            <td><span class="status <?= $status_classe ?>"><?= $status_texto ?></span></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -182,7 +145,6 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             <?php endif; ?>
 
-            <!-- Resumo acadêmico -->
             <div class="resumo-desempenho">
                 <h3>Resumo Acadêmico</h3>
                 <?php
@@ -213,6 +175,10 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         <?php endif; ?>
-    </main>
+    </section>
+</main>
+
+<script src="/../../../public/recursos/js/painel_aluno.js"></script>
+
 </body>
 </html>

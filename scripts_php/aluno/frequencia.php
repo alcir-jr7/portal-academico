@@ -1,18 +1,5 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-session_start();
-
-// Verifica se está logado e é aluno
-if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
-    header('Location: ../../public/php/login.php?tipo=aluno');
-    exit;
-}
-
-require_once __DIR__ . '/../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../public/includes/header_aluno.php';
 
 $aluno_id = $_SESSION['usuario_id'];
 
@@ -55,66 +42,55 @@ $stmt->execute([$aluno_id]);
 $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Frequência - Portal Acadêmico</title>
-    <link rel="stylesheet" href="../../../public/recursos/css/style.css" />
-</head>
-<body>
-    <header>
-        <h1>Frequência</h1>
-        <div class="info-aluno">
-            <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
-            <p><strong>Matrícula:</strong> <?= htmlspecialchars($aluno_info['matricula']) ?></p>
-            <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
-        </div>
-        <nav>
-            <a href="/public/php/painel_aluno.php">Painel do Aluno</a> |
-            <a href="/scripts_php/logout.php">Sair</a>
-        </nav>
-    </header>
+<main>
+    <h1>Frequência</h1>
 
-    <main>
-        <?php if (empty($disciplinas)): ?>
-            <div class="alert info">
-                <p>Você ainda não está matriculado em nenhuma disciplina ou não há registros de frequência.</p>
-            </div>
-        <?php else: ?>
-            <table border="1" class="admin-table">
-                <thead>
+    <div class="info-aluno">
+        <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
+        <p><strong>Matrícula:</strong> <?= htmlspecialchars($aluno_info['matricula']) ?></p>
+        <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
+    </div>
+
+    <?php if (empty($disciplinas)): ?>
+        <div class="alert info">
+            <p>Você ainda não está matriculado em nenhuma disciplina ou não há registros de frequência.</p>
+        </div>
+    <?php else: ?>
+        <table border="1" class="admin-table">
+            <thead>
+                <tr>
+                    <th>Semestre</th>
+                    <th>Código</th>
+                    <th>Disciplina</th>
+                    <th>Professor</th>
+                    <th>Total de Aulas</th>
+                    <th>Faltas</th>
+                    <th>% de Faltas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($disciplinas as $disciplina): ?>
+                    <?php
+                        $total = (int)$disciplina['total_aulas'];
+                        $faltas = (int)$disciplina['faltas'];
+                        $percentual = $total > 0 ? ($faltas / $total) * 100 : 0;
+                    ?>
                     <tr>
-                        <th>Semestre</th>
-                        <th>Código</th>
-                        <th>Disciplina</th>
-                        <th>Professor</th>
-                        <th>Total de Aulas</th>
-                        <th>Faltas</th>
-                        <th>% de Faltas</th>
+                        <td><?= htmlspecialchars($disciplina['semestre']) ?></td>
+                        <td><?= htmlspecialchars($disciplina['disciplina_codigo']) ?></td>
+                        <td><?= htmlspecialchars($disciplina['disciplina_nome']) ?></td>
+                        <td><?= htmlspecialchars($disciplina['professor_nome']) ?></td>
+                        <td><?= $total ?></td>
+                        <td><?= $faltas ?></td>
+                        <td><?= number_format($percentual, 2, ',', '.') ?>%</td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($disciplinas as $disciplina): ?>
-                        <?php
-                            $total = (int)$disciplina['total_aulas'];
-                            $faltas = (int)$disciplina['faltas'];
-                            $percentual = $total > 0 ? ($faltas / $total) * 100 : 0;
-                        ?>
-                        <tr>
-                            <td><?= htmlspecialchars($disciplina['semestre']) ?></td>
-                            <td><?= htmlspecialchars($disciplina['disciplina_codigo']) ?></td>
-                            <td><?= htmlspecialchars($disciplina['disciplina_nome']) ?></td>
-                            <td><?= htmlspecialchars($disciplina['professor_nome']) ?></td>
-                            <td><?= $total ?></td>
-                            <td><?= $faltas ?></td>
-                            <td><?= number_format($percentual, 2, ',', '.') ?>%</td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </main>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</main>
+
+<script src="/../../../public/recursos/js/painel_aluno.js"></script>
+
 </body>
 </html>

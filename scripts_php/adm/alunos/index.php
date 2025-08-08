@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $busca = $_GET['busca'] ?? '';
 
@@ -28,13 +27,7 @@ if ($busca) {
 $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista de Alunos</title>
-</head>
-<body>
+<main>
     <h1>Alunos Cadastrados</h1>
 
     <form method="get" action="index.php">
@@ -64,11 +57,7 @@ $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php foreach ($alunos as $aluno): ?>
-                <?php if ($aluno['ativo']): ?>
-                    <tr style="background-color: #e0ffe0;">
-                <?php else: ?>
-                    <tr style="background-color: #ffe0e0;">
-                <?php endif; ?>
+                <tr style="background-color: <?= $aluno['ativo'] ? '#e0ffe0' : '#ffe0e0' ?>;">
                     <td><?= htmlspecialchars($aluno['nome']) ?></td>
                     <td><?= htmlspecialchars($aluno['matricula']) ?></td>
                     <td><?= htmlspecialchars($aluno['email']) ?></td>
@@ -89,6 +78,11 @@ $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
-        <a href="/public/php/painel_admin.php">Voltar</a>
+    <br>
+    <a href="/public/php/painel_admin.php">Voltar</a>
+</main>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

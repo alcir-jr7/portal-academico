@@ -1,7 +1,5 @@
-
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $turma_id = $_GET['id'] ?? null;
 
@@ -25,40 +23,47 @@ if (!$turma) {
     exit;
 }
 
-// Buscar alunos disponíveis (opcional: só os que ainda não estão nessa turma)
-$alunos = $pdo->query("SELECT a.id, u.nome FROM alunos a JOIN usuarios u ON a.id = u.id")->fetchAll(PDO::FETCH_ASSOC);
+// Buscar alunos disponíveis (ainda não matriculados nessa turma)
+$stmt = $pdo->prepare("
+    SELECT a.id, u.nome 
+    FROM alunos a 
+    JOIN usuarios u ON a.id = u.id
+    WHERE a.id NOT IN (
+        SELECT aluno_id FROM matriculas WHERE turma_id = ?
+    )
+    ORDER BY u.nome
+");
+$stmt->execute([$turma_id]);
+$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Se enviou o formulário
+$erro = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $aluno_id = $_POST['aluno_id'] ?? null;
+    $alunos_ids = $_POST['aluno_id'] ?? [];
 
-    if ($aluno_id) {
-        // Verificar se já está matriculado
-        $check = $pdo->prepare("SELECT id FROM matriculas WHERE aluno_id = ? AND turma_id = ?");
-        $check->execute([$aluno_id, $turma_id]);
-
-        if ($check->rowCount() === 0) {
-            $stmt = $pdo->prepare("INSERT INTO matriculas (aluno_id, turma_id) VALUES (?, ?)");
-            $stmt->execute([$aluno_id, $turma_id]);
-            header("Location: visualizar.php?id=$turma_id");
-            exit;
-        } else {
-            $erro = "Aluno já está matriculado nesta turma.";
+    if (!empty($alunos_ids) && is_array($alunos_ids)) {
+        // Inserir cada aluno selecionado, evitando duplicatas
+        $inseridos = 0;
+        foreach ($alunos_ids as $aluno_id) {
+            // Verificar se já está matriculado (por segurança)
+            $check = $pdo->prepare("SELECT id FROM matriculas WHERE aluno_id = ? AND turma_id = ?");
+            $check->execute([$aluno_id, $turma_id]);
+            if ($check->rowCount() === 0) {
+                $stmt = $pdo->prepare("INSERT INTO matriculas (aluno_id, turma_id) VALUES (?, ?)");
+                $stmt->execute([$aluno_id, $turma_id]);
+                $inseridos++;
+            }
         }
+        header("Location: visualizar.php?id=$turma_id");
+        exit;
     } else {
-        $erro = "Selecione um aluno.";
+        $erro = "Selecione ao menos um aluno.";
     }
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Adicionar Aluno à Turma</title>
-</head>
-<body>
-    <h1>Adicionar Aluno à Turma: <?= htmlspecialchars($turma['disciplina']) ?></h1>
+<main>
+    <h1>Adicionar Aluno(s) à Turma: <?= htmlspecialchars($turma['disciplina']) ?></h1>
 
     <?php if (!empty($erro)): ?>
         <p style="color: red;"><?= htmlspecialchars($erro) ?></p>
@@ -66,9 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="post">
         <label>
-            Aluno:<br>
-            <select name="aluno_id" required>
-                <option value="">Selecione...</option>
+            Alunos:<br>
+            <select name="aluno_id[]" multiple size="10" required>
                 <?php foreach ($alunos as $aluno): ?>
                     <option value="<?= $aluno['id'] ?>">
                         <?= htmlspecialchars($aluno['nome']) ?>
@@ -77,11 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </label><br><br>
 
-        <button type="submit">Adicionar</button>
-        <a href="visualizar.php?id=<?= $turma_id ?>">Cancelar</a>
+        <button type="submit">Adicionar Selecionados</button>
+        <a href="visualizar.php?id=<?= $turma_id ?>" class="btn btn-secondary">Cancelar</a>
     </form>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>
-
-
-

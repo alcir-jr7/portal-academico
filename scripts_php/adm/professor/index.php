@@ -1,8 +1,6 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
-// Buscar professores com dados do usuário
 $stmt = $pdo->query("
     SELECT p.id, u.nome, p.matricula, p.departamento, p.email, u.ativo
     FROM professores p
@@ -11,19 +9,13 @@ $stmt = $pdo->query("
 $professores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Lista de Professores</title>
-</head>
-<body>
+<main>
     <h1>Professores Cadastrados</h1>
 
-    <a href="criar.php">+ Novo Professor</a>
+    <a href="criar.php" class="btn btn-primary">+ Novo Professor</a>
     <br><br>
 
-    <table border="1" cellpadding="8">
+    <table border="1" cellpadding="8" class="admin-table">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -57,6 +49,11 @@ $professores = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </tbody>
     </table>
 
+    <br>
     <a href="/public/php/painel_admin.php">Voltar</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

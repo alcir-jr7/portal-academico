@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
 
 $tipo = $_GET['tipo'] ?? '';
@@ -18,13 +18,7 @@ $stmt->execute($params);
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Usuários</title>
-</head>
-<body>
+<main>
     <h1>Lista de Usuários</h1>
 
     <form method="get">
@@ -59,6 +53,11 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
+
     <a href="/public/php/painel_admin.php">Voltar</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

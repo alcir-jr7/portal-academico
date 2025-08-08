@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 // Buscar turmas com dados da disciplina e do professor
 $stmt = $pdo->query("
@@ -9,23 +8,18 @@ $stmt = $pdo->query("
     JOIN disciplinas d ON t.disciplina_id = d.id
     JOIN professores p ON t.professor_id = p.id
     JOIN usuarios u ON p.id = u.id
+    ORDER BY d.nome, u.nome
 ");
 $turmas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Lista de Turmas</title>
-</head>
-<body>
+<main>
     <h1>Turmas Cadastradas</h1>
 
     <a href="criar.php">+ Nova Turma</a>
     <br><br>
 
-    <table border="1" cellpadding="8">
+    <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>Disciplina</th>
@@ -53,6 +47,11 @@ $turmas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
-     <a href="/public/php/painel_admin.php">Voltar</a>
+
+    <a href="/public/php/painel_admin.php">Voltar</a>
+</main>
+
+<script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

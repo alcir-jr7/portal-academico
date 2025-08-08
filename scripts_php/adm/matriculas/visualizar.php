@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -18,13 +17,7 @@ if (!$matricula) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Visualizar Matrícula Acadêmica</title>
-</head>
-<body>
+<main>
     <h1>Detalhes da Matrícula Acadêmica</h1>
 
     <p><strong>ID:</strong> <?= $matricula['id'] ?></p>
@@ -37,5 +30,9 @@ if (!$matricula) {
         <a href="deletar.php?id=<?= $matricula['id'] ?>">Excluir</a> | 
         <a href="index.php">Voltar</a>
     </p>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

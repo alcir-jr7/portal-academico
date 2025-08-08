@@ -1,9 +1,10 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $erro = '';
 $sucesso = '';
+$matricula = '';
+$tipo = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $matricula = trim($_POST['matricula'] ?? '');
@@ -33,13 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Cadastrar Matrícula Acadêmica</title>
-</head>
-<body>
+<main>
     <h1>Nova Matrícula Acadêmica</h1>
 
     <?php if ($erro): ?>
@@ -52,18 +47,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form method="POST" action="">
         <label for="matricula">Matrícula:</label><br>
-        <input type="text" id="matricula" name="matricula" required value="<?= htmlspecialchars($matricula ?? '') ?>"><br><br>
+        <input type="text" id="matricula" name="matricula" required value="<?= htmlspecialchars($matricula) ?>"><br><br>
 
         <label for="tipo">Tipo:</label><br>
         <select id="tipo" name="tipo" required>
             <option value="">Selecione</option>
-            <option value="aluno" <?= (isset($tipo) && $tipo === 'aluno') ? 'selected' : '' ?>>Aluno</option>
-            <option value="professor" <?= (isset($tipo) && $tipo === 'professor') ? 'selected' : '' ?>>Professor</option>
-            <option value="admin" <?= (isset($tipo) && $tipo === 'admin') ? 'selected' : '' ?>>Admin</option>
+            <option value="aluno" <?= ($tipo === 'aluno') ? 'selected' : '' ?>>Aluno</option>
+            <option value="professor" <?= ($tipo === 'professor') ? 'selected' : '' ?>>Professor</option>
+            <option value="admin" <?= ($tipo === 'admin') ? 'selected' : '' ?>>Admin</option>
         </select><br><br>
 
         <button type="submit">Cadastrar</button>
-        <a href="index.php">Cancelar</a>
+        <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>

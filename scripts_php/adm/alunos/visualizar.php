@@ -1,18 +1,17 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $id = $_GET['id'] ?? null;
 
 if (!$id) {
-    echo "ID do aluno não informado.";
+    echo "<main><p>ID do aluno não informado.</p></main></body></html>";
     exit;
 }
 
 // Busca dados do aluno, usuário e curso
 $stmt = $pdo->prepare("
     SELECT 
-        a.*, u.nome, u.matricula, u.tipo, 
+        a.*, u.nome, u.matricula, u.tipo, u.ativo,
         c.nome AS curso_nome, c.codigo AS curso_codigo, c.turno AS curso_turno,
         p.email AS coordenador_email
     FROM alunos a
@@ -25,23 +24,12 @@ $stmt->execute([$id]);
 $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$aluno) {
-    echo "Aluno não encontrado.";
+    echo "<main><p>Aluno não encontrado.</p></main></body></html>";
     exit;
 }
-
-// Exemplos de dados que você pode mostrar sem ir no banco:
-// - Status do aluno (ativo / inativo), vindo da tabela usuários (campo ativo)
-// - Tipo de usuário (de u.tipo)
-// - Data de cadastro pode ser exibida se quiser (campo criado_em em usuarios, se tiver)
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Visualizar Aluno</title>
-</head>
-<body>
+<main>
     <h1>Detalhes do Aluno</h1>
     <ul>
         <li><strong>Nome:</strong> <?= htmlspecialchars($aluno['nome']) ?></li>
@@ -56,5 +44,9 @@ if (!$aluno) {
     </ul>
 
     <a href="index.php">Voltar à lista</a>
+</main>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 </body>
 </html>

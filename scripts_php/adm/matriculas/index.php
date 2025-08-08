@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../../aplicacao/config/conexao.php';
+require_once __DIR__ . '/../../../public/includes/header_admin.php';
 
 $busca = $_GET['busca'] ?? '';
 
@@ -22,17 +21,10 @@ if ($busca) {
 $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Gerenciamento de Matrículas Acadêmicas</title>
-    
-</head>
-<body>
+<main>
     <h1>Matrículas Acadêmicas</h1>
 
-    <form method="get" action="index.php">
+    <form method="get" action="index.php" style="margin-bottom: 1rem;">
         <input type="text" name="busca" placeholder="Buscar por matrícula ou tipo" value="<?= htmlspecialchars($busca) ?>">
         <button type="submit">Buscar</button>
         <?php if ($busca): ?>
@@ -40,12 +32,11 @@ $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </form>
 
-    <br>
+    <a href="criar.php" class="btn btn-primary">+ Nova Matrícula Acadêmica</a>
 
-    <a href="criar.php">+ Nova Matrícula Acadêmica</a>
     <br><br>
 
-    <table border="1" cellpadding="8">
+    <table border="1" cellpadding="8" class="admin-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -57,11 +48,7 @@ $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php foreach ($matriculas as $m): ?>
-                <?php if ($m['usada']): ?>
-                    <tr style="background-color: #fce4ec;">
-                <?php else: ?>
-                    <tr style="background-color: #e8f5e9;">
-                <?php endif; ?>
+                <tr style="background-color: <?= $m['usada'] ? '#fce4ec' : '#e8f5e9' ?>;">
                     <td><?= $m['id'] ?></td>
                     <td><?= htmlspecialchars($m['matricula']) ?></td>
                     <td><?= ucfirst($m['tipo']) ?></td>
@@ -77,6 +64,10 @@ $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 
     <br>
-    <a href="/public/php/painel_admin.php">Voltar</a>
+    <a href="/public/php/painel_admin.php" class="btn btn-secondary">Voltar</a>
+
+    <script src="/../../../public/recursos/js/painel_admin.js"></script>
+</main>
+
 </body>
 </html>
