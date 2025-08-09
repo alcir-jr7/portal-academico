@@ -45,8 +45,8 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <main>
     <h1>Boletim</h1>
-
-    <div class="info-aluno">
+    <div class="boletim-container">
+          <div class="info-aluno">
         <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
         <p><strong>Matrícula:</strong> <?= htmlspecialchars($aluno_info['matricula']) ?></p>
         <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
@@ -60,7 +60,6 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php else: ?>
             <table border="1" class="admin-table">
                 <thead>
-                    <tr>
                         <th>Semestre</th>
                         <th>Código</th>
                         <th>Disciplina</th>
@@ -70,7 +69,7 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <th>Média</th>
                         <th>Situação</th>
                         <th>Status</th>
-                    </tr>
+                  
                 </thead>
                 <tbody>
                     <?php foreach ($disciplinas as $disciplina): ?>
@@ -143,10 +142,12 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </ul>
                     <?php endif; ?>
                 </div>
-            <?php endif; ?>
-
-            <div class="resumo-desempenho">
-                <h3>Resumo Acadêmico</h3>
+            <?php endif; ?> 
+    </section>
+    </div>
+  
+    <div class="resumo-desempenho">
+                <h3>Resumo Acadêmico: </h3>
                 <?php
                 $totalMedias = 0;
                 $somaMedias = 0;
@@ -170,13 +171,15 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span><?= number_format($mediaGlobal, 2, ',', '.') ?></span>
                 </div>
                 <div class="linha-resumo">
-                    <strong>Situação:</strong>
+                    <strong>Situação do Aluno:</strong>
                     <span><?= $situacaoGeral ?></span>
                 </div>
             </div>
         <?php endif; ?>
-    </section>
+
 </main>
+
+
 
 <script src="/../../../public/recursos/js/painel_aluno.js"></script>
 

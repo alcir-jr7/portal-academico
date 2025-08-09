@@ -51,7 +51,8 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
     </div>
 
-    <?php if (empty($disciplinas)): ?>
+   <section>
+         <?php if (empty($disciplinas)): ?>
         <div class="alert info">
             <p>Você ainda não está matriculado em nenhuma disciplina ou não há registros de frequência.</p>
         </div>
@@ -88,6 +89,7 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     <?php endif; ?>
+   </section>
 </main>
 
 <script src="/../../../public/recursos/js/painel_aluno.js"></script>

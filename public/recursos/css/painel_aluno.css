@@ -21,6 +21,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    color: rgb(255, 255, 255);
 }
 
 
@@ -29,7 +30,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #111;
+    background-color: #000000;
     color: #fff;
     padding: 1rem;
     position: relative;
@@ -41,7 +42,7 @@ header {
     top: 30%;           
     font-size: 20px;
     background: none;
-    color: white ;
+    color: rgb(255, 255, 255) ;
     border: none;
     cursor: pointer;
 
@@ -64,6 +65,7 @@ header h1 {
     margin: 0;
     font-size: 18px;
     white-space: nowrap;
+    color: white;
 }
 
 
@@ -163,8 +165,8 @@ main h2 {
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 60px;
-}
 
+}
 .sidebar a {
     padding: 10px 20px;
     text-decoration: none;
@@ -280,4 +282,121 @@ td.evento.hoje {
   font-size: 1.4rem;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+/*boletim aluno*/
+
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #000000;
+}
+main p {
+    margin-bottom: 1rem;
+    color: #000000;
+
+}
+
+/* Coloca as infos do aluno em linha */
+.info-aluno {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+  color: #000;
+}
+
+.info-aluno p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Tabela estilizada */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-table thead th {
+  background-color: #000; /* cabeçalho preto */
+  color: #fff; /* texto branco */
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.admin-table tbody td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #ddd;
+  color: #000; /* texto das respostas preto */
+}
+
+.situacao.aprovado {
+  color: green;
+  font-weight: 700;
+}
+
+.situacao.recuperacao {
+  color: orange;
+  font-weight: 700;
+}
+
+
+.situacao.reprovado {
+  color: red;
+  font-weight: 700;
+}
+
+.situacao.pendente {
+  color: gray;
+  font-weight: 700;
+}
+
+.status.ativa {
+  color: green;
+}
+
+.status.trancada {
+  color: orange;
+}
+
+.status.dispensada {
+  color: blue;
+}
+
+.status.concluida {
+  color: purple;
+}
+
+/* Faz o container ocupar toda a altura da página e posiciona no rodapé */
+.resumo-desempenho {
+  display: flex;
+  justify-content: flex-start; /* conteúdo alinhado à esquerda */
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-top: 1px solid #000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  color: #000;
+  z-index: 1000;
+}
+
+.resumo-desempenho .linha-resumo:last-child {
+  border-bottom: none;
+}
+
+.linha-resumo {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+  color: #000;
 }
