@@ -6,70 +6,83 @@ $sucesso = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome'] ?? '');
-    $matricula_id = $_POST['matricula_id'] ?? '';
     $senha = $_POST['senha'] ?? '';
     $email = trim($_POST['email'] ?? '');
     $curso_id = $_POST['curso_id'] ?? null;
     $periodo = trim($_POST['periodo'] ?? '');
 
-    if (!$nome || !$matricula_id || !$senha || !$email || !$curso_id) {
+    if (!$nome || !$senha || !$email || !$curso_id) {
         $erro = "Preencha todos os campos obrigatórios.";
     } else {
-        $stmt = $pdo->prepare("SELECT * FROM matriculas_academicas WHERE id = ? AND usada = FALSE AND tipo = 'aluno'");
-        $stmt->execute([$matricula_id]);
-        $matricula = $stmt->fetch(PDO::FETCH_ASSOC);
+        // Gerar matrícula automática no padrão ALN<number>
+        try {
+            // Buscar a maior matrícula ALN já cadastrada
+            $stmt = $pdo->query("SELECT matricula FROM matriculas_academicas WHERE tipo = 'aluno' AND matricula LIKE 'ALN%' ORDER BY id DESC LIMIT 1");
+            $ultimaMatricula = $stmt->fetchColumn();
 
-        if (!$matricula) {
-            $erro = "Matrícula inválida ou já usada.";
-        } else {
+            if ($ultimaMatricula) {
+                // Extrair o número da matrícula (remover 'ALN' e converter para inteiro)
+                $numero = (int)substr($ultimaMatricula, 3);
+                $novoNumero = $numero + 1;
+            } else {
+                // Se não existir nenhuma matrícula ALN ainda, começar pelo 1
+                $novoNumero = 1;
+            }
+
+            $novaMatricula = 'ALN' . $novoNumero;
+
+            // Inserir nova matrícula acadêmica
+            $stmt = $pdo->prepare("INSERT INTO matriculas_academicas (matricula, tipo, usada) VALUES (?, 'aluno', FALSE)");
+            $stmt->execute([$novaMatricula]);
+            $matricula_id = $pdo->lastInsertId();
+
             // Verificar se foi enviada uma imagem
             if (!empty($_FILES['imagem']['name'])) {
                 $extensao = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
                 $novoNome = uniqid() . '.' . $extensao;
                 $caminho = __DIR__ . '/../../../public/recursos/storage/' . $novoNome;
 
-                // Mover o arquivo para a pasta storage
                 if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminho)) {
-                    // Inserir o caminho da imagem na tabela imagens
-                    $stmt = $pdo->prepare("INSERT INTO imagens (path) VALUES (?)");
-                    $stmt->execute([$novoNome]);
+                    $stmtImg = $pdo->prepare("INSERT INTO imagens (path) VALUES (?)");
+                    $stmtImg->execute([$novoNome]);
                     $imagem_id = $pdo->lastInsertId();
+                } else {
+                    $imagem_id = null;
                 }
             } else {
                 $imagem_id = null;
             }
 
-            try {
-                $pdo->beginTransaction();
+            $pdo->beginTransaction();
 
-                $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-                $stmt1 = $pdo->prepare("INSERT INTO usuarios (nome, matricula, senha, tipo) VALUES (?, ?, ?, 'aluno')");
-                $stmt1->execute([$nome, $matricula['matricula'], $senhaHash]);
-                $usuario_id = $pdo->lastInsertId();
+            $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+            // Inserir usuário com a matrícula nova gerada
+            $stmt1 = $pdo->prepare("INSERT INTO usuarios (nome, matricula, senha, tipo) VALUES (?, ?, ?, 'aluno')");
+            $stmt1->execute([$nome, $novaMatricula, $senhaHash]);
+            $usuario_id = $pdo->lastInsertId();
 
-                $stmt2 = $pdo->prepare("INSERT INTO alunos (id, curso_id, periodo_entrada, email, imagem_id) VALUES (?, ?, ?, ?, ?)");
-                $stmt2->execute([$usuario_id, $curso_id, $periodo, $email, $imagem_id]);
+            $stmt2 = $pdo->prepare("INSERT INTO alunos (id, curso_id, periodo_entrada, email, imagem_id) VALUES (?, ?, ?, ?, ?)");
+            $stmt2->execute([$usuario_id, $curso_id, $periodo, $email, $imagem_id]);
 
-                $stmt3 = $pdo->prepare("UPDATE matriculas_academicas SET usada = TRUE WHERE id = ?");
-                $stmt3->execute([$matricula_id]);
+            // Atualizar a matrícula como usada
+            $stmt3 = $pdo->prepare("UPDATE matriculas_academicas SET usada = TRUE WHERE id = ?");
+            $stmt3->execute([$matricula_id]);
 
-                $pdo->commit();
+            $pdo->commit();
 
-                $sucesso = "Aluno cadastrado com sucesso!";
-                $nome = $email = $periodo = '';
-                $curso_id = $matricula_id = '';
-                $senha = '';
-            } catch (Exception $e) {
-                $pdo->rollBack();
-                $erro = "Erro ao cadastrar aluno: " . $e->getMessage();
-            }
+            $sucesso = "Aluno cadastrado com sucesso! Matrícula: $novaMatricula";
+            $nome = $email = $periodo = '';
+            $curso_id = '';
+            $senha = '';
+
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            $erro = "Erro ao cadastrar aluno: " . $e->getMessage();
         }
     }
 }
 
 $cursos = $pdo->query("SELECT id, nome FROM cursos ORDER BY nome")->fetchAll(PDO::FETCH_ASSOC);
-$stmt = $pdo->query("SELECT id, matricula FROM matriculas_academicas WHERE usada = FALSE AND tipo = 'aluno' ORDER BY matricula");
-$matriculas_disponiveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main>
@@ -86,15 +99,7 @@ $matriculas_disponiveis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label for="nome">Nome:</label><br>
         <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
 
-        <label for="matricula_id">Matrícula Acadêmica:</label><br>
-        <select id="matricula_id" name="matricula_id" required>
-            <option value="">Selecione uma matrícula disponível</option>
-            <?php foreach ($matriculas_disponiveis as $matricula_disp): ?>
-                <option value="<?= $matricula_disp['id'] ?>" <?= (isset($matricula_id) && $matricula_id == $matricula_disp['id']) ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($matricula_disp['matricula']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select><br><br>
+        <!-- Removido o campo de seleção de matrícula -->
 
         <label for="senha">Senha:</label><br>
         <input type="password" id="senha" name="senha" required><br><br>

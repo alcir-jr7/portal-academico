@@ -14,10 +14,12 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'professor'
 require_once(__DIR__ . '/../../aplicacao/config/conexao.php');
 
 try {
+    // Busca nome, departamento e imagem do professor
     $stmt = $pdo->prepare("
-        SELECT u.nome, p.departamento
+        SELECT u.nome, p.departamento, i.path AS imagem_path
         FROM usuarios u
         JOIN professores p ON u.id = p.id
+        LEFT JOIN imagens i ON p.imagem_id = i.id
         WHERE u.id = ? AND u.tipo = 'professor'
     ");
     $stmt->execute([$_SESSION['usuario_id']]);
@@ -32,7 +34,6 @@ try {
     die("Erro ao acessar dados do professor: " . $e->getMessage());
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -53,14 +54,14 @@ try {
         <a href="/scripts_php/prof/frequencia/index.php">
             <img src="/public/recursos/images/frequencia.png" class="icon"> Gerenciar Frequências
         </a>
-        <a href="/scripts_php/prof//index.php">
+        <a href="/scripts_php/prof/index.php">
             <img src="/public/recursos/images/turma.png" class="icon"> Minhas Turmas
         </a>
-        <a href="/scripts_php/prof//index.php">
+        <a href="/scripts_php/prof/index.php">
             <img src="/public/recursos/images/horario.png" class="icon"> Meus Horários
         </a>
-         <a href="/scripts_php/prof/perfil/perfil.php">
-            <img src="/public/recursos/images/horario.png" class="icon"> Perfil
+        <a href="/scripts_php/prof/perfil/perfil.php">
+            <img src="/public/recursos/images/perfil.png" class="icon"> Perfil
         </a>
     </aside>
 
@@ -72,5 +73,48 @@ try {
                 <li><a href="/scripts_php/logout.php">Sair</a></li>
             </ul>
         </nav>
-        <h1>Bem-vindo, <?php echo htmlspecialchars($professor['nome']); ?>!</h1>
+
+        <div class="user-info">
+            <div class="perfil-dropdown">
+                <?php if (!empty($professor['imagem_path'])): ?>
+                    <img src="/public/recursos/storage/<?= htmlspecialchars($professor['imagem_path']) ?>?t=<?= time() ?>" 
+                         alt="Foto de perfil" 
+                         class="perfil-foto" />
+                <?php else: ?>
+                    <img src="/public/recursos/storage/profile.jpg?t=<?= time() ?>" 
+                         alt="Foto de perfil" 
+                         class="perfil-foto" />
+                <?php endif; ?>
+
+                <button class="dropbtn" onclick="toggleDropdown()" aria-label="Abrir menu do usuário">▼</button>
+
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="/scripts_php/prof/perfil/perfil.php">Perfil</a>
+                    <a href="#">Alterar Senha</a>
+                    <a href="/scripts_php/logout.php">Sair</a>
+                </div>
+            </div>
+            <h1>Professor(a) - <?= htmlspecialchars($professor['nome']) ?></h1>
+        </div>
     </header>
+
+    <script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
+
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdownMenu');
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    window.onclick = function(event) {
+        const menu = document.getElementById('dropdownMenu');
+        const btn = document.querySelector('.dropbtn');
+        if (event.target !== btn && !btn.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+    }
+    </script>
+

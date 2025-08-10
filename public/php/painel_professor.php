@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../includes/header_professor.php'; // ajuste o caminho conforme sua estrutura
+require_once __DIR__ . '/../includes/header_professor.php'; 
 ?>
 
 <main>

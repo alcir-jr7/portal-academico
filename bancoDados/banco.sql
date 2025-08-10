@@ -163,6 +163,7 @@ ALTER TABLE professores
 ADD COLUMN imagem_id INT,
 ADD FOREIGN KEY (imagem_id) REFERENCES imagens(id) ON DELETE SET NULL;
 
+
 -- View de horários dos alunos
 CREATE VIEW horarios_alunos AS
 SELECT 

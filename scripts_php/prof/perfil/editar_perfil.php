@@ -59,26 +59,11 @@ $erro = '';
 // Processar upload da imagem e atualização dos dados
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    // Atualizar departamento (permitindo edição)
-    $departamento = trim($_POST['departamento'] ?? '');
+    // Departamento NÃO será editável, portanto não atualiza
+    $departamento = $professor['departamento'];
 
-    if (empty($departamento)) {
-        $erro = "O campo Departamento não pode ficar vazio.";
-    } else {
-        try {
-            // Atualizar departamento no banco
-            $stmt = $pdo->prepare("UPDATE professores SET departamento = ? WHERE id = ?");
-            $stmt->execute([$departamento, $id]);
-            $professor['departamento'] = $departamento;
-            $mensagem = "✅ Dados atualizados com sucesso!";
-        } catch (PDOException $e) {
-            error_log("Erro ao atualizar departamento: " . $e->getMessage());
-            $erro = "Erro ao atualizar dados.";
-        }
-    }
-
-    // Se não houve erro, processar upload da imagem (se tiver arquivo)
-    if (empty($erro) && !empty($_FILES['imagem']['name'])) {
+    // Processar upload da imagem (se tiver arquivo)
+    if (!empty($_FILES['imagem']['name'])) {
         $arquivo = $_FILES['imagem'];
 
         $tipos_permitidos = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
@@ -122,9 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         }
                     }
 
-                    $mensagem .= "<br>✅ Foto de perfil atualizada com sucesso!";
-                    // Atualizar caminho da imagem para mostrar na página
-                    $professor['imagem_path'] = $novoNome;
+                    // Redirecionar para perfil.php após sucesso
+                    header("Location: perfil.php");
+                    exit;
 
                 } catch (PDOException $e) {
                     error_log("Erro ao salvar imagem no banco: " . $e->getMessage());
@@ -181,13 +166,9 @@ if (!empty($professor['imagem_path'])) {
 
             <label>Email:</label><br>
             <input type="email" value="<?= htmlspecialchars($professor['email']) ?>" disabled><br><br>
-        </fieldset>
 
-        <fieldset>
-            <legend><strong>Dados Profissionais</strong></legend>
-
-            <label for="departamento">Departamento:</label><br>
-            <input type="text" id="departamento" name="departamento" value="<?= htmlspecialchars($professor['departamento'] ?? '') ?>" required><br><br>
+            <label>Departamento:</label><br>
+            <input type="text" value="<?= htmlspecialchars($professor['departamento'] ?? '') ?>" disabled><br><br>
         </fieldset>
 
         <fieldset>

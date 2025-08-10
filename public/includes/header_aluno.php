@@ -87,7 +87,7 @@ try {
                     <a href="/scripts_php/logout.php">Sair</a>
                 </div>
             </div>
-            <h1>Bem-vindo, <?php echo htmlspecialchars($usuario['nome']); ?>!</h1>
+            <h1>Bem-vindo(a), <?php echo htmlspecialchars($usuario['nome']); ?>!</h1>
         </div>
     </header>
 

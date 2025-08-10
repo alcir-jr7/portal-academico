@@ -81,12 +81,8 @@ if (!empty($professor['imagem_path'])) {
         <li><strong>Nome:</strong> <?= htmlspecialchars($professor['nome']) ?></li>
         <li><strong>Matrícula:</strong> <?= htmlspecialchars($professor['usuario_matricula']) ?></li>
         <li><strong>Email:</strong> <?= htmlspecialchars($professor['email']) ?></li>
-        <li><strong>Status:</strong> <?= $professor['ativo'] ? 'Ativo' : 'Inativo' ?></li>
-    </ul>
-
-    <h2>Dados Profissionais</h2>
-    <ul>
         <li><strong>Departamento:</strong> <?= htmlspecialchars($professor['departamento'] ?? 'Não informado') ?></li>
+        <li><strong>Status:</strong> <?= $professor['ativo'] ? 'Ativo' : 'Inativo' ?></li>
     </ul>
 
     <button type="button" onclick="window.location.href='editar_perfil.php'">

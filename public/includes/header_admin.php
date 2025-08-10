@@ -83,8 +83,8 @@ try {
         <a href="/scripts_php/adm/turmas/index.php">
             <img src="/public/recursos/images/turma.png" class="icon"> Turmas
         </a>
-        <a href="/scripts_php/adm/matriculas/index.php">
-            <img src="/public/recursos/images/matriculas.png" class="icon"> Matrículas
+        <a href="/scripts_php/adm/adms/index.php">
+            <img src="/public/recursos/images/adm.png" class="icon"> Administradores
         </a>
         
     </aside>

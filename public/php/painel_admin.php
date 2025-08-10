@@ -33,10 +33,10 @@ require_once __DIR__ . '/../includes/header_admin.php';
         </a>
 
         <!-- Gerenciamento de Matrículas -->
-        <a href="/scripts_php/adm/matriculas/index.php" class="card-opcao">
-            <img src="/public/recursos/images/matricular-p.png" alt="Matrículas">
-            <span>Matrículas</span>
-            <div class="description">Controle de matrículas em turmas</div>
+        <a href="/scripts_php/adm/adms/index.php" class="card-opcao">
+            <img src="/public/recursos/images/adm2.png" alt="Adms">
+            <span>Administradores</span>
+            <div class="description">Controle de administradores</div>
         </a>
     </div>
 
