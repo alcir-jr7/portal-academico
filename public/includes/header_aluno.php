@@ -50,6 +50,9 @@ try {
         <a href="/scripts_php/aluno/">
             <img src="/public/recursos/images/horario.png" class="icon"> Horários
         </a>
+        <a href="/scripts_php/aluno/perfil/perfil.php">
+            <img src="/public/recursos/images/horario.png" class="icon"> Perfil
+        </a>
     </aside>
 
     <header>

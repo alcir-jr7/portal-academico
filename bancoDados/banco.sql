@@ -147,6 +147,22 @@ CREATE TABLE horarios_professores (
     FOREIGN KEY (turma_id) REFERENCES turmas(id)
 );
 
+-- Criar a tabela de imagens
+CREATE TABLE imagens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    path VARCHAR(255) NOT NULL
+);
+
+-- Adicionar a chave estrangeira na tabela alunos
+ALTER TABLE alunos
+ADD COLUMN imagem_id INT,
+ADD FOREIGN KEY (imagem_id) REFERENCES imagens(id) ON DELETE SET NULL;
+
+-- Adicionar a chave estrangeira na tabela professores
+ALTER TABLE professores
+ADD COLUMN imagem_id INT,
+ADD FOREIGN KEY (imagem_id) REFERENCES imagens(id) ON DELETE SET NULL;
+
 -- View de horários dos alunos
 CREATE VIEW horarios_alunos AS
 SELECT 
