@@ -59,6 +59,9 @@ try {
         <a href="/scripts_php/prof//index.php">
             <img src="/public/recursos/images/horario.png" class="icon"> Meus Horários
         </a>
+         <a href="/scripts_php/prof/perfil/perfil.php">
+            <img src="/public/recursos/images/horario.png" class="icon"> Perfil
+        </a>
     </aside>
 
     <header>

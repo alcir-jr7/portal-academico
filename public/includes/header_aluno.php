@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 session_start();
 
 if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
-    header('Location: ../public/php/login.php?tipo=aluno');
+    header('Location: /public/php/login.php?tipo=aluno');
     exit;
 }
 
@@ -26,7 +26,7 @@ try {
 
     if (!$usuario) {
         session_destroy();
-        header('Location: ../public/php/login.php?tipo=aluno');
+        header('Location: /public/php/login.php?tipo=aluno');
         exit;
     }
 
@@ -74,9 +74,9 @@ try {
         <div class="user-info">
             <div class="perfil-dropdown">
                 <?php if (!empty($usuario['imagem_path'])): ?>
-                    <img src="/uploads/<?php echo htmlspecialchars($usuario['imagem_path']); ?>?t=<?= time() ?>" alt="Foto de perfil" class="perfil-foto" />
+                    <img src="/public/recursos/storage/<?= htmlspecialchars($usuario['imagem_path']) ?>?t=<?= time() ?>" alt="Foto de perfil" class="perfil-foto" />
                 <?php else: ?>
-                    <img src="<?= htmlspecialchars($imagemPath) ?>?t=<?= time() ?>" alt="Foto de perfil" class="perfil-foto" />
+                    <img src="/public/recursos/storage/profile.jpg?t=<?= time() ?>" alt="Foto de perfil" class="perfil-foto" />
                 <?php endif; ?>
 
                 <button class="dropbtn" onclick="toggleDropdown()" aria-label="Abrir menu do usuário">▼</button>

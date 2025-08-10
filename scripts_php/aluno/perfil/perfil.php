@@ -63,9 +63,9 @@ try {
 
 // Definir caminho da imagem
 if (!empty($aluno['imagem_path'])) {
-    $imagemPath = '../../../public/recursos/storage/' . $aluno['imagem_path'];
+    $imagemPath = '../../../../public/recursos/storage/' . $aluno['imagem_path'];
 } else {
-    $imagemPath = '../../../public/recursos/storage/profile.jpg';
+    $imagemPath = '../../../../public/recursos/storage/profile.jpg';
 }
 ?>
 
