@@ -92,10 +92,14 @@ if (!empty($aluno['imagem_path'])) {
         <li><strong>Coordenador do Curso:</strong> <?= htmlspecialchars($aluno['coordenador_email'] ?? 'Não informado') ?></li>
     </ul>
 
-    <p>
-        <a href="editar_perfil.php">Editar Perfil</a> |
-        <a href="/../../../public/php/painel_aluno.php">Voltar ao Dashboard</a>
-    </p>
+    <button type="button" onclick="window.location.href='editar_perfil.php'">
+        Editar Perfil
+    </button>
+
+    <button type="button" onclick="window.location.href='../../../public/php/painel_aluno.php'">
+        Voltar
+    </button>
+
 </main>
 
 <script src="/../../../../public/recursos/js/painel_aluno.js"></script>

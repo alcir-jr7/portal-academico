@@ -149,7 +149,7 @@ if (!empty($aluno['imagem_path'])) {
 ?>
 
 <main>
-    <h1>Editar Meu Perfil</h1>
+    <h1>Editar Foto de Perfil</h1>
     
     <?php if ($mensagem): ?>
         <div>
@@ -171,19 +171,19 @@ if (!empty($aluno['imagem_path'])) {
     <form method="post" enctype="multipart/form-data">
         
         <fieldset>
-            <legend><strong>Dados Pessoais (Somente Leitura)</strong></legend>
+            <legend><strong>Dados Pessoais</strong></legend>
             
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($aluno['nome']) ?>" readonly><br><br>
+            <label>Nome:</label><br>
+            <input type="text" value="<?= htmlspecialchars($aluno['nome']) ?>" disabled><br><br>
 
-            <label for="matricula">Matrícula:</label><br>
-            <input type="text" id="matricula" name="matricula" value="<?= htmlspecialchars($aluno['matricula']) ?>" readonly><br><br>
+            <label>Matrícula:</label><br>
+            <input type="text" value="<?= htmlspecialchars($aluno['matricula']) ?>" disabled><br><br>
 
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" value="<?= htmlspecialchars($aluno['email']) ?>" readonly><br><br>
+            <label>Email:</label><br>
+            <input type="email" value="<?= htmlspecialchars($aluno['email']) ?>" disabled><br><br>
 
-            <label for="curso">Curso:</label><br>
-            <input type="text" id="curso" name="curso" value="<?= htmlspecialchars($aluno['curso_nome']) ?>" readonly><br><br>
+            <label>Curso:</label><br>
+            <input type="text" value="<?= htmlspecialchars($aluno['curso_nome']) ?>" disabled><br><br>
         </fieldset>
 
         <fieldset>
@@ -200,14 +200,16 @@ if (!empty($aluno['imagem_path'])) {
             </p>
             
             <button type="submit"> Atualizar Foto</button>
-            <a href="perfil.php"> Voltar ao Perfil</a>
+            <button type="button" onclick="window.location.href='perfil.php'">
+                Voltar
+            </button>
+
         </fieldset>
     </form>
 </main>
 
 <script src="../../../public/recursos/js/painel_aluno.js"></script>
 <script src="perfil.js"></script>
-
 
 </body>
 </html>

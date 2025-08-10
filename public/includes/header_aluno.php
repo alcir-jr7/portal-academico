@@ -14,7 +14,13 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
 require_once(__DIR__ . '/../../aplicacao/config/conexao.php');
 
 try {
-    $stmt = $pdo->prepare("SELECT nome FROM usuarios WHERE id = ?");
+    $stmt = $pdo->prepare("
+        SELECT u.nome, i.path AS imagem_path
+        FROM usuarios u
+        LEFT JOIN alunos a ON a.id = u.id
+        LEFT JOIN imagens i ON a.imagem_id = i.id
+        WHERE u.id = ?
+    ");
     $stmt->execute([$_SESSION['usuario_id']]);
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -23,9 +29,11 @@ try {
         header('Location: ../public/php/login.php?tipo=aluno');
         exit;
     }
+
 } catch (Exception $e) {
     die("Erro ao acessar dados do usuário: " . $e->getMessage());
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +59,7 @@ try {
             <img src="/public/recursos/images/horario.png" class="icon"> Horários
         </a>
         <a href="/scripts_php/aluno/perfil/perfil.php">
-            <img src="/public/recursos/images/horario.png" class="icon"> Perfil
+            <img src="/public/recursos/images/perfil.png" class="icon"> Perfil
         </a>
     </aside>
 
@@ -63,5 +71,44 @@ try {
                 <li><a href="/scripts_php/logout.php">Sair</a></li>
             </ul>
         </nav>
-        <h1>Bem-vindo, <?php echo htmlspecialchars($usuario['nome']); ?>!</h1>
+        <div class="user-info">
+            <div class="perfil-dropdown">
+                <?php if (!empty($usuario['imagem_path'])): ?>
+                    <img src="/uploads/<?php echo htmlspecialchars($usuario['imagem_path']); ?>?t=<?= time() ?>" alt="Foto de perfil" class="perfil-foto" />
+                <?php else: ?>
+                    <img src="<?= htmlspecialchars($imagemPath) ?>?t=<?= time() ?>" alt="Foto de perfil" class="perfil-foto" />
+                <?php endif; ?>
+
+                <button class="dropbtn" onclick="toggleDropdown()" aria-label="Abrir menu do usuário">▼</button>
+
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="/scripts_php/aluno/perfil/perfil.php">Perfil</a>
+                    <a href="#">Alterar Senha</a>
+                    <a href="/scripts_php/logout.php">Sair</a>
+                </div>
+            </div>
+            <h1>Bem-vindo, <?php echo htmlspecialchars($usuario['nome']); ?>!</h1>
+        </div>
     </header>
+
+    <script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
+
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdownMenu');
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    window.onclick = function(event) {
+        const menu = document.getElementById('dropdownMenu');
+        const btn = document.querySelector('.dropbtn');
+        if (event.target !== btn && !btn.contains(event.target)) {
+            menu.style.display = 'none';
+        }
+    }
+    </script>
+</body>
+</html>

@@ -88,6 +88,9 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <button type="button" onclick="window.location.href='/../../public/php/painel_aluno.php'">
+            Voltar
+        </button>
     <?php endif; ?>
    </section>
 </main>

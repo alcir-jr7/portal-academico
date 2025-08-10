@@ -46,7 +46,7 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <main>
     <h1>Boletim</h1>
     <div class="boletim-container">
-          <div class="info-aluno">
+    <div class="info-aluno">
         <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
         <p><strong>Matrícula:</strong> <?= htmlspecialchars($aluno_info['matricula']) ?></p>
         <p><strong>Curso:</strong> <?= htmlspecialchars($aluno_info['curso_nome']) ?></p>
@@ -127,6 +127,14 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
+            <button type="button" onclick="window.location.href='/../../public/php/painel_aluno.php'">
+                Voltar
+            </button>
+
+            <button type="button" onclick="window.location.href='exportar_boletim.php'">
+                Exportar Boletim
+            </button>
 
             <?php if (!empty($disciplinas[0]['observacao'])): ?>
                 <div class="observacoes">
