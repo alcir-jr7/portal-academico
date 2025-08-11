@@ -201,11 +201,12 @@ if (!empty($aluno['imagem_path'])) {
                 • Recomendado: Imagem quadrada para melhor visualização
             </p>
             
-            <button type="submit"> Atualizar Foto</button>
-            <button type="button" onclick="window.location.href='perfil.php'">
-                Voltar
-            </button>
-
+            <div class="perfil-aluno-botoes">
+                <button type="submit"> Atualizar Foto</button>
+                <button type="button" onclick="window.location.href='perfil.php'">
+                    Voltar
+                </button>
+            </div>
         </fieldset>
     </form>
 </main>
