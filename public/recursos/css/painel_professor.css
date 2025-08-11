@@ -382,3 +382,470 @@ td.evento.hoje {
 .dropbtn:hover {
     color: #ddd;
 }
+
+
+
+/* ===============================================
+   CSS ESPECÍFICO PARA PÁGINA DE PERFIL DO ALUNO
+   =============================================== */
+
+/* Container principal do perfil */
+.perfil-main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: calc(100vh - 80px);
+}
+
+.perfil-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header do perfil com foto e info principal */
+.perfil-header {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Container da foto principal */
+.perfil-foto-container {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.perfil-foto-principal {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Status badge na foto */
+.perfil-status {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.perfil-status.ativo {
+    background: #4CAF50;
+    color: white;
+}
+
+.perfil-status.inativo {
+    background: #f44336;
+    color: white;
+}
+
+/* Informações principais */
+.perfil-info-principal { 
+    flex: 1;
+    color: #000;
+
+}
+
+.perfil-nome {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #000;
+    text-align: left;
+}
+
+.perfil-matricula {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.perfil-curso {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Grid de cards */
+.perfil-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Cards individuais */
+.perfil-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.perfil-card-full {
+    grid-column: span 3;
+}
+
+/* Header dos cards */
+.perfil-card-header {
+    background: #000000;
+    padding: 1rem 1.5rem;
+}
+
+.perfil-card-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* Conteúdo dos cards */
+.perfil-card-content {
+    padding: 1.5rem;
+}
+
+/* Items de informação */
+.perfil-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.perfil-info-item:last-child {
+    border-bottom: none;
+}
+
+.perfil-label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.perfil-value {
+    color: #000;
+    font-weight: 500;
+    text-align: right;
+    flex: 1.5;
+    word-break: break-word;
+}
+
+/* Badge de status */
+.status-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.ativo {
+    background: #4CAF50;
+    color: white;
+}
+
+.status-badge.inativo {
+    background: #f44336;
+    color: white;
+}
+
+/* Link de email */
+.perfil-email-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.perfil-email-link:hover {
+    text-decoration: underline;
+}
+
+/* Área de ações/botões */
+.perfil-acoes {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem 0;
+    margin-top: 1rem;
+}
+
+/* Botões do perfil */
+.perfil-btn {
+    padding: 1rem 2rem;
+    background: #000000;
+    border: none;
+    border-radius: 10px;
+    color: #fbfffe;
+    font-size: 1.0rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    min-width: 180px;
+}
+
+.perfil-btn:hover {
+    background: #333333;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .perfil-main {
+        padding: 1rem;
+    }
+    
+    .perfil-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .perfil-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .perfil-card-full {
+        grid-column: 1;
+    }
+    
+    .perfil-acoes {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .perfil-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .perfil-nome {
+        font-size: 1.6rem;
+    }
+    
+    .perfil-info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    
+    .perfil-value {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .perfil-foto-principal {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .perfil-card-content {
+        padding: 1rem;
+    }
+    
+    .perfil-card-header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .perfil-nome {
+        font-size: 1.4rem;
+    }
+}
+
+.botao-atalho {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Supondo que os botões sejam <button> dentro de .botao-atalho */
+.botao-atalho button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.botao-atalho button:hover {
+  background-color: rgb(73, 72, 72);
+  color: #ffffff;
+}
+
+
+/*EDITAR PERFIL*/
+/* Container geral */
+.container-perfil {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Foto atual */
+.foto-atual {
+  text-align: center;
+  width: 180px;
+}
+
+.foto-atual img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-bottom: 12px;
+}
+
+.foto-atual h3 {
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: #000000;
+}
+
+/* Formulário */
+.form-perfil {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #afadad;
+}
+
+/* Fieldsets */
+fieldset {
+  border: 1px solid #969696;
+  padding: 15px 20px 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+legend {
+  padding: 0 10px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Campos */
+.campo {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="file"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #646464;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Inputs desabilitados */
+input[disabled] {
+  background-color: #333;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+label[for="imagem"] {
+    color: #000000; /* ou qualquer cor que quiser */
+    font-weight: 600; /* opcional para destacar */
+}
+
+
+/* Requisitos da foto */
+.requisitos strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #000000;
+}
+
+.requisitos ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+/* Botões */
+.botoes {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.botoes button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botoes button:hover {
+  background-color: #413f3f;
+}
+
+/* Mensagens */
+.mensagem-sucesso,
+.mensagem-erro {
+  max-width: 900px;
+  margin: 10px auto 20px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mensagem-sucesso {
+  background-color: #004400;
+  color: #aaffaa;
+}
+
+.mensagem-erro {
+  background-color: #440000;
+  color: #ffaaaa;
+}
+
+

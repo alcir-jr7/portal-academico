@@ -132,65 +132,80 @@ if (!empty($professor['imagem_path'])) {
     $imagemPath = '../../../public/recursos/storage/profile.jpg';
 }
 ?>
+<main class="editar-perfil">
 
-<main>
-    <h1>Editar Perfil</h1>
-    
     <?php if ($mensagem): ?>
-        <div style="color: green;">
-            <?= $mensagem ?>
+        <div class="mensagem-sucesso">
+            <?= htmlspecialchars($mensagem) ?>
         </div>
     <?php endif; ?>
-    
+
     <?php if ($erro): ?>
-        <div style="color: red;">
+        <div class="mensagem-erro">
             ❌ <?= htmlspecialchars($erro) ?>
         </div>
     <?php endif; ?>
+    
+    <div class="container-perfil">
+        <!-- Foto à esquerda -->
+        <div class="foto-atual">
+            <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Minha foto atual" width="150" height="150"> 
+            <h3>Minha Foto Atual</h3>
+        </div>
 
-    <div>
-        <h3>Foto Atual</h3>
-        <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Foto atual" width="150" height="150" style="border-radius: 50%; object-fit: cover; border: 2px solid #ddd;">
+        <!-- Formulário à direita -->
+        <form method="post" enctype="multipart/form-data" class="form-perfil">
+            <fieldset class="dados-pessoais">
+                <legend>Dados Pessoais</legend>
+        
+                <div class="campo">
+                    <label>Nome:</label>
+                    <input type="text" value="<?= htmlspecialchars($professor['nome']) ?>" disabled>
+                </div>
+        
+                <div class="campo">
+                    <label>Matrícula:</label>
+                    <input type="text" value="<?= htmlspecialchars($professor['matricula']) ?>" disabled>
+                </div>
+        
+                <div class="campo">
+                    <label>Email:</label>
+                    <input type="email" value="<?= htmlspecialchars($professor['email']) ?>" disabled>
+                </div>
+        
+                <div class="campo">
+                    <label>Departamento:</label>
+                    <input type="text" value="<?= htmlspecialchars($professor['departamento'] ?? 'Não informado') ?>" disabled>
+                </div>
+            </fieldset>
+
+            <fieldset class="alterar-foto">
+                <legend>Alterar Foto de Perfil</legend>
+                
+                <label for="imagem">Escolher Nova Foto:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                
+                <div class="requisitos">
+                    <strong>Requisitos:</strong>
+                    <ul>
+                        <li>Tipos permitidos: JPG, PNG, GIF</li>
+                        <li>Tamanho máximo: 5MB</li>
+                        <li>Recomendado: Imagem quadrada para melhor visualização</li>
+                    </ul>
+                </div>
+                
+                <div class="botoes">
+                    <button type="submit">Salvar Alterações</button>
+                    <button type="button" onclick="window.location.href='perfil.php'">Voltar</button>
+                </div>
+            </fieldset>
+        </form>
     </div>
 
-    <form method="post" enctype="multipart/form-data">
-
-        <fieldset>
-            <legend><strong>Dados Pessoais</strong></legend>
-
-            <label>Nome:</label><br>
-            <input type="text" value="<?= htmlspecialchars($professor['nome']) ?>" disabled><br><br>
-
-            <label>Matrícula:</label><br>
-            <input type="text" value="<?= htmlspecialchars($professor['matricula']) ?>" disabled><br><br>
-
-            <label>Email:</label><br>
-            <input type="email" value="<?= htmlspecialchars($professor['email']) ?>" disabled><br><br>
-
-            <label>Departamento:</label><br>
-            <input type="text" value="<?= htmlspecialchars($professor['departamento'] ?? '') ?>" disabled><br><br>
-        </fieldset>
-
-        <fieldset>
-            <legend><strong>Alterar Foto de Perfil</strong></legend>
-
-            <label for="imagem">Escolher Nova Foto:</label><br>
-            <input type="file" id="imagem" name="imagem" accept="image/*"><br><br>
-
-            <p>
-                <strong>Requisitos:</strong><br>
-                • Tipos permitidos: JPG, PNG, GIF<br>
-                • Tamanho máximo: 5MB<br>
-                • Recomendado: Imagem quadrada para melhor visualização
-            </p>
-        </fieldset>
-
-        <button type="submit">Salvar Alterações</button>
-        <button type="button" onclick="window.location.href='perfil.php'">Voltar</button>
-    </form>
 </main>
 
 <script src="../../../public/recursos/js/painel_professor.js"></script>
+<script src="perfil.js"></script>
 
 </body>
 </html>

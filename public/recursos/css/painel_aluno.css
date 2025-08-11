@@ -285,122 +285,339 @@ td.evento.hoje {
 }
 
 /*boletim aluno*/
+/*boletim aluno - versão moderna*/
+
+/* Reset e variáveis CSS */
+:root {
+  --primary-color: #000000;
+  --primary-dark: #1a1a1a;
+  --secondary-color: #404040;
+  --success-color: #059669;
+  --warning-color: #d97706;
+  --danger-color: #dc2626;
+  --info-color: #0284c7;
+  --purple-color: #7c3aed;
+  --gray-color: #6b7280;
+  --surface: #ffffff;
+  --surface-secondary: #f9f9f9;
+  --border-color: #e0e0e0;
+  --text-primary: #000000;
+  --text-secondary: #404040;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --border-radius: 8px;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Container principal com margem controlada */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
 h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #000000;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  text-align: center;
+  letter-spacing: -0.025em;
 }
+
 main p {
-    margin-bottom: 1rem;
-    color: #000000;
-
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
-/* Coloca as infos do aluno em linha */
+/* Informações do aluno com design moderno */
 .info-aluno {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  color: #000;
+  padding: 1.5rem 2rem;
+  background: var(--surface);
+  border: 2px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  margin: 0 2rem 2rem 2rem;
 }
 
 .info-aluno p {
   margin: 0;
   font-weight: 600;
-  
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
 }
 
-/* Tabela estilizada */
+.info-aluno p:hover {
+  background: #f0f0f0;
+}
+
+/* Tabela moderna com estilo preto e branco */
 .admin-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
-  color: #000;
-  border-radius: 12px;
+  width: calc(100% - 4rem);
+  margin: 0 2rem 6rem 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--surface);
+  color: var(--text-primary);
+  border-radius: var(--border-radius);
   overflow: hidden;
+  border: 2px solid var(--primary-color);
 }
 
 .admin-table thead th {
-  background-color: #000; /* cabeçalho preto */
-  color: #fff; /* texto branco */
-  padding: 0.75rem 1rem;
+  background: var(--primary-color);
+  color: white;
+  padding: 1rem 1.5rem;
   text-align: left;
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.admin-table thead th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.admin-table thead th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+.admin-table tbody tr {
+  transition: var(--transition);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--surface-secondary);
+}
+
+.admin-table tbody tr:last-child {
+  border-bottom: none;
 }
 
 .admin-table tbody td {
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid #ddd;
-  color: #000; /* texto das respostas preto */
+  padding: 1rem 1.5rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+/* Status modernos com badges */
+.situacao, .status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  transition: var(--transition);
+}
+
+.situacao::before, .status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
 }
 
 .situacao.aprovado {
-  color: green;
-  font-weight: 700;
+  color: var(--success-color);
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.situacao.aprovado::before {
+  background: var(--success-color);
 }
 
 .situacao.recuperacao {
-  color: orange;
-  font-weight: 700;
+  color: var(--warning-color);
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.2);
 }
 
+.situacao.recuperacao::before {
+  background: var(--warning-color);
+}
 
 .situacao.reprovado {
-  color: red;
-  font-weight: 700;
+  color: var(--danger-color);
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.situacao.reprovado::before {
+  background: var(--danger-color);
 }
 
 .situacao.pendente {
-  color: gray;
-  font-weight: 700;
+  color: var(--gray-color);
+  background: rgba(107, 114, 128, 0.1);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+.situacao.pendente::before {
+  background: var(--gray-color);
 }
 
 .status.ativa {
-  color: green;
+  color: var(--success-color);
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.status.ativa::before {
+  background: var(--success-color);
 }
 
 .status.trancada {
-  color: orange;
+  color: var(--warning-color);
+  background: rgba(217, 119, 6, 0.1);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.status.trancada::before {
+  background: var(--warning-color);
 }
 
 .status.dispensada {
-  color: blue;
+  color: var(--info-color);
+  background: rgba(2, 132, 199, 0.1);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.status.dispensada::before {
+  background: var(--info-color);
 }
 
 .status.concluida {
-  color: purple;
+  color: var(--purple-color);
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.2);
 }
 
-/* Faz o container ocupar toda a altura da página e posiciona no rodapé */
+.status.concluida::before {
+  background: var(--purple-color);
+}
+
+/* Resumo de desempenho moderno e fixo */
 .resumo-desempenho {
   display: flex;
-  justify-content: flex-start; /* conteúdo alinhado à esquerda */
+  justify-content: flex-start;
   align-items: center;
   gap: 2rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   font-weight: 600;
-  border-top: 1px solid #000;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-color);
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #fff;
-  color: #000;
   z-index: 1000;
-}
-
-.resumo-desempenho .linha-resumo:last-child {
-  border-bottom: none;
+  box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
 .linha-resumo {
   display: flex;
   gap: 2rem;
   justify-content: flex-start;
-  color: #000;
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  background: var(--surface-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
 }
 
+.linha-resumo:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .info-aluno {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 1rem 2rem 1rem;
+    padding: 1rem;
+  }
+  
+  .info-aluno p {
+    text-align: center;
+  }
+  
+  .admin-table {
+    width: calc(100% - 2rem);
+    margin: 0 1rem 6rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .admin-table thead th,
+  .admin-table tbody td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .resumo-desempenho {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .linha-resumo {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Animações suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.admin-table,
+.info-aluno,
+.resumo-desempenho {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.resumo-desempenho h3{
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
 /* Já tem user-info e perfil-foto, só vou melhorar para o dropdown */
 
 .user-info {
@@ -557,9 +774,10 @@ main p {
 }
 
 /* Informações principais */
-.perfil-info-principal {
+.perfil-info-principal { 
     flex: 1;
     color: #000;
+
 }
 
 .perfil-nome {
@@ -567,6 +785,7 @@ main p {
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: #000;
+    text-align: left;
 }
 
 .perfil-matricula {
@@ -776,3 +995,174 @@ main p {
     }
 }
 
+.botao-atalho {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Supondo que os botões sejam <button> dentro de .botao-atalho */
+.botao-atalho button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.botao-atalho button:hover {
+  background-color: rgb(73, 72, 72);
+  color: #ffffff;
+}
+
+/*EDITAR PERFIL*/
+/* Container geral */
+.container-perfil {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Foto atual */
+.foto-atual {
+  text-align: center;
+  width: 180px;
+}
+
+.foto-atual img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-bottom: 12px;
+}
+
+.foto-atual h3 {
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: #000000;
+}
+
+/* Formulário */
+.form-perfil {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #afadad;
+}
+
+/* Fieldsets */
+fieldset {
+  border: 1px solid #969696;
+  padding: 15px 20px 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+legend {
+  padding: 0 10px;
+  font-weight: bold;
+  color: #000000;
+}
+
+/* Campos */
+.campo {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="file"] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #646464;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Inputs desabilitados */
+input[disabled] {
+  background-color: #333;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+label[for="imagem"] {
+    color: #000000; /* ou qualquer cor que quiser */
+    font-weight: 600; /* opcional para destacar */
+}
+
+
+/* Requisitos da foto */
+.requisitos strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #000000;
+}
+
+.requisitos ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #000000;
+  font-size: 0.9rem;
+}
+
+/* Botões */
+.botoes {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.botoes button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botoes button:hover {
+  background-color: #413f3f;
+}
+
+/* Mensagens */
+.mensagem-sucesso,
+.mensagem-erro {
+  max-width: 900px;
+  margin: 10px auto 20px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mensagem-sucesso {
+  background-color: #004400;
+  color: #aaffaa;
+}
+
+.mensagem-erro {
+  background-color: #440000;
+  color: #ffaaaa;
+}

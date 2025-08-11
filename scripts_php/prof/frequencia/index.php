@@ -58,8 +58,11 @@ try {
                 </tbody>
             </table>
         </div>
-        <div class="table-info">
-            <p>Total de turmas: <strong><?= count($turmas) ?></strong></p>
+        <!-- Substitua a div .table-info atual por: -->
+        <div class="table-footer">
+            <div class="table-info">
+                <p>Total de turmas: <strong><?= count($turmas) ?></strong></p>
+            </div>
         </div>
     <?php endif; ?>
 </main>

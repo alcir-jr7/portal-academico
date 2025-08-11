@@ -26,11 +26,6 @@ try {
     <div class="content-header">
         <h2>Gerenciamento de Notas</h2>
     </div>
-
-    <div class="content-header">
-        <h2>Minhas Turmas</h2>
-    </div>
-
     <?php if (empty($turmas)): ?>
         <div class="empty-state">
             <h3>Você ainda não tem turmas vinculadas.</h3>

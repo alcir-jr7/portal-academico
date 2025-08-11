@@ -150,66 +150,77 @@ if (!empty($aluno['imagem_path'])) {
 }
 ?>
 
-<main>
-    <h1>Editar Foto de Perfil</h1>
-    
+<main class="editar-perfil">
+
     <?php if ($mensagem): ?>
-        <div>
+        <div class="mensagem-sucesso">
             <?= htmlspecialchars($mensagem) ?>
         </div>
     <?php endif; ?>
-    
+
     <?php if ($erro): ?>
-        <div>
+        <div class="mensagem-erro">
             ❌ <?= htmlspecialchars($erro) ?>
         </div>
     <?php endif; ?>
-
-    <div>
-        <h3>Foto Atual</h3>
+    <div class="container-perfil">
+    <!-- Foto à esquerda -->
+    <div class="foto-atual">
         <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Minha foto atual" width="150" height="150"> 
+        <h3>Minha Foto Atual</h3>
     </div>
 
-    <form method="post" enctype="multipart/form-data">
-        
-        <fieldset>
-            <legend><strong>Dados Pessoais</strong></legend>
-            
-            <label>Nome:</label><br>
-            <input type="text" value="<?= htmlspecialchars($aluno['nome']) ?>" disabled><br><br>
-
-            <label>Matrícula:</label><br>
-            <input type="text" value="<?= htmlspecialchars($aluno['matricula']) ?>" disabled><br><br>
-
-            <label>Email:</label><br>
-            <input type="email" value="<?= htmlspecialchars($aluno['email']) ?>" disabled><br><br>
-
-            <label>Curso:</label><br>
-            <input type="text" value="<?= htmlspecialchars($aluno['curso_nome']) ?>" disabled><br><br>
+    <!-- Formulário à direita -->
+    <form method="post" enctype="multipart/form-data" class="form-perfil">
+        <fieldset class="dados-pessoais">
+            <legend>Dados Pessoais</legend>
+    
+            <div class="campo">
+                <label>Nome:</label>
+                <input type="text" value="<?= htmlspecialchars($aluno['nome']) ?>" disabled>
+            </div>
+    
+            <div class="campo">
+                <label>Matrícula:</label>
+                <input type="text" value="<?= htmlspecialchars($aluno['matricula']) ?>" disabled>
+            </div>
+    
+            <div class="campo">
+                <label>Email:</label>
+                <input type="email" value="<?= htmlspecialchars($aluno['email']) ?>" disabled>
+            </div>
+    
+            <div class="campo">
+                <label>Curso:</label>
+                <input type="text" value="<?= htmlspecialchars($aluno['curso_nome']) ?>" disabled>
+            </div>
         </fieldset>
 
-        <fieldset>
-            <legend><strong>🖼️ Alterar Foto de Perfil</strong></legend>
+        <fieldset class="alterar-foto">
+            <legend>Alterar Foto de Perfil</legend>
             
-            <label for="imagem">Escolher Nova Foto:</label><br>
-            <input type="file" id="imagem" name="imagem" accept="image/*" required><br><br>
+            <label for="imagem">Escolher Nova Foto:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*" required>
             
-            <p>
-                <strong>Requisitos:</strong><br>
-                • Tipos permitidos: JPG, PNG, GIF<br>
-                • Tamanho máximo: 5MB<br>
-                • Recomendado: Imagem quadrada para melhor visualização
-            </p>
+            <div class="requisitos">
+                <strong>Requisitos:</strong>
+                <ul>
+                    <li>Tipos permitidos: JPG, PNG, GIF</li>
+                    <li>Tamanho máximo: 5MB</li>
+                    <li>Recomendado: Imagem quadrada para melhor visualização</li>
+                </ul>
+            </div>
             
-            <div class="perfil-aluno-botoes">
-                <button type="submit"> Atualizar Foto</button>
-                <button type="button" onclick="window.location.href='perfil.php'">
-                    Voltar
-                </button>
+            <div class="botoes">
+                <button type="submit">Atualizar Foto</button>
+                <button type="button" onclick="window.location.href='perfil.php'">Voltar</button>
             </div>
         </fieldset>
     </form>
+</div>
+
 </main>
+
 
 <script src="../../../public/recursos/js/painel_aluno.js"></script>
 <script src="perfil.js"></script>

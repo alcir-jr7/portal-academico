@@ -43,7 +43,7 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main>
-    <h1>Frequência</h1>
+    <h1>📝 Relatório de Frequência</h1>
 
     <div class="info-aluno">
         <p><strong>Aluno:</strong> <?= htmlspecialchars($aluno_info['nome']) ?></p>
@@ -88,9 +88,11 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <button type="button" onclick="window.location.href='/../../public/php/painel_aluno.php'">
-            Voltar
-        </button>
+       <div class="botao-atalho">
+            <button type="button" onclick="window.location.href='/../../public/php/painel_aluno.php'">
+                Voltar
+            </button>
+       </div>
     <?php endif; ?>
    </section>
 </main>
