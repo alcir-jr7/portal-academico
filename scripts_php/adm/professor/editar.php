@@ -51,31 +51,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+<main class="form-edit-main">
+    <h1 class="form-edit-title">Editar Professor</h1>
 
-<main>
-    <h1>Editar Professor</h1>
+    <form method="post" enctype="multipart/form-data" class="form-edit-form">
+        <label for="nome" class="form-edit-label">Nome:</label><br>
+        <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($professor['nome']) ?>" required class="form-edit-input-text"><br><br>
 
-    <form method="post" enctype="multipart/form-data">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($professor['nome']) ?>" required><br><br>
+        <label for="matricula" class="form-edit-label">Matrícula:</label><br>
+        <input type="text" id="matricula" value="<?= htmlspecialchars($professor['matricula']) ?>" readonly class="form-edit-input-text-readonly"><br>
+        <small class="form-edit-note">A matrícula não pode ser alterada.</small><br><br>
 
-        <label for="matricula">Matrícula:</label><br>
-        <input type="text" id="matricula" value="<?= htmlspecialchars($professor['matricula']) ?>" readonly style="background-color: #eee; border: 1px solid #ccc; cursor: not-allowed;"><br>
-        <small style="color: #555;">A matrícula não pode ser alterada.</small><br><br>
+        <label for="departamento" class="form-edit-label">Departamento:</label><br>
+        <input type="text" id="departamento" name="departamento" value="<?= htmlspecialchars($professor['departamento']) ?>" class="form-edit-input-text"><br><br>
 
-        <label for="departamento">Departamento:</label><br>
-        <input type="text" id="departamento" name="departamento" value="<?= htmlspecialchars($professor['departamento']) ?>"><br><br>
+        <label for="email" class="form-edit-label">Email:</label><br>
+        <input type="email" id="email" name="email" value="<?= htmlspecialchars($professor['email']) ?>" required class="form-edit-input-text"><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($professor['email']) ?>" required><br><br>
+        <label for="imagem" class="form-edit-label">Imagem de Perfil:</label><br>
+        <input type="file" id="imagem" name="imagem" accept="image/*" class="form-edit-input-file"><br><br>
 
-        <label for="imagem">Imagem de Perfil:</label><br>
-        <input type="file" id="imagem" name="imagem" accept="image/*"><br><br>
-
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-edit-btn-primary">Salvar</button>
+        <a href="index.php" class="form-edit-link-secondary">Cancelar</a>
     </form>
 </main>
+
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
 

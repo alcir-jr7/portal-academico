@@ -38,32 +38,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main>
-    <h1>Editar Disciplina</h1>
+<main class="form-edit-main">
+    <h1 class="form-edit-title">Editar Disciplina</h1>
 
     <?php if ($erro): ?>
-        <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-edit-msg-error"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
 
-    <form method="post">
-        <label>
+    <form method="post" class="form-edit-form">
+        <label class="form-edit-label">
             Nome:<br>
-            <input type="text" name="nome" value="<?= htmlspecialchars($disciplina['nome']) ?>" required>
+            <input type="text" name="nome" value="<?= htmlspecialchars($disciplina['nome']) ?>" required class="form-edit-input-text">
         </label><br><br>
 
-        <label>
+        <label class="form-edit-label">
             Código:<br>
-            <input type="text" name="codigo" value="<?= htmlspecialchars($disciplina['codigo']) ?>" required>
+            <input type="text" name="codigo" value="<?= htmlspecialchars($disciplina['codigo']) ?>" required class="form-edit-input-text">
         </label><br><br>
 
-        <label>
+        <label class="form-edit-label">
             Carga Horária:<br>
-            <input type="number" name="carga_horaria" value="<?= htmlspecialchars($disciplina['carga_horaria']) ?>" required>
+            <input type="number" name="carga_horaria" value="<?= htmlspecialchars($disciplina['carga_horaria']) ?>" required class="form-edit-input-text">
         </label><br><br>
 
-        <label>
+        <label class="form-edit-label">
             Curso:<br>
-            <select name="curso_id" required>
+            <select name="curso_id" required class="form-edit-select">
                 <option value="">Selecione um curso</option>
                 <?php foreach ($cursos as $curso): ?>
                     <option value="<?= $curso['id'] ?>" <?= $curso['id'] == $disciplina['curso_id'] ? 'selected' : '' ?>>
@@ -73,12 +73,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </label><br><br>
 
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-edit-btn-primary">Salvar</button>
+        <a href="index.php" class="form-edit-link-secondary">Cancelar</a>
     </form>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </main>
+
 
 </body>
 </html>

@@ -62,25 +62,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main>
-    <h1>Editar Aluno</h1>
+<main class="form-edit-main">
+    <h1 class="form-edit-title">Editar Aluno</h1>
 
-    <form method="post" enctype="multipart/form-data">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($aluno['nome']) ?>" required><br><br>
+    <form method="post" enctype="multipart/form-data" class="form-edit-form">
+        <label for="nome" class="form-edit-label">Nome:</label><br>
+        <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($aluno['nome']) ?>" required class="form-edit-input-text"><br><br>
 
-        <label for="matricula">Matrícula:</label><br>
-        <input type="text" id="matricula" name="matricula" value="<?= htmlspecialchars($aluno['matricula']) ?>" readonly style="background-color: #eee; border: 1px solid #ccc; cursor: not-allowed;"><br><br>
-        <small style="color: #555; display: block; margin-bottom: 10px;">A matrícula não pode ser alterada.</small>
+        <label for="matricula" class="form-edit-label">Matrícula:</label><br>
+        <input type="text" id="matricula" name="matricula" value="<?= htmlspecialchars($aluno['matricula']) ?>" readonly class="form-edit-input-text-disabled"><br><br>
+        <small class="form-edit-note">A matrícula não pode ser alterada.</small>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" value="<?= htmlspecialchars($aluno['email']) ?>" required><br><br>
+        <label for="email" class="form-edit-label">Email:</label><br>
+        <input type="email" id="email" name="email" value="<?= htmlspecialchars($aluno['email']) ?>" required class="form-edit-input-text"><br><br>
 
-        <label for="periodo_entrada">Período de Entrada:</label><br>
-        <input type="text" id="periodo_entrada" name="periodo_entrada" value="<?= htmlspecialchars($aluno['periodo_entrada']) ?>"><br><br>
+        <label for="periodo_entrada" class="form-edit-label">Período de Entrada:</label><br>
+        <input type="text" id="periodo_entrada" name="periodo_entrada" value="<?= htmlspecialchars($aluno['periodo_entrada']) ?>" class="form-edit-input-text"><br><br>
 
-        <label for="curso_id">Curso:</label><br>
-        <select id="curso_id" name="curso_id" required>
+        <label for="curso_id" class="form-edit-label">Curso:</label><br>
+        <select id="curso_id" name="curso_id" required class="form-edit-select">
             <?php foreach ($cursos as $curso): 
                 $selected = $curso['id'] == $aluno['curso_id'] ? 'selected' : '';
             ?>
@@ -90,13 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </select><br><br>
 
-        <label for="imagem">Imagem de Perfil:</label><br>
-        <input type="file" id="imagem" name="imagem" accept="image/*"><br><br>
+        <label for="imagem" class="form-edit-label">Imagem de Perfil:</label><br>
+        <input type="file" id="imagem" name="imagem" accept="image/*" class="form-edit-file"><br><br>
 
-        <button type="submit">Atualizar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-edit-btn-primary">Atualizar</button>
+        <a href="index.php" class="form-edit-link-secondary">Cancelar</a>
     </form>
 </main>
+
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
 

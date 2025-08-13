@@ -11,16 +11,16 @@ $stmt = $pdo->query("
 $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<main>
-    <h1>Disciplinas Cadastradas</h1>
-
-    <a href="criar.php" class="btn btn-primary">+ Nova Disciplina</a>
-    <br><br>
+<main class="page-main">
+    <div class="page-header">
+        <h1 class="page-title">Disciplinas Cadastradas</h1>
+        <a href="criar.php" class="btn-primary btn-new">+ Nova Disciplina</a>
+    </div>
 
     <?php if (empty($disciplinas)): ?>
         <p>Nenhuma disciplina cadastrada.</p>
     <?php else: ?>
-        <table border="1" cellpadding="8" class="admin-table">
+        <table border="1" cellpadding="8" class="table-admin">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -38,9 +38,9 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($d['carga_horaria']) ?></td>
                         <td><?= htmlspecialchars($d['curso']) ?></td>
                         <td class="actions">
-                            <a href="visualizar.php?id=<?= $d['id'] ?>" class="btn btn-info">Visualizar</a> |
-                            <a href="editar.php?id=<?= $d['id'] ?>" class="btn btn-warning">Editar</a> |
-                            <a href="deletar.php?id=<?= $d['id'] ?>" class="btn btn-danger"
+                            <a href="visualizar.php?id=<?= $d['id'] ?>" class="action-link">Visualizar</a> |
+                            <a href="editar.php?id=<?= $d['id'] ?>" class="action-link">Editar</a> |
+                            <a href="deletar.php?id=<?= $d['id'] ?>" class="action-link"
                                onclick="return confirm('Tem certeza que deseja excluir esta disciplina?')">Excluir</a>
                         </td>
                     </tr>
@@ -50,10 +50,11 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <br>
-    <a href="/public/php/painel_admin.php" class="btn btn-secondary">Voltar</a>
+    <a href="/public/php/painel_admin.php" class="btn-secondary">Voltar</a>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </main>
+
 
 </body>
 </html>

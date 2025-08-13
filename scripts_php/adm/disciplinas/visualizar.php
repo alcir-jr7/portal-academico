@@ -22,19 +22,36 @@ if (!$disciplina) {
     exit;
 }
 ?>
+<main class="form-create-main">
+    <h1 class="form-create-title">Detalhes da Disciplina</h1>
 
-<main>
-    <h1>Detalhes da Disciplina</h1>
+    <ul class="form-create-info-list">
+        <li>
+            <strong class="form-create-label">Nome:</strong> 
+            <span class="form-create-value"><?= htmlspecialchars($disciplina['nome']) ?></span>
+        </li>
+        <li>
+            <strong class="form-create-label">Código:</strong> 
+            <span class="form-create-value"><?= htmlspecialchars($disciplina['codigo']) ?></span>
+        </li>
+        <li>
+            <strong class="form-create-label">Carga Horária:</strong> 
+            <span class="form-create-value"><?= htmlspecialchars($disciplina['carga_horaria']) ?> horas</span>
+        </li>
+        <li>
+            <strong class="form-create-label">Curso:</strong> 
+            <span class="form-create-value"><?= htmlspecialchars($disciplina['nome_curso']) ?></span>
+        </li>
+    </ul>
 
-    <p><strong>Nome:</strong> <?= htmlspecialchars($disciplina['nome']) ?></p>
-    <p><strong>Código:</strong> <?= htmlspecialchars($disciplina['codigo']) ?></p>
-    <p><strong>Carga Horária:</strong> <?= htmlspecialchars($disciplina['carga_horaria']) ?> horas</p>
-    <p><strong>Curso:</strong> <?= htmlspecialchars($disciplina['nome_curso']) ?></p>
-
-    <p><a href="index.php" class="btn btn-secondary">Voltar</a></p>
+    <p class="form-create-actions">
+        <a href="index.php" class="form-create-btn-secondary">Voltar</a>
+    </p>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </main>
+
+
 
 </body>
 </html>

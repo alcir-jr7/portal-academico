@@ -32,18 +32,23 @@ if (!empty($professor['imagem_path'])) {
 }
 ?>
 
-<main>
-    <h1>Detalhes do Professor</h1>
-    <div style="margin-bottom: 20px;">
-        <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Imagem de Perfil" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #ddd;">
+<main class="form-create-main">
+    <h1 class="form-create-title">Detalhes do Professor</h1>
+
+    <div class="form-create-img-container" style="margin-bottom: 20px;">
+        <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Imagem de Perfil" class="form-create-img">
     </div>
-    <ul>
-        <li><strong>Nome:</strong> <?= htmlspecialchars($professor['nome']) ?></li>
-        <li><strong>Matrícula:</strong> <?= htmlspecialchars($professor['matricula']) ?></li>
-        <li><strong>Departamento:</strong> <?= htmlspecialchars($professor['departamento']) ?></li>
-        <li><strong>Email:</strong> <?= htmlspecialchars($professor['email']) ?></li>
+
+    <ul class="form-create-list">
+        <li><strong class="form-create-label">Nome:</strong> <span class="form-create-value"><?= htmlspecialchars($professor['nome']) ?></span></li>
+        <li><strong class="form-create-label">Matrícula:</strong> <span class="form-create-value"><?= htmlspecialchars($professor['matricula']) ?></span></li>
+        <li><strong class="form-create-label">Departamento:</strong> <span class="form-create-value"><?= htmlspecialchars($professor['departamento']) ?></span></li>
+        <li><strong class="form-create-label">Email:</strong> <span class="form-create-value"><?= htmlspecialchars($professor['email']) ?></span></li>
     </ul>
-    <a href="index.php" class="btn btn-secondary">Voltar à lista</a>
+
+    <p class="form-create-actions">
+        <a href="index.php" class="form-create-btn-secondary">Voltar à lista</a>
+    </p>
 </main>
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>

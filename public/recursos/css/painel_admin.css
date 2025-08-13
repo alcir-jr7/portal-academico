@@ -347,3 +347,1805 @@ td.evento.hoje {
 
 
 
+/*------------------INDEX GERAL----------------------------*/
+/* ===============================================
+/* ===============================================
+   CSS PARA PÁGINA INDEX DE ALUNOS
+   =============================================== */
+
+/* Container principal */
+.page-main {
+    padding: 3rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto !important;
+    min-height: calc(100vh - 80px);
+    transition: none !important;
+}
+
+/* Título principal */
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Formulário de busca */
+.form-search {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Input de busca */
+.input-search {
+    flex: 1;
+    min-width: 300px;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.input-search:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.input-search::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Botões primários */
+.btn-primary {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Botão novo aluno especial */
+.btn-new {
+    background: #4CAF50;
+    margin-bottom: 1rem;
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: 1.2rem 2.5rem;
+}
+
+.btn-new:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* Botão secundário */
+.btn-secondary {
+    background: transparent;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.btn-secondary:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Link limpar */
+.link-clear {
+    color: #f44336;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.link-clear:hover {
+    background: rgba(244, 67, 54, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Tabela principal */
+.table-admin {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #000000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+/* Cabeçalho da tabela */
+.table-admin thead th {
+    background: #000000;
+    color: #ffffff;
+    padding: 1.2rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.table-admin thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.table-admin thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* Linhas da tabela */
+.table-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+/* Células da tabela */
+.table-admin tbody td {
+    padding: 1rem;
+    color: #000000;
+    font-size: 0.95rem;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+/* Status ativo/inativo */
+.status {
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.status-active {
+    background: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border: 2px solid #4CAF50;
+}
+
+.status-active::before {
+    content: "●";
+    color: #4CAF50;
+    font-size: 1rem;
+}
+
+.status-inactive {
+    background: rgba(244, 67, 54, 0.1);
+    color: #c62828;
+    border: 2px solid #f44336;
+}
+
+.status-inactive::before {
+    content: "●";
+    color: #f44336;
+    font-size: 1rem;
+}
+
+/* Linhas com status */
+.table-row.available {
+    background: #ffffff;
+}
+
+.table-row.used {
+    background: #ffffff;
+}
+
+/* Links de ação */
+.action-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.action-link:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+}
+
+/* Cor específica para cada ação */
+.action-link:nth-child(1) { /* Visualizar */
+    color: #2196F3;
+}
+
+.action-link:nth-child(1):hover {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.action-link:nth-child(3) { /* Editar */
+    color: #FF9800;
+}
+
+.action-link:nth-child(3):hover {
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.action-link:nth-child(5) { /* Excluir */
+    color: #f44336;
+}
+
+.action-link:nth-child(5):hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.action-link:nth-child(7) { /* Ativar/Desativar */
+    color: #4CAF50;
+}
+
+.action-link:nth-child(7):hover {
+    background: rgba(76, 175, 80, 0.1);
+}
+
+/* Remover quebras de linha */
+.page-main br {
+    display: none;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .table-admin {
+        font-size: 0.85rem;
+    }
+    
+    .table-admin th,
+    .table-admin td {
+        padding: 0.8rem 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-main {
+        padding: 2rem 1rem;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .form-search {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .input-search {
+        min-width: auto;
+        margin-bottom: 1rem;
+    }
+    
+    .table-admin {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.6rem;
+    }
+    
+    .form-search {
+        padding: 1rem;
+    }
+    
+    .table-admin th,
+    .table-admin td {
+        padding: 0.6rem 0.3rem;
+        font-size: 0.8rem;
+    }
+    
+    .action-link {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.3rem;
+    }
+}
+
+/* Animações */
+.page-main {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.table-admin {
+    animation: slideInFromBottom 0.7s ease-out;
+}
+
+.form-search {
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/*-----------------CRIAR GERAL-------------------*/
+
+/* ===============================================
+   CSS PARA PÁGINA DE CRIAR 
+   =============================================== */
+/* ===============================================
+   CSS COMPLETO PARA PÁGINA DE CRIAR ALUNO
+   =============================================== */
+
+/* Container principal */
+.form-create-container {
+    padding: 3rem 2rem;
+    max-width: 800px;
+    margin: 0 auto !important;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: none !important;
+}
+
+/* Título principal */
+.form-create-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Mensagens de erro e sucesso */
+.form-create-error,
+.form-create-success {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    border: 2px solid;
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.form-create-error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #d32f2f;
+    border-color: #f44336;
+}
+
+.form-create-success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border-color: #4caf50;
+}
+
+/* Formulário */
+.form-create-form {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/* Labels dos campos */
+.form-create-label {
+    display: block;
+    font-weight: 700;
+    color: #000000;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs de texto, senha e email */
+.form-create-input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.form-create-input:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+}
+
+.form-create-input:hover {
+    border-color: #999;
+}
+
+/* Select do curso */
+.form-create-select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form-create-select:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+}
+
+.form-create-select:hover {
+    border-color: #999;
+}
+
+.form-create-select option {
+    padding: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.form-create-select option:first-child {
+    color: #666;
+    font-style: italic;
+}
+
+/* Input de arquivo (file) */
+.form-create-file {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-create-file:hover {
+    border-color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-create-file:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo especial para o input file */
+.form-create-file::file-selector-button {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-create-file::file-selector-button:hover {
+    background: #333333;
+}
+
+/* Botão primário */
+.form-create-btn-primary {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+    min-width: 150px;
+}
+
+.form-create-btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-create-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Link secundário (cancelar) */
+.form-create-link-secondary {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: transparent;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 150px;
+}
+
+.form-create-link-secondary:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Remover quebras de linha desnecessárias */
+.form-create-form br {
+    display: none;
+}
+
+/* Placeholders */
+.form-create-input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-create-container {
+        padding: 2rem 1rem;
+    }
+    
+    .form-create-form {
+        padding: 2rem;
+    }
+    
+    .form-create-title {
+        font-size: 1.8rem;
+    }
+    
+    .form-create-btn-primary,
+    .form-create-link-secondary {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 1rem;
+    }
+    
+    .form-create-btn-primary {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-create-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-create-form {
+        padding: 1.5rem;
+    }
+    
+    .form-create-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-create-input,
+    .form-create-select,
+    .form-create-file {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-create-label {
+        font-size: 1rem;
+    }
+}
+
+/* Animações */
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Melhorias para acessibilidade */
+.form-create-input:focus:invalid {
+    border-color: #ddd;
+}
+
+.form-create-input:focus:valid,
+.form-create-select:focus:valid {
+    border-color: #000000;
+}
+
+/* Estados especiais para validação */
+.form-create-input:required:valid {
+    border-color: #4CAF50;
+}
+
+.form-create-select:required:valid {
+    border-color: #4CAF50;
+}
+
+/* Estilo para quando o arquivo é selecionado */
+.form-create-file:not(:empty) {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+.form-create-error-msg {
+    color: red;
+    margin-bottom: 1rem;
+}
+
+
+/*--------------------------EDITAR GERAL-----------------------*/
+/* ===============================================
+   CSS PARA PÁGINA DE EDITAR ADMINISTRADOR
+   =============================================== */
+
+/* Container principal */
+.form-edit-main {
+    padding: 3rem 2rem;
+    max-width: 800px;
+    margin: 0 auto !important;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: none !important;
+}
+
+/* Título principal */
+.form-edit-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Mensagens de erro e sucesso */
+.form-edit-msg-erro,
+.form-edit-msg-sucesso {
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+    border: 2px solid;
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+.form-edit-msg-erro {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #d32f2f;
+    border-color: #f44336;
+}
+
+.form-edit-msg-sucesso {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #2e7d32;
+    border-color: #4caf50;
+}
+
+/* Formulário */
+.form-edit-form {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/* Labels dos campos */
+.form-edit-label {
+    display: block;
+    font-weight: 700;
+    color: #000000;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs de texto e senha */
+.form-edit-input-text {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.form-edit-input-text:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+}
+
+.form-edit-input-text:hover {
+    border-color: #999;
+}
+
+/* Input readonly (matrícula não editável) */
+.form-edit-input-text[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+    border-color: #ccc;
+}
+
+.form-edit-input-text[readonly]:hover {
+    border-color: #ccc;
+}
+
+.form-edit-input-text[readonly]:focus {
+    border-color: #ccc;
+    box-shadow: none;
+    background-color: #f5f5f5;
+}
+
+/* Input readonly específico para professor */
+.form-edit-input-text-readonly {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+    color: #666;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    cursor: not-allowed;
+}
+
+.form-edit-input-text-readonly:hover {
+    border-color: #ccc;
+}
+
+.form-edit-input-text-readonly:focus {
+    outline: none;
+    border-color: #ccc;
+    box-shadow: none;
+    background-color: #f5f5f5;
+}
+
+/* Input de arquivo para professor */
+.form-edit-input-file {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-edit-input-file:hover {
+    border-color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-edit-input-file:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo especial para o input file do professor */
+.form-edit-input-file::file-selector-button {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-edit-input-file::file-selector-button:hover {
+    background: #333333;
+}
+
+/* Botão primário */
+.form-edit-btn-primary {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+    min-width: 150px;
+}
+
+.form-edit-btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-edit-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Botão secundário (cancelar) */
+.btn.btn-secondary {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: transparent;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 150px;
+}
+
+.btn.btn-secondary:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Remover quebras de linha desnecessárias */
+.form-edit-form br {
+    display: none;
+}
+
+/* Placeholders */
+.form-edit-input-text::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-edit-main {
+        padding: 2rem 1rem;
+    }
+    
+    .form-edit-form {
+        padding: 2rem;
+    }
+    
+    .form-edit-title {
+        font-size: 1.8rem;
+    }
+    
+    .form-edit-btn-primary,
+    .form-edit-link-secondary {
+        width: 100%;
+        margin: 0.5rem 0;
+        padding: 1rem;
+    }
+    
+    .form-edit-btn-primary {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-edit-main {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-edit-form {
+        padding: 1.5rem;
+    }
+    
+    .form-edit-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-edit-input-text {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-edit-input-text-disabled,
+    .form-edit-input-text-readonly,
+    .form-edit-select,
+    .form-edit-file,
+    .form-edit-input-file {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .form-edit-label {
+        font-size: 1rem;
+    }
+}
+
+/* Animações */
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Melhorias para acessibilidade */
+.form-edit-input-text:focus:invalid {
+    border-color: #ddd;
+}
+
+.form-edit-input-text:focus:valid {
+    border-color: #000000;
+}
+
+/* Estados especiais para validação */
+.form-edit-input-text:required:valid {
+    border-color: #4CAF50;
+}
+
+/* Input desabilitado específico (matrícula aluno) */
+.form-edit-input-text-disabled {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+    color: #666;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    cursor: not-allowed;
+}
+
+.form-edit-input-text-disabled:hover {
+    border-color: #ccc;
+}
+
+.form-edit-input-text-disabled:focus {
+    outline: none;
+    border-color: #ccc;
+    box-shadow: none;
+    background-color: #f5f5f5;
+}
+
+/* Nota explicativa */
+.form-edit-note {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    margin-top: -0.5rem;
+}
+
+/* Select do curso */
+.form-edit-select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form-edit-select:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+}
+
+.form-edit-select:hover {
+    border-color: #999;
+}
+
+.form-edit-select option {
+    padding: 0.5rem;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Input de arquivo (file) */
+.form-edit-file {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    color: #000000;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-edit-file:hover {
+    border-color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.form-edit-file:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo especial para o input file */
+.form-edit-file::file-selector-button {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-edit-file::file-selector-button:hover {
+    background: #333333;
+}
+
+/* Link secundário (cancelar) */
+.form-edit-link-secondary {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: transparent;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 150px;
+}
+
+.form-edit-link-secondary:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/*----------------VISUALIZAR GERAL*/
+
+/* ===============================================
+   CSS COMPLETO PARA PÁGINAS DE DETALHES
+   (Aluno, Professor, Disciplina)
+   =============================================== */
+
+/* Container principal */
+.form-create-main {
+    padding: 3rem 2rem;
+    max-width: 800px;
+    margin: 0 auto !important;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: none !important;
+}
+
+/* Título principal */
+.form-create-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Container da imagem de perfil */
+.form-create-img-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 4px solid #ffffff;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Imagem de perfil */
+.form-create-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.form-create-img:hover {
+    transform: scale(1.05);
+}
+
+/* Lista de informações (para alunos, professores e disciplinas) */
+.form-create-info-list,
+.form-create-list {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 0;
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/* Container de informações para turmas e administradores */
+.form-create-info,
+.form-create-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/* Parágrafos dentro do container de turma */
+.form-create-info p {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+.form-create-info p:last-child {
+    border-bottom: none;
+}
+
+.form-create-info p:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    margin: 0 -1rem;
+    padding: 1rem;
+}
+
+/* Itens de informação para administradores */
+.form-create-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+.form-create-info-item:last-child {
+    border-bottom: none;
+}
+
+.form-create-info-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    margin: 0 -1rem;
+    padding: 1rem;
+}
+
+/* Parágrafos de informações (removido - não usado mais) */
+
+/* Itens da lista (para alunos e professores) */
+.form-create-info-list li,
+.form-create-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.3s ease;
+}
+
+.form-create-info-list li:last-child,
+.form-create-list li:last-child {
+    border-bottom: none;
+}
+
+.form-create-info-list li:hover,
+.form-create-list li:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 8px;
+    margin: 0 -1rem;
+    padding: 1rem;
+}
+
+/* Labels (títulos dos campos) - para listas e parágrafos */
+.form-create-label {
+    font-weight: 700;
+    color: #000000;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 180px;
+    flex-shrink: 0;
+}
+
+/* Valores dos campos - para listas e parágrafos */
+.form-create-value {
+    font-weight: 500;
+    color: #333333;
+    font-size: 1rem;
+    text-align: right;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+/* Container de ações (botões) */
+.form-create-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Botão primário (Editar) */
+.form-create-btn-primary {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 120px;
+    text-align: center;
+}
+
+.form-create-btn-primary:hover {
+    background: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-create-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Botão de perigo (Excluir) */
+.form-create-btn-danger {
+    background: #d32f2f;
+    color: #ffffff;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 120px;
+    text-align: center;
+}
+
+.form-create-btn-danger:hover {
+    background: #b71c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+}
+
+.form-create-btn-danger:active {
+    transform: translateY(0);
+}
+.form-create-btn-secondary {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: transparent;
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-width: 150px;
+    font-size: 1rem;
+}
+
+.form-create-btn-secondary:hover {
+    background: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-create-btn-secondary:active {
+    transform: translateY(0);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .form-create-main {
+        padding: 2rem 1rem;
+    }
+    
+    .form-create-info-list,
+    .form-create-list,
+    .form-create-info,
+    .form-create-container {
+        padding: 2rem;
+    }
+    
+    .form-create-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-create-img-container {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-create-info-list li,
+    .form-create-list li,
+    .form-create-info p,
+    .form-create-info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .form-create-label {
+        min-width: auto;
+    }
+    
+    .form-create-value {
+        text-align: left;
+    }
+    
+    .form-create-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .form-create-btn-primary,
+    .form-create-btn-danger,
+    .form-create-btn-secondary {
+        width: 100%;
+        padding: 1rem;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-create-main {
+        padding: 1.5rem 1rem;
+    }
+    
+    .form-create-info-list,
+    .form-create-list,
+    .form-create-info,
+    .form-create-container {
+        padding: 1.5rem;
+    }
+    
+    .form-create-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-create-img-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .form-create-label {
+        font-size: 0.9rem;
+    }
+    
+    .form-create-value {
+        font-size: 0.9rem;
+    }
+    
+    .form-create-info-list li,
+    .form-create-list li {
+        padding: 0.8rem 0;
+    }
+    
+    .form-create-info-list li:hover,
+    .form-create-list li:hover {
+        margin: 0 -0.8rem;
+        padding: 0.8rem;
+    }
+    
+    .form-create-info p,
+    .form-create-info-item {
+        padding: 0.8rem 0;
+    }
+    
+    .form-create-info p:hover,
+    .form-create-info-item:hover {
+        margin: 0 -0.8rem;
+        padding: 0.8rem;
+    }
+}
+
+/* Animações */
+@keyframes slideInFromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeitos especiais para diferentes tipos de status */
+.form-create-value:contains("Ativo") {
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.form-create-value:contains("Inativo") {
+    color: #d32f2f;
+    font-weight: 600;
+}
+
+/* Melhorias visuais para emails (alunos e professores) */
+.form-create-info-list li:nth-child(3) .form-create-value,
+.form-create-info-list li:nth-child(7) .form-create-value,
+.form-create-list li:nth-child(4) .form-create-value {
+    color: #1976d2;
+    font-style: italic;
+}
+
+/* Destaque para matrícula (alunos e professores) */
+.form-create-info-list li:nth-child(2) .form-create-value,
+.form-create-list li:nth-child(2) .form-create-value {
+    font-family: 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Estilo especial para o curso (alunos) */
+.form-create-info-list li:nth-child(5) .form-create-value {
+    color: #7b1fa2;
+    font-weight: 600;
+}
+
+/* Estilo especial para departamento (professores) */
+.form-create-list li:nth-child(3) .form-create-value {
+    color: #d84315;
+    font-weight: 600;
+}
+
+/* Estilos específicos para disciplinas na lista */
+/* Nome da disciplina */
+.form-create-info-list li:nth-child(1) .form-create-value {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+/* Código da disciplina */
+.form-create-info-list li:nth-child(2) .form-create-value {
+    font-family: 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Carga horária */
+.form-create-info-list li:nth-child(3) .form-create-value {
+    color: #388e3c;
+    font-weight: 600;
+}
+
+/* Curso da disciplina */
+.form-create-info-list li:nth-child(4) .form-create-value {
+    color: #7b1fa2;
+    font-weight: 600;
+}
+
+/* Estilos específicos para turmas */
+/* Disciplina da turma */
+.form-create-info p:nth-child(1) .form-create-value {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+/* Professor da turma */
+.form-create-info p:nth-child(2) .form-create-value {
+    color: #d84315;
+    font-weight: 600;
+}
+
+/* Semestre da turma */
+.form-create-info p:nth-child(3) .form-create-value {
+    font-family: 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Horário da turma */
+.form-create-info p:nth-child(4) .form-create-value {
+    color: #388e3c;
+    font-weight: 600;
+}
+
+/* Estilos específicos para administradores */
+/* ID do administrador */
+.form-create-info-item:nth-child(1) .form-create-value {
+    font-family: 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #666;
+}
+
+/* Nome do administrador */
+.form-create-info-item:nth-child(2) .form-create-value {
+    color: #1976d2;
+    font-weight: 600;
+}
+
+/* Matrícula do administrador */
+.form-create-info-item:nth-child(3) .form-create-value {
+    font-family: 'Courier New', monospace;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* Tipo do administrador */
+.form-create-info-item:nth-child(4) .form-create-value {
+    color: #7b1fa2;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Setor do administrador */
+.form-create-info-item:nth-child(5) .form-create-value {
+    color: #d84315;
+    font-weight: 600;
+}
+
+/* Hover effect para imagem */
+.form-create-img-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Efeito de loading para imagem */
+.form-create-img[src=""] {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

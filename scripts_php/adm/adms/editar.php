@@ -60,34 +60,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-<main>
-    <h1>Editar Administrador</h1>
+<main class="form-edit-main">
+    <h1 class="form-edit-title">Editar Administrador</h1>
 
     <?php if ($erro): ?>
-        <p style="color: red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-edit-msg-erro"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
     <?php if ($sucesso): ?>
-        <p style="color: green;"><?= htmlspecialchars($sucesso) ?></p>
+        <p class="form-edit-msg-sucesso"><?= htmlspecialchars($sucesso) ?></p>
     <?php endif; ?>
 
-    <form method="POST" action="">
-        <label>Matrícula (não editável):</label><br>
-        <input type="text" value="<?= htmlspecialchars($admin['matricula']) ?>" readonly><br><br>
+    <form method="POST" action="" class="form-edit-form">
+        <label class="form-edit-label">Matrícula (não editável):</label><br>
+        <input type="text" value="<?= htmlspecialchars($admin['matricula']) ?>" readonly class="form-edit-input-text"><br><br>
 
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($admin['nome']) ?>"><br><br>
+        <label for="nome" class="form-edit-label">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($admin['nome']) ?>" class="form-edit-input-text"><br><br>
 
-        <label for="senha">Senha (deixe vazio para não alterar):</label><br>
-        <input type="password" id="senha" name="senha" autocomplete="new-password"><br><br>
+        <label for="senha" class="form-edit-label">Senha (deixe vazio para não alterar):</label><br>
+        <input type="password" id="senha" name="senha" autocomplete="new-password" class="form-edit-input-text"><br><br>
 
-        <label for="setor">Setor:</label><br>
-        <input type="text" id="setor" name="setor" required value="<?= htmlspecialchars($admin['setor']) ?>"><br><br>
+        <label for="setor" class="form-edit-label">Setor:</label><br>
+        <input type="text" id="setor" name="setor" required value="<?= htmlspecialchars($admin['setor']) ?>" class="form-edit-input-text"><br><br>
 
-        <button type="submit">Salvar</button>
+        <button type="submit" class="form-edit-btn-primary">Salvar</button>
         <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </main>
+
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </body>

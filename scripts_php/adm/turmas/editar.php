@@ -49,18 +49,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-<main>
-    <h1>Editar Turma</h1>
+<main class="form-edit-main">
+    <h1 class="form-edit-title">Editar Turma</h1>
 
     <?php if (!empty($erro)): ?>
-        <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-edit-error"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
 
-    <form method="post">
-        <label>
+    <form method="post" class="form-edit-form">
+        <label class="form-edit-label">
             Disciplina:<br>
-            <select name="disciplina_id" required>
+            <select name="disciplina_id" required class="form-edit-select">
                 <option value="">Selecione uma disciplina</option>
                 <?php foreach ($disciplinas as $disciplina): ?>
                     <option value="<?= $disciplina['id'] ?>" <?= $disciplina['id'] == $turma['disciplina_id'] ? 'selected' : '' ?>>
@@ -70,9 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </label><br><br>
 
-        <label>
+        <label class="form-edit-label">
             Professor:<br>
-            <select name="professor_id" required>
+            <select name="professor_id" required class="form-edit-select">
                 <option value="">Selecione um professor</option>
                 <?php foreach ($professores as $prof): ?>
                     <option value="<?= $prof['id'] ?>" <?= $prof['id'] == $turma['professor_id'] ? 'selected' : '' ?>>
@@ -82,20 +81,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </label><br><br>
 
-        <label>
+        <label class="form-edit-label">
             Semestre:<br>
-            <input type="text" name="semestre" value="<?= htmlspecialchars($turma['semestre']) ?>" required>
+            <input type="text" name="semestre" value="<?= htmlspecialchars($turma['semestre']) ?>" required class="form-edit-input-text">
         </label><br><br>
 
-        <label>
+        <label class="form-edit-label">
             Horário:<br>
-            <input type="text" name="horario" value="<?= htmlspecialchars($turma['horario']) ?>">
+            <input type="text" name="horario" value="<?= htmlspecialchars($turma['horario']) ?>" class="form-edit-input-text">
         </label><br><br>
 
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-edit-btn-primary">Salvar</button>
+        <a href="index.php" class="form-edit-link-secondary">Cancelar</a>
     </form>
 </main>
+
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
 

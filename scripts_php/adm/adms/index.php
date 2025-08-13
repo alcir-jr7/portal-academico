@@ -28,22 +28,22 @@ if ($busca) {
 $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<main>
-    <h1>Gerenciar Administradores</h1>
+<main class="page-main">
+    <h1 class="page-title">Gerenciar Administradores</h1>
 
-    <form method="get" action="index.php" style="margin-bottom: 1rem;">
-        <input type="text" name="busca" placeholder="Buscar por matrícula ou nome" value="<?= htmlspecialchars($busca) ?>">
-        <button type="submit">Buscar</button>
+    <form method="get" action="index.php" class="form-search">
+        <input type="text" name="busca" placeholder="Buscar por matrícula ou nome" value="<?= htmlspecialchars($busca) ?>" class="input-search">
+        <button type="submit" class="btn-primary">Buscar</button>
         <?php if ($busca): ?>
-            <a href="index.php">Limpar</a>
+            <a href="index.php" class="link-clear">Limpar</a>
         <?php endif; ?>
     </form>
 
-    <a href="criar.php" class="btn btn-primary">+ Novo Administrador</a>
+    <a href="criar.php" class="btn-primary btn-new">+ Novo Administrador</a>
 
     <br><br>
 
-    <table border="1" cellpadding="8" class="admin-table">
+    <table border="1" cellpadding="8" class="table-admin">
         <thead>
             <tr>
                 <th>ID</th>
@@ -56,16 +56,16 @@ $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php foreach ($matriculas as $m): ?>
-                <tr style="background-color: <?= $m['usada'] ? '#fce4ec' : '#e8f5e9' ?>;">
+                <tr class="table-row <?= $m['usada'] ? 'used' : 'available' ?>">
                     <td><?= $m['id'] ?></td>
                     <td><?= htmlspecialchars($m['matricula']) ?></td>
                     <td><?= htmlspecialchars($m['nome'] ?? '-') ?></td>
                     <td><?= ucfirst($m['tipo']) ?></td>
                     <td><?= $m['usada'] ? 'Usada' : 'Disponível' ?></td>
                     <td>
-                        <a href="visualizar.php?id=<?= $m['id'] ?>">Visualizar</a> |
-                        <a href="editar.php?id=<?= $m['id'] ?>">Editar</a> |
-                        <a href="deletar.php?id=<?= $m['id'] ?>" onclick="return confirm('Deseja excluir esta matrícula?')">Excluir</a>
+                        <a href="visualizar.php?id=<?= $m['id'] ?>" class="action-link">Visualizar</a> |
+                        <a href="editar.php?id=<?= $m['id'] ?>" class="action-link">Editar</a> |
+                        <a href="deletar.php?id=<?= $m['id'] ?>" class="action-link" onclick="return confirm('Deseja excluir esta matrícula?')">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
@@ -73,10 +73,8 @@ $matriculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 
     <br>
-    <a href="/public/php/painel_admin.php" class="btn btn-secondary">Voltar</a>
+    <a href="/public/php/painel_admin.php" class="btn-secondary">Voltar</a>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </main>
 
-</body>
-</html>

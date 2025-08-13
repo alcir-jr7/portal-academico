@@ -27,14 +27,19 @@ if (!$turma) {
 }
 ?>
 
-<main>
-    <h1>Detalhes da Turma</h1>
-    <p><strong>Disciplina:</strong> <?= htmlspecialchars($turma['disciplina_nome']) ?> (<?= htmlspecialchars($turma['disciplina_codigo']) ?>)</p>
-    <p><strong>Professor:</strong> <?= htmlspecialchars($turma['professor_nome']) ?> (Matrícula: <?= htmlspecialchars($turma['professor_matricula']) ?>)</p>
-    <p><strong>Semestre:</strong> <?= htmlspecialchars($turma['semestre']) ?></p>
-    <p><strong>Horário:</strong> <?= htmlspecialchars($turma['horario']) ?></p>
+<main class="form-create-main">
+    <h1 class="form-create-title">Detalhes da Turma</h1>
 
-    <a href="index.php">Voltar</a>
+    <div class="form-create-info">
+        <p><strong class="form-create-label">Disciplina:</strong> <span class="form-create-value"><?= htmlspecialchars($turma['disciplina_nome']) ?> (<?= htmlspecialchars($turma['disciplina_codigo']) ?>)</span></p>
+        <p><strong class="form-create-label">Professor:</strong> <span class="form-create-value"><?= htmlspecialchars($turma['professor_nome']) ?> (Matrícula: <?= htmlspecialchars($turma['professor_matricula']) ?>)</span></p>
+        <p><strong class="form-create-label">Semestre:</strong> <span class="form-create-value"><?= htmlspecialchars($turma['semestre']) ?></span></p>
+        <p><strong class="form-create-label">Horário:</strong> <span class="form-create-value"><?= htmlspecialchars($turma['horario']) ?></span></p>
+    </div>
+
+    <p class="form-create-actions">
+        <a href="index.php" class="form-create-btn-secondary">Voltar</a>
+    </p>
 </main>
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>

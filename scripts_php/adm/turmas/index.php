@@ -12,14 +12,13 @@ $stmt = $pdo->query("
 ");
 $turmas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+<main class="page-main">
+    <h1 class="page-title">Turmas Cadastradas</h1>
 
-<main>
-    <h1>Turmas Cadastradas</h1>
-
-    <a href="criar.php">+ Nova Turma</a>
+    <a href="criar.php" class="btn-primary btn-new">+ Nova Turma</a>
     <br><br>
 
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table border="1" cellpadding="8" cellspacing="0" class="table-admin">
         <thead>
             <tr>
                 <th>Disciplina</th>
@@ -31,25 +30,27 @@ $turmas = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php foreach ($turmas as $turma): ?>
-                <tr>
+                <tr class="table-row available">
                     <td><?= htmlspecialchars($turma['disciplina']) ?></td>
                     <td><?= htmlspecialchars($turma['professor']) ?></td>
                     <td><?= htmlspecialchars($turma['semestre']) ?></td>
                     <td><?= htmlspecialchars($turma['horario']) ?></td>
                     <td>
-                        <a href="visualizar.php?id=<?= $turma['id'] ?>">Visualizar</a> |
-                        <a href="editar.php?id=<?= $turma['id'] ?>">Editar</a> |
-                        <a href="deletar.php?id=<?= $turma['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir esta turma?')">Excluir</a> |
-                        <a href="detalhes.php?id=<?= $turma['id'] ?>">Detalhes</a> |
-                        <a href="adicionar_alunos.php?id=<?= $turma['id'] ?>">Adicionar Aluno</a>
+                        <a href="visualizar.php?id=<?= $turma['id'] ?>" class="action-link">Visualizar</a> |
+                        <a href="editar.php?id=<?= $turma['id'] ?>" class="action-link">Editar</a> |
+                        <a href="deletar.php?id=<?= $turma['id'] ?>" class="action-link" onclick="return confirm('Tem certeza que deseja excluir esta turma?')">Excluir</a> |
+                        <a href="detalhes.php?id=<?= $turma['id'] ?>" class="action-link">Detalhes</a> |
+                        <a href="adicionar_alunos.php?id=<?= $turma['id'] ?>" class="action-link">Adicionar Aluno</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <a href="/public/php/painel_admin.php">Voltar</a>
+    <br>
+    <a href="/public/php/painel_admin.php" class="btn-secondary">Voltar</a>
 </main>
+
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
 

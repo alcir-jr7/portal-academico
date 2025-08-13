@@ -84,31 +84,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $cursos = $pdo->query("SELECT id, nome FROM cursos ORDER BY nome")->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
-<main>
-    <h1>Criar Novo Aluno</h1>
+<main class="form-create-container">
+    <h1 class="form-create-title">Criar Novo Aluno</h1>
 
     <?php if ($erro): ?>
-        <p style="color: red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-create-error"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
     <?php if ($sucesso): ?>
-        <p style="color: green;"><?= htmlspecialchars($sucesso) ?></p>
+        <p class="form-create-success"><?= htmlspecialchars($sucesso) ?></p>
     <?php endif; ?>
 
-    <form method="post" enctype="multipart/form-data">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
+    <form method="post" enctype="multipart/form-data" class="form-create-form">
+        <label for="nome" class="form-create-label">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required class="form-create-input" value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
 
-        <!-- Removido o campo de seleção de matrícula -->
+        <label for="senha" class="form-create-label">Senha:</label><br>
+        <input type="password" id="senha" name="senha" required class="form-create-input"><br><br>
 
-        <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" name="senha" required><br><br>
+        <label for="email" class="form-create-label">Email:</label><br>
+        <input type="email" id="email" name="email" required class="form-create-input" value="<?= htmlspecialchars($email ?? '') ?>"><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required value="<?= htmlspecialchars($email ?? '') ?>"><br><br>
-
-        <label for="curso_id">Curso:</label><br>
-        <select id="curso_id" name="curso_id" required>
+        <label for="curso_id" class="form-create-label">Curso:</label><br>
+        <select id="curso_id" name="curso_id" required class="form-create-select">
             <option value="">Selecione um curso</option>
             <?php foreach ($cursos as $curso): ?>
                 <option value="<?= $curso['id'] ?>" <?= (isset($curso_id) && $curso_id == $curso['id']) ? 'selected' : '' ?>>
@@ -117,18 +114,19 @@ $cursos = $pdo->query("SELECT id, nome FROM cursos ORDER BY nome")->fetchAll(PDO
             <?php endforeach; ?>
         </select><br><br>
 
-        <label for="periodo">Período de Entrada:</label><br>
-        <input type="text" id="periodo" name="periodo" placeholder="Ex: 2023.1" value="<?= htmlspecialchars($periodo ?? '') ?>"><br><br>
+        <label for="periodo" class="form-create-label">Período de Entrada:</label><br>
+        <input type="text" id="periodo" name="periodo" placeholder="Ex: 2023.1" class="form-create-input" value="<?= htmlspecialchars($periodo ?? '') ?>"><br><br>
 
-        <label for="imagem">Imagem de Perfil:</label><br>
-        <input type="file" id="imagem" name="imagem" accept="image/*"><br><br>
+        <label for="imagem" class="form-create-label">Imagem de Perfil:</label><br>
+        <input type="file" id="imagem" name="imagem" accept="image/*" class="form-create-file"><br><br>
 
-        <button type="submit">Adicionar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-create-btn-primary">Adicionar</button>
+        <a href="index.php" class="form-create-link-secondary">Cancelar</a>
     </form>
 </main>
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 
 </body>
 </html>

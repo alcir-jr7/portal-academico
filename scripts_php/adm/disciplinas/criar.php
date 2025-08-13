@@ -22,46 +22,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
-<main>
-    <h1>Criar Nova Disciplina</h1>
+<main class="form-create-container">
+    <h1 class="form-create-title">Criar Nova Disciplina</h1>
 
     <?php if ($erro): ?>
-        <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-create-error-msg"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
 
-    <form method="post">
-        <label>
-            Nome:<br>
-            <input type="text" name="nome" required>
-        </label><br><br>
+    <form method="post" class="form-create-form">
+        <label class="form-create-label" for="nome">
+            Nome:
+        </label><br>
+        <input type="text" name="nome" id="nome" required class="form-create-input"><br><br>
 
-        <label>
-            Código:<br>
-            <input type="text" name="codigo" required>
-        </label><br><br>
+        <label class="form-create-label" for="codigo">
+            Código:
+        </label><br>
+        <input type="text" name="codigo" id="codigo" required class="form-create-input"><br><br>
 
-        <label>
-            Carga Horária:<br>
-            <input type="number" name="carga_horaria" required min="1">
-        </label><br><br>
+        <label class="form-create-label" for="carga_horaria">
+            Carga Horária:
+        </label><br>
+        <input type="number" name="carga_horaria" id="carga_horaria" required min="1" class="form-create-input"><br><br>
 
-        <label>
-            Curso:<br>
-            <select name="curso_id" required>
-                <option value="">Selecione um curso</option>
-                <?php foreach ($cursos as $curso): ?>
-                    <option value="<?= $curso['id'] ?>"><?= htmlspecialchars($curso['nome']) ?></option>
-                <?php endforeach; ?>
-            </select>
-        </label><br><br>
+        <label class="form-create-label" for="curso_id">
+            Curso:
+        </label><br>
+        <select name="curso_id" id="curso_id" required class="form-create-select">
+            <option value="">Selecione um curso</option>
+            <?php foreach ($cursos as $curso): ?>
+                <option value="<?= $curso['id'] ?>"><?= htmlspecialchars($curso['nome']) ?></option>
+            <?php endforeach; ?>
+        </select><br><br>
 
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-create-btn-primary">Salvar</button>
+        <a href="index.php" class="form-create-link-secondary">Cancelar</a>
     </form>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </main>
+
 
 </body>
 </html>

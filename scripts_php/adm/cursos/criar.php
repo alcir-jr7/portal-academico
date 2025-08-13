@@ -29,26 +29,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<main>
-    <h1>Criar Novo Curso</h1>
+<main class="form-create-container">
+    <h1 class="form-create-title">Criar Novo Curso</h1>
 
     <?php if ($erros): ?>
-        <ul style="color: red;">
+        <ul class="form-create-error-list">
             <?php foreach ($erros as $erro): ?>
-                <li><?= htmlspecialchars($erro) ?></li>
+                <li class="form-create-error-item"><?= htmlspecialchars($erro) ?></li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
 
-    <form method="POST">
-        <label>Nome:</label><br>
-        <input type="text" name="nome" required value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>"><br><br>
+    <form method="POST" class="form-create-form">
+        <label class="form-create-label">Nome:</label><br>
+        <input type="text" name="nome" required class="form-create-input" value="<?= htmlspecialchars($_POST['nome'] ?? '') ?>"><br><br>
 
-        <label>Código:</label><br>
-        <input type="text" name="codigo" required value="<?= htmlspecialchars($_POST['codigo'] ?? '') ?>"><br><br>
+        <label class="form-create-label">Código:</label><br>
+        <input type="text" name="codigo" required class="form-create-input" value="<?= htmlspecialchars($_POST['codigo'] ?? '') ?>"><br><br>
 
-        <label>Turno:</label><br>
-        <select name="turno" required>
+        <label class="form-create-label">Turno:</label><br>
+        <select name="turno" required class="form-create-select">
             <option value="">Selecione</option>
             <?php
             $turnos = ['matutino', 'vespertino', 'noturno', 'integral'];
@@ -60,11 +60,11 @@ $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::F
             ?>
         </select><br><br>
 
-        <label>Duração (em semestres):</label><br>
-        <input type="number" name="duracao_semestres" required value="<?= htmlspecialchars($_POST['duracao_semestres'] ?? '') ?>"><br><br>
+        <label class="form-create-label">Duração (em semestres):</label><br>
+        <input type="number" name="duracao_semestres" required class="form-create-input" value="<?= htmlspecialchars($_POST['duracao_semestres'] ?? '') ?>"><br><br>
 
-        <label>Coordenador (opcional):</label><br>
-        <select name="coordenador_id">
+        <label class="form-create-label">Coordenador (opcional):</label><br>
+        <select name="coordenador_id" class="form-create-select">
             <option value="">Nenhum</option>
             <?php 
             $selected_coord = $_POST['coordenador_id'] ?? '';
@@ -77,12 +77,13 @@ $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::F
             <?php endforeach; ?>
         </select><br><br>
 
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-create-btn-primary">Salvar</button>
+        <a href="index.php" class="form-create-link-secondary">Cancelar</a>
     </form>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </main>
+
 
 </body>
 </html>

@@ -23,19 +23,19 @@ if (!$admin) {
 }
 ?>
 
-<main>
-    <h1>Detalhes do Administrador</h1>
+<main class="form-create-main">
+    <h1 class="form-create-title">Detalhes do Administrador</h1>
 
-    <p><strong>ID:</strong> <?= $admin['id'] ?></p>
-    <p><strong>Nome:</strong> <?= htmlspecialchars($admin['nome']) ?></p>
-    <p><strong>Matrícula:</strong> <?= htmlspecialchars($admin['matricula']) ?></p>
-    <p><strong>Tipo:</strong> <?= ucfirst($admin['tipo']) ?></p>
-    <p><strong>Setor:</strong> <?= htmlspecialchars($admin['setor']) ?></p>
+    <div class="form-create-container">
+        <p class="form-create-info-item"><strong class="form-create-label">ID:</strong> <span class="form-create-value"><?= $admin['id'] ?></span></p>
+        <p class="form-create-info-item"><strong class="form-create-label">Nome:</strong> <span class="form-create-value"><?= htmlspecialchars($admin['nome']) ?></span></p>
+        <p class="form-create-info-item"><strong class="form-create-label">Matrícula:</strong> <span class="form-create-value"><?= htmlspecialchars($admin['matricula']) ?></span></p>
+        <p class="form-create-info-item"><strong class="form-create-label">Tipo:</strong> <span class="form-create-value"><?= ucfirst($admin['tipo']) ?></span></p>
+        <p class="form-create-info-item"><strong class="form-create-label">Setor:</strong> <span class="form-create-value"><?= htmlspecialchars($admin['setor']) ?></span></p>
+    </div>
 
-    <p>
-        <a href="editar.php?id=<?= $admin['id'] ?>">Editar</a> | 
-        <a href="deletar.php?id=<?= $admin['id'] ?>" onclick="return confirm('Deseja excluir este administrador?')">Excluir</a> | 
-        <a href="index.php">Voltar</a>
+    <p class="form-create-actions">
+        <a href="index.php" class="form-create-btn-secondary">Voltar</a>
     </p>
 
     <script src="/../../../public/recursos/js/painel_admin.js"></script>

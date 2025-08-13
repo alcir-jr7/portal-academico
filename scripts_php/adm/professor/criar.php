@@ -78,37 +78,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
-<main>
-    <h1>Criar Novo Professor</h1>
+<main class="form-create-container">
+    <h1 class="form-create-title">Criar Novo Professor</h1>
 
     <?php if ($erro): ?>
-        <p style="color: red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-create-error"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
     <?php if ($sucesso): ?>
-        <p style="color: green;"><?= htmlspecialchars($sucesso) ?></p>
+        <p class="form-create-success"><?= htmlspecialchars($sucesso) ?></p>
     <?php endif; ?>
 
-    <form method="post" enctype="multipart/form-data">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
+    <form method="post" enctype="multipart/form-data" class="form-create-form">
+        <label for="nome" class="form-create-label">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required class="form-create-input" value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
 
-        <!-- Removido campo matrícula -->
+        <label for="senha" class="form-create-label">Senha:</label><br>
+        <input type="password" id="senha" name="senha" required class="form-create-input"><br><br>
 
-        <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" name="senha" required><br><br>
+        <label for="email" class="form-create-label">Email:</label><br>
+        <input type="email" id="email" name="email" required class="form-create-input" value="<?= htmlspecialchars($email ?? '') ?>"><br><br>
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required value="<?= htmlspecialchars($email ?? '') ?>"><br><br>
+        <label for="departamento" class="form-create-label">Departamento:</label><br>
+        <input type="text" id="departamento" name="departamento" class="form-create-input" value="<?= htmlspecialchars($departamento ?? '') ?>"><br><br>
 
-        <label for="departamento">Departamento:</label><br>
-        <input type="text" id="departamento" name="departamento" value="<?= htmlspecialchars($departamento ?? '') ?>"><br><br>
+        <label for="imagem" class="form-create-label">Imagem de Perfil:</label><br>
+        <input type="file" id="imagem" name="imagem" accept="image/*" class="form-create-file"><br><br>
 
-        <label for="imagem">Imagem de Perfil:</label><br>
-        <input type="file" id="imagem" name="imagem" accept="image/*"><br><br>
-
-        <button type="submit">Adicionar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-create-btn-primary">Adicionar</button>
+        <a href="index.php" class="form-create-link-secondary">Cancelar</a>
     </form>
 </main>
 

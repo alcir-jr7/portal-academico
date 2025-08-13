@@ -63,32 +63,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main>
-    <h1>Criar Novo Administrador</h1>
+<main class="form-create-container">
+    <h1 class="form-create-title">Criar Novo Administrador</h1>
 
     <?php if ($erro): ?>
-        <p style="color: red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-create-error"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
     <?php if ($sucesso): ?>
-        <p style="color: green;"><?= htmlspecialchars($sucesso) ?></p>
+        <p class="form-create-success"><?= htmlspecialchars($sucesso) ?></p>
     <?php endif; ?>
 
-    <form method="post">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
+    <form method="post" class="form-create-form">
+        <label for="nome" class="form-create-label">Nome:</label><br>
+        <input type="text" id="nome" name="nome" required class="form-create-input" value="<?= htmlspecialchars($nome ?? '') ?>"><br><br>
 
-        <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" name="senha" required><br><br>
+        <label for="senha" class="form-create-label">Senha:</label><br>
+        <input type="password" id="senha" name="senha" required class="form-create-input"><br><br>
 
-        <label for="setor">Setor:</label><br>
-        <input type="text" id="setor" name="setor" required value="<?= htmlspecialchars($setor ?? '') ?>"><br><br>
+        <label for="setor" class="form-create-label">Setor:</label><br>
+        <input type="text" id="setor" name="setor" required class="form-create-input" value="<?= htmlspecialchars($setor ?? '') ?>"><br><br>
 
-        <button type="submit">Adicionar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-create-btn-primary">Adicionar</button>
+        <a href="index.php" class="form-create-link-secondary">Cancelar</a>
     </form>
 </main>
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 
 </body>
 </html>

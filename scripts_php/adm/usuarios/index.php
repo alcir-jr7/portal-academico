@@ -18,12 +18,12 @@ $stmt->execute($params);
 $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<main>
-    <h1>Lista de Usuários</h1>
+<main class="page-main">
+    <h1 class="page-title">Lista de Usuários</h1>
 
-    <form method="get">
+    <form method="get" class="form-search">
         <label for="tipo">Filtrar por tipo:</label>
-        <select name="tipo" onchange="this.form.submit()">
+        <select name="tipo" onchange="this.form.submit()" class="input-search" style="max-width: 200px;">
             <option value="">Todos</option>
             <option value="aluno" <?= $tipo === 'aluno' ? 'selected' : '' ?>>Aluno</option>
             <option value="professor" <?= $tipo === 'professor' ? 'selected' : '' ?>>Professor</option>
@@ -33,7 +33,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <br><br>
 
-    <table border="1" cellpadding="8">
+    <table border="1" cellpadding="8" class="table-admin">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -44,20 +44,24 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php foreach ($usuarios as $usuario): ?>
-                <tr style="background-color: <?= $usuario['ativo'] ? '#e0ffe0' : '#ffe0e0' ?>;">
+                <tr class="table-row <?= $usuario['ativo'] ? 'available' : 'used' ?>">
                     <td><?= htmlspecialchars($usuario['nome']) ?></td>
                     <td><?= htmlspecialchars($usuario['matricula']) ?></td>
                     <td><?= htmlspecialchars($usuario['tipo']) ?></td>
-                    <td><?= $usuario['ativo'] ? 'Ativo' : 'Inativo' ?></td>
+                    <td class="status <?= $usuario['ativo'] ? 'status-active' : 'status-inactive' ?>">
+                        <?= $usuario['ativo'] ? 'Ativo' : 'Inativo' ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <a href="/public/php/painel_admin.php">Voltar</a>
+    <br>
+    <a href="/public/php/painel_admin.php" class="btn-secondary">Voltar</a>
 </main>
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>
+
 
 </body>
 </html>

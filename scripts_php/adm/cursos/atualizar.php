@@ -37,24 +37,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<main>
-    <h1>Editar Curso</h1>
-    <form method="post">
-        <label>
+<main class="form-edit-main">
+    <h1 class="form-edit-title">Editar Curso</h1>
+
+    <form method="post" class="form-edit-form">
+        <label class="form-edit-label">
             Nome:<br>
-            <input type="text" name="nome" value="<?= htmlspecialchars($curso['nome']) ?>" required>
+            <input type="text" name="nome" value="<?= htmlspecialchars($curso['nome']) ?>" required class="form-edit-input-text">
         </label>
         <br><br>
 
-        <label>
+        <label class="form-edit-label">
             Código:<br>
-            <input type="text" name="codigo" value="<?= htmlspecialchars($curso['codigo']) ?>" required>
+            <input type="text" name="codigo" value="<?= htmlspecialchars($curso['codigo']) ?>" required class="form-edit-input-text">
         </label>
         <br><br>
 
-        <label>
+        <label class="form-edit-label">
             Turno:<br>
-            <select name="turno" required>
+            <select name="turno" required class="form-edit-select">
                 <?php
                 $turnos = ['matutino', 'vespertino', 'noturno', 'integral'];
                 foreach ($turnos as $t) {
@@ -66,15 +67,15 @@ $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::F
         </label>
         <br><br>
 
-        <label>
+        <label class="form-edit-label">
             Duração (semestres):<br>
-            <input type="number" name="duracao" value="<?= $curso['duracao_semestres'] ?>" min="1" required>
+            <input type="number" name="duracao" value="<?= $curso['duracao_semestres'] ?>" min="1" required class="form-edit-input-text">
         </label>
         <br><br>
 
-        <label>
+        <label class="form-edit-label">
             Coordenador (opcional):<br>
-            <select name="coordenador_id">
+            <select name="coordenador_id" class="form-edit-select">
                 <option value="">Nenhum</option>
                 <?php foreach ($professores as $prof): 
                     $sel = ($prof['id'] == $curso['coordenador_id']) ? 'selected' : '';
@@ -87,11 +88,11 @@ $professores = $pdo->query("SELECT id, email FROM professores")->fetchAll(PDO::F
         </label>
         <br><br>
 
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-edit-btn-primary">Salvar</button>
+        <a href="index.php" class="form-edit-link-secondary">Cancelar</a>
     </form>
-
 </main>
+
     <script src="/../../../public/recursos/js/painel_admin.js"></script>
 </body>
 </html>

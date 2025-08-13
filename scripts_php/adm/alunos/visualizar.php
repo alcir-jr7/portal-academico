@@ -39,24 +39,28 @@ if ($aluno['imagem_path']) {
 
 ?>
 
-<main>
-    <h1>Detalhes do Aluno</h1>
-    <div style="margin-bottom: 20px;">
-        <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Imagem de Perfil" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid #ddd;">
+<main class="form-create-main">
+    <h1 class="form-create-title">Detalhes do Aluno</h1>
+
+    <div class="form-create-img-container">
+        <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Imagem de Perfil" class="form-create-img">
     </div>
-    <ul>
-        <li><strong>Nome:</strong> <?= htmlspecialchars($aluno['nome']) ?></li>
-        <li><strong>Matrícula:</strong> <?= htmlspecialchars($aluno['matricula']) ?></li>
-        <li><strong>Email:</strong> <?= htmlspecialchars($aluno['email']) ?></li>
-        <li><strong>Período de Entrada:</strong> <?= htmlspecialchars($aluno['periodo_entrada']) ?></li>
-        <li><strong>Curso:</strong> <?= htmlspecialchars($aluno['curso_nome']) ?> (<?= htmlspecialchars($aluno['curso_codigo']) ?>)</li>
-        <li><strong>Turno do Curso:</strong> <?= htmlspecialchars($aluno['curso_turno']) ?></li>
-        <li><strong>Coordenador do Curso:</strong> <?= htmlspecialchars($aluno['coordenador_email'] ?? '—') ?></li>
-        <li><strong>Status do Usuário:</strong> <?= $aluno['ativo'] ? 'Ativo' : 'Inativo' ?></li>
-        <li><strong>Tipo de Usuário:</strong> <?= htmlspecialchars($aluno['tipo']) ?></li>
+
+    <ul class="form-create-info-list">
+        <li><strong class="form-create-label">Nome:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['nome']) ?></span></li>
+        <li><strong class="form-create-label">Matrícula:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['matricula']) ?></span></li>
+        <li><strong class="form-create-label">Email:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['email']) ?></span></li>
+        <li><strong class="form-create-label">Período de Entrada:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['periodo_entrada']) ?></span></li>
+        <li><strong class="form-create-label">Curso:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['curso_nome']) ?> (<?= htmlspecialchars($aluno['curso_codigo']) ?>)</span></li>
+        <li><strong class="form-create-label">Turno do Curso:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['curso_turno']) ?></span></li>
+        <li><strong class="form-create-label">Coordenador do Curso:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['coordenador_email'] ?? '—') ?></span></li>
+        <li><strong class="form-create-label">Status do Usuário:</strong> <span class="form-create-value"><?= $aluno['ativo'] ? 'Ativo' : 'Inativo' ?></span></li>
+        <li><strong class="form-create-label">Tipo de Usuário:</strong> <span class="form-create-value"><?= htmlspecialchars($aluno['tipo']) ?></span></li>
     </ul>
-    
-    <a href="index.php">Voltar à lista</a>
+
+    <p class="form-create-actions">
+        <a href="index.php" class="form-create-btn-secondary">Voltar à lista</a>
+    </p>
 </main>
 
 <script src="/../../../public/recursos/js/painel_admin.js"></script>

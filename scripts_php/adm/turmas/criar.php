@@ -29,17 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main>
-    <h1>Criar Nova Turma</h1>
+<main class="form-create-main">
+    <h1 class="form-create-title">Criar Nova Turma</h1>
 
     <?php if ($erro): ?>
-        <p style="color:red;"><?= htmlspecialchars($erro) ?></p>
+        <p class="form-create-msg-erro"><?= htmlspecialchars($erro) ?></p>
     <?php endif; ?>
 
-    <form method="post">
-        <label>
+    <form method="post" class="form-create-form">
+        <label class="form-create-label">
             Disciplina:<br>
-            <select name="disciplina_id" required>
+            <select name="disciplina_id" required class="form-create-select">
                 <option value="">Selecione uma disciplina</option>
                 <?php foreach ($disciplinas as $disciplina): ?>
                     <option value="<?= $disciplina['id'] ?>"><?= htmlspecialchars($disciplina['nome']) ?></option>
@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </label><br><br>
 
-        <label>
+        <label class="form-create-label">
             Professor:<br>
-            <select name="professor_id" required>
+            <select name="professor_id" required class="form-create-select">
                 <option value="">Selecione um professor</option>
                 <?php foreach ($professores as $prof): ?>
                     <option value="<?= $prof['id'] ?>"><?= htmlspecialchars($prof['nome']) ?></option>
@@ -57,18 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </select>
         </label><br><br>
 
-        <label>
+        <label class="form-create-label">
             Semestre:<br>
-            <input type="text" name="semestre" placeholder="Ex: 2023.1" required>
+            <input type="text" name="semestre" placeholder="Ex: 2023.1" required class="form-create-input-text">
         </label><br><br>
 
-        <label>
+        <label class="form-create-label">
             Horário:<br>
-            <input type="text" name="horario" placeholder="Ex: Seg 8h-10h">
+            <input type="text" name="horario" placeholder="Ex: Seg 8h-10h" class="form-create-input-text">
         </label><br><br>
 
-        <button type="submit">Salvar</button>
-        <a href="index.php">Cancelar</a>
+        <button type="submit" class="form-create-btn-primary">Salvar</button>
+        <a href="index.php" class="form-create-link-secondary">Cancelar</a>
     </form>
 </main>
 
