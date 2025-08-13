@@ -80,7 +80,7 @@
   </details>
 
   <div class="footer-bottom">
-    <p>&copy; 2025 Sistema Acadêmico</p>
+    <p>&copy; 2025 Sistema Acadêmico - iCampus</p>
   </div>
 </footer>
 

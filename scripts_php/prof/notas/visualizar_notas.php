@@ -70,7 +70,11 @@ try {
             </tbody>
         </table>
     <?php endif; ?>
-    <a href="index.php">Voltar às turmas</a>
+    <div class="botao-atalho">
+        <button type="button" onclick="window.location.href='index.php'">
+            Voltar
+        </button>
+    </div>
 </main>
 
 <script src="/../../../public/recursos/js/painel_professor.js"></script>

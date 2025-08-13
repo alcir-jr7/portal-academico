@@ -164,14 +164,15 @@ if (!empty($aluno['imagem_path'])) {
         </div>
     <?php endif; ?>
     <div class="container-perfil">
-    <!-- Foto à esquerda -->
-    <div class="foto-atual">
-        <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Minha foto atual" width="150" height="150"> 
-        <h3>Minha Foto Atual</h3>
-    </div>
 
     <!-- Formulário à direita -->
     <form method="post" enctype="multipart/form-data" class="form-perfil">
+        
+        <div class="foto-atual">
+            <img src="<?= htmlspecialchars($imagemPath) ?>" alt="Minha foto atual" width="150" height="150"> 
+            <h3>Minha Foto</h3>
+        </div>
+
         <fieldset class="dados-pessoais">
             <legend>Dados Pessoais</legend>
     

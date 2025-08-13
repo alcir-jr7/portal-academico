@@ -157,15 +157,11 @@ $tem_frequencia_hoje = !empty($frequencias_hoje);
                 </tbody>
             </table>
 
-            <div class="acoes-form">
+            <div class="botao-atalho">
                 <button type="submit" class="btn btn-primary">Salvar Frequência</button>
-                <button type="button" onclick="marcarTodos(true)" class="btn btn-secondary">
-                    Marcar Todos Presentes
+                <button type="button" onclick="window.location.href='index.php'">
+                    Voltar
                 </button>
-                <button type="button" onclick="marcarTodos(false)" class="btn btn-secondary">
-                    Marcar Todos Ausentes
-                </button>
-                <a href="index.php">Voltar às turmas</a>
             </div>
         </form>
     <?php endif; ?>

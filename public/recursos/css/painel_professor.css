@@ -100,7 +100,6 @@ main h2 {
 }
 
 /* Cards do painel */
-/* Cards do painel */
 .painel-opcoes {
     display: flex;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -382,6 +381,66 @@ td.evento.hoje {
 .dropbtn:hover {
     color: #ddd;
 }
+
+
+/* Tabela moderna com estilo preto e branco */
+.table-info {
+    text-align: center;
+    color: black;
+}
+
+.admin-table {
+  width: calc(100% - 4rem);
+  margin: 0 2rem 6rem 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 2px solid var(--primary-color);
+}
+
+.admin-table thead th {
+  background: black;
+  color: white;
+  padding: 1rem 1.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.admin-table thead th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.admin-table thead th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+.admin-table tbody tr {
+  transition: var(--transition);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table tbody tr:hover {
+  background: var(--surface-secondary);
+}
+
+.admin-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.admin-table tbody td {
+  padding: 1rem 1.5rem;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
 
 
 
@@ -710,10 +769,10 @@ td.evento.hoje {
   margin: 0 auto;
 }
 
-/* Foto atual */
+/* Foto atual dentro do quadro */
 .foto-atual {
   text-align: center;
-  width: 180px;
+  margin-bottom: 20px;
 }
 
 .foto-atual img {
@@ -721,15 +780,17 @@ td.evento.hoje {
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #fff;
-  margin-bottom: 12px;
+  border: 3px solid #000; /* para destacar */
+  background-color: #fff;
+  padding: 4px; /* cria "moldura" branca */
 }
 
 .foto-atual h3 {
-  font-weight: normal;
-  font-size: 1.2rem;
-  color: #000000;
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: #000;
 }
+
 
 /* Formulário */
 .form-perfil {

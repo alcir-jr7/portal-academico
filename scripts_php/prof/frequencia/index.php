@@ -65,6 +65,11 @@ try {
             </div>
         </div>
     <?php endif; ?>
+    <div class="botao-atalho">
+        <button type="button" onclick="window.location.href='/../../../public/php/painel_professor.php'">
+            Voltar
+        </button>
+    </div>
 </main>
 
 <script src="/../../../public/recursos/js/painel_professor.js"></script>

@@ -146,8 +146,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['notas'])) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <a href="index.php">Voltar às turmas</a>
-            <button type="submit" class="btn btn-primary">Salvar Notas</button>
+            <div class="botao-atalho">
+                <button type="button" onclick="window.location.href='index.php'">
+                    Voltar
+                </button>
+                <button type="submit" class="btn btn-primary">Salvar Notas</button>
+            </div>
         </form>
     <?php endif; ?>
 </main>

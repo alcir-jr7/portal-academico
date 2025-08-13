@@ -377,7 +377,7 @@ main p {
 
 .admin-table thead th {
   background: var(--primary-color);
-  color: white;
+  color: rgb(0, 0, 0);
   padding: 1rem 1.5rem;
   text-align: left;
   font-weight: 600;
@@ -1029,10 +1029,10 @@ main p {
   margin: 0 auto;
 }
 
-/* Foto atual */
+/* Foto atual dentro do quadro */
 .foto-atual {
   text-align: center;
-  width: 180px;
+  margin-bottom: 20px;
 }
 
 .foto-atual img {
@@ -1040,15 +1040,17 @@ main p {
   height: 150px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #fff;
-  margin-bottom: 12px;
+  border: 3px solid #000; /* para destacar */
+  background-color: #fff;
+  padding: 4px; /* cria "moldura" branca */
 }
 
 .foto-atual h3 {
-  font-weight: normal;
-  font-size: 1.2rem;
-  color: #000000;
+  margin-top: 8px;
+  font-size: 1.1rem;
+  color: #000;
 }
+
 
 /* Formulário */
 .form-perfil {
