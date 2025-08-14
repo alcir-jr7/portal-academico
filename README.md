@@ -7,6 +7,7 @@ Sistema web de gestão acadêmica desenvolvido como parte da disciplina de **Pro
 - Alcir Silva  
 - Marília Gabriela  
 - Mikaias Marinho
+- Lincon Fraga
 
 ## 🛠️ Tecnologias utilizadas 
 
