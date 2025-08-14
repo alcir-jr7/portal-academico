@@ -14,8 +14,8 @@ $disciplinas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <main class="page-main">
     <div class="page-header">
         <h1 class="page-title">Disciplinas Cadastradas</h1>
-        <a href="criar.php" class="btn-primary btn-new">+ Nova Disciplina</a>
     </div>
+        <a href="criar.php" class="btn-primary btn-new">+ Nova Disciplina</a>
 
     <?php if (empty($disciplinas)): ?>
         <p>Nenhuma disciplina cadastrada.</p>

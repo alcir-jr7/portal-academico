@@ -439,7 +439,7 @@ td.evento.hoje {
 
 /* Botão novo aluno especial */
 .btn-new {
-    background: #4CAF50;
+    background: #000000;
     margin-bottom: 1rem;
     display: inline-block;
     font-size: 1.1rem;
@@ -447,15 +447,15 @@ td.evento.hoje {
 }
 
 .btn-new:hover {
-    background: #45a049;
+    background: #000000;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 /* Botão secundário */
 .btn-secondary {
-    background: transparent;
-    color: #000000;
+    background-color:#000000;
+    color: #ffffff;
     border: 2px solid #000000;
     padding: 1rem 2rem;
     font-size: 1rem;
@@ -464,7 +464,7 @@ td.evento.hoje {
     letter-spacing: 0.5px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     text-decoration: none;
     display: inline-block;
     text-align: center;
@@ -472,11 +472,12 @@ td.evento.hoje {
 }
 
 .btn-secondary:hover {
-    background: #000000;
+    background: rgb(73, 72, 72);
     color: #ffffff;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Link limpar */
 .link-clear {
@@ -1112,6 +1113,113 @@ td.evento.hoje {
 .form-create-error-msg {
     color: red;
     margin-bottom: 1rem;
+}
+
+/* CSS específico para campo de horário */
+
+/* Estilo básico para input time */
+input[type="time"] {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #333;
+    width: 160px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Hover */
+input[type="time"]:hover {
+    border-color: #000000;
+    background-color: #f8f9ff;
+}
+
+/* Focus */
+input[type="time"]:focus {
+    outline: none;
+    border-color: #000000;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(92, 93, 94, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Estilo para o ícone de relógio (alguns navegadores) */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline></svg>');
+    background-size: 16px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+/* Container para label + input */
+.horario-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+/* Label estilizado */
+.horario-label {
+    font-weight: 600;
+    color: #444;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Ícone no label */
+.horario-label::before {
+    content: "🕒";
+    font-size: 16px;
+}
+
+/* Versão com fundo escuro */
+input[type="time"].dark-theme {
+    background-color: #2c3e50;
+    border-color: #34495e;
+    color: #ecf0f1;
+}
+
+input[type="time"].dark-theme:hover {
+    border-color: #000000;
+    background-color: #4d4e4e;
+}
+
+input[type="time"].dark-theme:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 3px rgba(90, 91, 92, 0.15);
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    input[type="time"] {
+        width: 100%;
+        font-size: 16px; /* Evita zoom em iOS */
+    }
+}
+
+/* Estilo para quando estiver desabilitado */
+input[type="time"]:disabled {
+    background-color: #f5f5f5;
+    border-color: #ddd;
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* Animação suave no carregamento */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+input[type="time"] {
+    animation: fadeIn 0.3s ease-out;
 }
 
 

@@ -16,9 +16,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $disciplina_id = $_POST['disciplina_id'] ?? null;
     $professor_id = $_POST['professor_id'] ?? null;
     $semestre = $_POST['semestre'] ?? '';
-    $horario = $_POST['horario'] ?? '';
+    $dia = $_POST['dia'] ?? '';
+    $horario_time = $_POST['horario'] ?? '';
 
     if ($disciplina_id && $professor_id && $semestre) {
+        // Combinar dia e horário se preenchidos
+        $horario = '';
+        if ($dia && $horario_time) {
+            $horario = $dia . ' às ' . $horario_time;
+        } elseif ($dia) {
+            $horario = $dia;
+        } elseif ($horario_time) {
+            $horario = 'às ' . $horario_time;
+        }
+
         $stmt = $pdo->prepare("INSERT INTO turmas (disciplina_id, professor_id, semestre, horario) VALUES (?, ?, ?, ?)");
         $stmt->execute([$disciplina_id, $professor_id, $semestre, $horario]);
         header('Location: index.php');
@@ -59,12 +70,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <label class="form-create-label">
             Semestre:<br>
-            <input type="text" name="semestre" placeholder="Ex: 2023.1" required class="form-create-input-text">
+            <input type="text" name="semestre" placeholder="Ex: 2024.1, Primeiro Semestre 2024" required class="form-create-select">
+        </label><br><br>
+
+        <label class="form-create-label">
+            Dia:<br>
+            <select name="dia" class="form-create-select">
+                <option value="">Selecione um dia</option>
+                <option value="Segunda-feira">Segunda-feira</option>
+                <option value="Terça-feira">Terça-feira</option>
+                <option value="Quarta-feira">Quarta-feira</option>
+                <option value="Quinta-feira">Quinta-feira</option>
+                <option value="Sexta-feira">Sexta-feira</option>
+                <option value="Sábado">Sábado</option>
+            </select>
         </label><br><br>
 
         <label class="form-create-label">
             Horário:<br>
-            <input type="text" name="horario" placeholder="Ex: Seg 8h-10h" class="form-create-input-text">
+            <input type="time" name="horario" class="form-create-input-text">
         </label><br><br>
 
         <button type="submit" class="form-create-btn-primary">Salvar</button>

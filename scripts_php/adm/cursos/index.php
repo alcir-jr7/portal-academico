@@ -13,8 +13,10 @@ $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <main class="page-main">
     <div class="page-header">
     <h1 class="page-title">Gerenciamento de Cursos</h1>
-    <a href="criar.php" class="btn-primary btn-new">+ Novo Curso</a>
+    
 </div>
+
+        <a href="criar.php" class="btn-primary btn-new">+ Novo Curso</a>
 
 
     <h2 class="section-title">Cursos Cadastrados</h2>
